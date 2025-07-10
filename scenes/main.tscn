@@ -1,3 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmpbbds6kqfae"]
+
+[ext_resource type="PackedScene" uid="uid://b2sxib8l5xexe" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cb5ljtqnl67oa" path="res://scenes/environments/map.tscn" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://dgmo00l0w666h" path="res://scenes/ui/standing_menu_assets/small_question.jpg" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://b8s5iqugihmpq" path="res://scenes/ui/standing_menu_assets/space_button.png" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_ui.tscn" id="5_tbgi4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(87, 94)
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" path="res://scenes/environments/map.tscn" id="2_0wfyh"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Map" parent="CanvasLayer" instance=ExtResource("2_0wfyh")]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="quest_vision_sample" type="Area2D" parent="CanvasLayer3"]
+
+[node name="SmallQuestion" type="Sprite2D" parent="CanvasLayer3/quest_vision_sample"]
+position = Vector2(811, 276)
+texture = ExtResource("3_jyhfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer3/quest_vision_sample"]
+position = Vector2(809, 273)
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="CanvasLayer4" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer4"]
+offset_left = 531.0
+offset_top = -14.0
+offset_right = 854.0
+offset_bottom = 149.0
+
+[node name="SpaceButton" type="Sprite2D" parent="CanvasLayer4/PanelContainer"]
+position = Vector2(161, 80)
+texture = ExtResource("4_tbgi4")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Player" parent="CanvasLayer2" instance=ExtResource("1_o5qli")]
+position = Vector2(600, 250)
+scale = Vector2(0.25, 0.251)
+
+[node name="backpackUI" parent="." instance=ExtResource("5_tbgi4")]
+layer = 5
+
+[connection signal="body_entered" from="CanvasLayer3/quest_vision_sample" to="CanvasLayer2/Player" method="_on_quest_vision_sample_body_entered"]
+[connection signal="body_exited" from="CanvasLayer3/quest_vision_sample" to="CanvasLayer2/Player" method="_on_quest_vision_sample_body_exited"]
+[gd_scene format=3 uid="uid://bcg1i5hkigqhf"]
 [gd_scene load_steps=0 format=3 uid="uid://bcg1i5hkigqhf"]
 
 [node name="Main" type="Node2D"]

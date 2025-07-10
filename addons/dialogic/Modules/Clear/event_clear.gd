@@ -5,7 +5,7 @@ extends DialogicEvent
 ## Event that clears audio & visuals (not variables).
 ## Useful to make sure the scene is clear for a completely new thing.
 
-var time := 1.0
+var time := 0.5
 var step_by_step := true
 
 var clear_textbox := true
@@ -24,7 +24,7 @@ func _execute() -> void:
 
 	if dialogic.Inputs.auto_skip.enabled:
 		var time_per_event: float = dialogic.Inputs.auto_skip.time_per_event
-		final_time = min(time, time_per_event)
+		final_time = min(time, 1)
 
 	if clear_textbox and dialogic.has_subsystem("Text"):
 		dialogic.Text.update_dialog_text('')

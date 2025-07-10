@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cebio8xfhlxnv"
+path="res://.godot/imported/8bit-KnoxHymn - Introduction_Character Creation Music.mp3-d37a7bd087b80b90502161d2b144b411.mp3str"
+
+[deps]
+
+source_file="res://audio/music/8bit-KnoxHymn - Introduction_Character Creation Music.mp3"
+dest_files=["res://.godot/imported/8bit-KnoxHymn - Introduction_Character Creation Music.mp3-d37a7bd087b80b90502161d2b144b411.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cb6q4s8g4n1qm"]
+[gd_scene load_steps=25 format=3 uid="uid://c8xnd2sw0365m"]
 
-[ext_resource type="Script" uid="uid://bnu6s3b7e2gl1" path="res://scripts/player/player_cat.gd" id="1_0geaf"]
+[ext_resource type="Script" path="res://scripts/player/player_cat.gd" id="1_0geaf"]
 [ext_resource type="Texture2D" uid="uid://bq0frcp06bnk1" path="res://art/sprites/PlayerWalk.png" id="2_0geaf"]
+[ext_resource type="AudioStream" uid="uid://58ofqml6gbct" path="res://audio/music/walking outside step.wav" id="2_4klkc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0geaf"]
 radius = 3.0
@@ -198,6 +199,9 @@ size = Vector2(10, 26)
 z_as_relative = false
 script = ExtResource("1_0geaf")
 
+[node name="footstep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4klkc")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_0geaf")
 offset = Vector2(0, -11)
@@ -227,3 +231,8 @@ collision_mask = 2
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_esxlc")
 debug_color = Color(0.920586, 5.86233e-05, 0.69434, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.68
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

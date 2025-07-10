@@ -1,4 +1,3 @@
-[style]
 [background fade="0.0" transition="Swipe Left To Right"]
 # The player character awakens after falling from their bed. Their clock reads 3:37 AM
 player: Ow, my head.
@@ -55,3 +54,4 @@ player: I really gotta get out of here.
 alex: Dude, who are you talking to?
 player: Uhhh nobody, I- I think I’m gonna go now.
 alex: Okay, just be quiet when you come back.
+[signal arg="DormMusic"]

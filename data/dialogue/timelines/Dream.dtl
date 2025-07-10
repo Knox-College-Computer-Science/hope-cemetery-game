@@ -1,5 +1,5 @@
 # *Looking up at Sky*
-[background arg="res://art/beauty_shots/warflashback1.png" fade="0.6"]
+[background arg="res://art/beauty_shots/warflashback1.png" fade="0.0"]
 Charles: Lorraine…
 [wait time="0.3"]
 [background arg="res://art/beauty_shots/warflashback2.png" fade="0.6" transition="Simple Fade"]

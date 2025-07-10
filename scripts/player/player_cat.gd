@@ -5,12 +5,14 @@ extends CharacterBody2D
 @onready var animTree: AnimationTree = $AnimationTree
 @onready var stateMachine: AnimationNodeStateMachinePlayback = animTree["parameters/playback"]
 @onready var sprite = $Sprite2D
-
-
+@onready var cemetary_music = $"../cemetary_music"
+@onready var dorm = $"../Alex/room music"
+@onready var footsteps_sfx = $footstep
+@onready var timer = $Timer
 func _ready():
 	update_animation_parameters(startDir)
-
-
+	#$"../Alex/room music".play()
+	
 func _physics_process(_delta):
 	var input_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -44,5 +46,16 @@ func update_animation_parameters(move_input : Vector2):
 func pick_new_state():
 	if (!velocity.is_equal_approx(Vector2.ZERO)):
 		stateMachine.travel("Walk")
+		if !footsteps_sfx.playing:
+			footsteps_sfx.play()
+			timer.start()
 	else:
 		stateMachine.travel("Idle")
+		if footsteps_sfx.playing:
+			footsteps_sfx.stop()
+			timer.stop()
+
+
+func _on_timer_timeout() -> void:
+	footsteps_sfx.play()
+	timer.start()

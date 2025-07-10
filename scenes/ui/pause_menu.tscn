@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://dawt3grro5es2"]
+
+[ext_resource type="Script" uid="uid://27b5hmgy0622" path="res://scripts/ui/pause_menu.gd" id="1_05uyy"]
+[ext_resource type="Material" uid="uid://dquugtfyg82pf" path="res://art/shader_materials/blur.tres" id="2_05uyy"]
+[ext_resource type="Script" uid="uid://chu1xwjiew02x" path="res://scripts/ui/clickCatch.gd" id="3_2nc7s"]
+[ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="4_p81d2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mxa3g"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+light_mask = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -1.0
+offset_right = -46.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 1.62
+script = ExtResource("1_05uyy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("2_05uyy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 900.0
+offset_right = 1028.0
+offset_bottom = 128.0
+texture_normal = ExtResource("4_p81d2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 6
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 6.0
+offset_right = 1291.0
+offset_bottom = 718.0
+
+[node name="clickoff" type="PanelContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 460.0
+offset_top = 159.0
+offset_right = 906.0
+offset_bottom = 469.0
+script = ExtResource("3_2nc7s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/clickoff"]
+material = SubResource("CanvasItemMaterial_mxa3g")
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Resume" type="Button" parent="CanvasLayer/Control/clickoff/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Resume
+"
+theme_override_font_sizes/font_size = 15
+text = "Resume"
+
+[node name="Save" type="Button" parent="CanvasLayer/Control/clickoff/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Restart" type="Button" parent="CanvasLayer/Control/clickoff/VBoxContainer"]
+layout_mode = 2
+text = "Restart
+"
+
+[node name="Settings" type="Button" parent="CanvasLayer/Control/clickoff/VBoxContainer"]
+layout_mode = 2
+text = "Settings
+"
+
+[node name="Go to main menu" type="Button" parent="CanvasLayer/Control/clickoff/VBoxContainer"]
+layout_mode = 2
+text = "Go to main menu"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Control/clickoff/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="gui_input" from="CanvasLayer/Control" to="CanvasLayer/Control/clickoff" method="_on_control_gui_input"]
+[connection signal="pressed" from="CanvasLayer/Control/clickoff/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/clickoff/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/clickoff/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/clickoff/VBoxContainer/Settings" to="." method="_on_sound_control_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/clickoff/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/clickoff/VBoxContainer/Go to main menu" to="." method="_on_go_to_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/clickoff/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

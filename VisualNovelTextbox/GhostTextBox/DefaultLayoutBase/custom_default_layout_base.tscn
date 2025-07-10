@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://p4qbjjr5wq6g"]
+
+[ext_resource type="Script" uid="uid://b653vmnaqve2m" path="res://VisualNovelTextbox/GhostTextBox/DefaultLayoutBase/default_layout_base.gd" id="1_ifsho"]
+
+[node name="DefaultLayoutBase" type="CanvasLayer"]
+script = ExtResource("1_ifsho")

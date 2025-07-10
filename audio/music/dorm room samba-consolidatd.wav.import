@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dsc8pbrsq86wa"
+path="res://.godot/imported/dorm room samba-consolidatd.wav-25f367755a8cd741abd287f1ce72564b.sample"
+
+[deps]
+
+source_file="res://audio/music/dorm room samba-consolidatd.wav"
+dest_files=["res://.godot/imported/dorm room samba-consolidatd.wav-25f367755a8cd741abd287f1ce72564b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

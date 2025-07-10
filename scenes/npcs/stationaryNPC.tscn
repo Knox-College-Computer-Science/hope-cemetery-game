@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bus0mj0a28s62"]
+[gd_scene load_steps=11 format=3 uid="uid://bus0mj0a28s62"]
 
 [ext_resource type="Script" uid="uid://ckfnaej2pkxgh" path="res://scripts/npcs/stationary_npc.gd" id="1_u04us"]
 [ext_resource type="Texture2D" uid="uid://dq6afmv5rcsuk" path="res://art/sprites/NPCNoticeAnimation.png" id="2_u04us"]
+[ext_resource type="AudioStream" uid="uid://dsc8pbrsq86wa" path="res://audio/music/dorm room samba-consolidatd.wav" id="3_ibvnb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibvnb"]
 atlas = ExtResource("2_u04us")
@@ -71,6 +72,9 @@ scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_13fr5")
 autoplay = "default"
 frame_progress = 0.157029
+
+[node name="dorm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ibvnb")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

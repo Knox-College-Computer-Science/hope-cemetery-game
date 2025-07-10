@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcspcvlshrs75"]
+
+[ext_resource type="Script" uid="uid://bd0mu1cfmwcnl" path="res://basicMiniMapCode/character_body_2d.gd" id="1_6gq18"]
+[ext_resource type="Texture2D" uid="uid://d006l72tns772" path="res://basicMiniMapCode/sprite_Shadow0.png" id="2_upmnq"]
+[ext_resource type="Script" uid="uid://04ijgr8nt0li" path="res://basicMiniMapCode/sub_viewport.gd" id="3_upmnq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6gq18"]
+radius = 15.0
+
+[node name="Game Level" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_6gq18")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(35, 26)
+texture = ExtResource("2_upmnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(35, 27)
+shape = SubResource("CircleShape2D_6gq18")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MiniMapUI" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MiniMapUI"]
+offset_left = 120.0
+offset_top = 39.0
+offset_right = 320.0
+offset_bottom = 239.0
+
+[node name="SubViewport" type="SubViewport" parent="MiniMapUI/SubViewportContainer" node_paths=PackedStringArray("camera_node", "player_node")]
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+script = ExtResource("3_upmnq")
+camera_node = NodePath("../../../Camera2D")
+player_node = NodePath("../../../CharacterBody2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="MiniMapUI/SubViewportContainer/SubViewport"]
+
+[node name="Camera2D" type="Camera2D" parent="MiniMapUI/SubViewportContainer/SubViewport"]
+zoom = Vector2(0.1, 0.1)

@@ -1,0 +1,368 @@
+[gd_scene load_steps=3 format=3 uid="uid://busb7wt6vs227"]
+
+[ext_resource type="Script" uid="uid://cngnyu2ry681y" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="AudioStream" uid="uid://cebio8xfhlxnv" path="res://audio/music/8bit-KnoxHymn - Introduction_Character Creation Music.mp3" id="2_fe2o3"]
+
+[node name="main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sl1te")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="newgame_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "new game"
+
+[node name="continue_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/icon_focus_color = Color(0.956863, 0.701961, 0.752941, 1)
+theme_override_colors/icon_normal_color = Color(0.956863, 0.701961, 0.72549, 1)
+text = "continue"
+
+[node name="stats" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "stats"
+
+[node name="settings_popup" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "settings"
+
+[node name="credits_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "credits"
+
+[node name="quit_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "quit"
+
+[node name="title" type="Label" parent="."]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 0
+offset_left = -119.0
+offset_top = -150.0
+offset_right = 135.0
+offset_bottom = -115.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "hope cemetary game"
+vertical_alignment = 1
+
+[node name="settings" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="settings"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="settings outline" type="Panel" parent="settings/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 389.0
+offset_top = 175.0
+offset_right = 734.0
+offset_bottom = 406.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="music slider" type="HSlider" parent="settings/Control/settings outline"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_left = 146.0
+offset_top = 32.0
+offset_right = 246.0
+offset_bottom = 72.0
+max_value = 1.0
+step = 0.001
+
+[node name="main volume" type="Label" parent="settings/Control/settings outline/music slider"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 105.0
+offset_bottom = 7.0
+text = "main volume "
+
+[node name="main slider" type="HSlider" parent="settings/Control/settings outline"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_left = 146.0
+offset_top = 81.0
+offset_right = 246.0
+offset_bottom = 121.0
+max_value = 1.0
+step = 0.001
+
+[node name="main volume" type="Label" parent="settings/Control/settings outline/main slider"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -16.0
+offset_right = 110.0
+offset_bottom = 7.0
+text = "music volume "
+
+[node name="main slider2" type="HSlider" parent="settings/Control/settings outline"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_left = 149.0
+offset_top = 127.0
+offset_right = 249.0
+offset_bottom = 167.0
+max_value = 1.0
+step = 0.001
+
+[node name="main volume" type="Label" parent="settings/Control/settings outline/main slider2"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -17.0
+offset_right = 102.0
+offset_bottom = 6.0
+text = "sfx volume "
+
+[node name="back" type="Button" parent="settings/Control/settings outline"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 220.0
+offset_right = 222.0
+offset_bottom = 251.0
+text = "< back"
+
+[node name="controls_move" type="Label" parent="settings/Control/settings outline"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 25.5
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "controls"
+horizontal_alignment = 1
+
+[node name="click" type="CheckButton" parent="settings/Control/settings outline/controls_move"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 22.0
+offset_right = 190.0
+offset_bottom = 53.0
+text = "click"
+
+[node name="wasd" type="CheckButton" parent="settings/Control/settings outline/controls_move"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 22.0
+offset_right = 308.0
+offset_bottom = 53.0
+text = "WASD"
+
+[node name="credits" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="credits"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="credits popup" type="Panel" parent="credits/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 389.0
+offset_top = 175.0
+offset_right = 734.0
+offset_bottom = 406.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="credits/Control/credits popup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -11.5
+offset_right = 77.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CS 241 SPRING 2025"
+
+[node name="back_2" type="Button" parent="credits/Control/credits popup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -84.0
+offset_right = 29.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "< back"
+
+[node name="stats" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="stats"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="stats popup" type="Panel" parent="stats/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 457.0
+offset_top = 206.0
+offset_right = 802.0
+offset_bottom = 437.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="stats title" type="Label" parent="stats/Control/stats popup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -118.5
+offset_right = 77.5
+offset_bottom = -83.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "stats"
+horizontal_alignment = 1
+
+[node name="progress" type="Button" parent="stats/Control/stats popup"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -70.5
+offset_right = -1.0
+offset_bottom = -39.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "progress"
+
+[node name="achievements" type="Button" parent="stats/Control/stats popup"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -29.5
+offset_right = -1.0
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "achievements"
+
+[node name="time spent" type="Button" parent="stats/Control/stats popup"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 11.5
+offset_right = -1.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "time spent:                     "
+
+[node name="time_label" type="Label" parent="stats/Control/stats popup"]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 151.0
+offset_right = 287.0
+offset_bottom = 174.0
+text = "        hrs"
+
+[node name="days" type="Button" parent="stats/Control/stats popup"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 51.5
+offset_right = -1.0
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "in game days"
+
+[node name="back_3" type="Button" parent="stats/Control/stats popup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -41.0
+offset_right = 30.5
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "< back"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -100
+layout_mode = 0
+offset_left = -566.0
+offset_top = -308.0
+offset_right = 583.0
+offset_bottom = 332.0
+mouse_filter = 2
+color = Color(0.827836, 0.388822, 0.529754, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fe2o3")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/newgame_button" to="." method="_on_newgame_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/stats" to="." method="_on_stats_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings_popup" to="." method="_on_settings_popup_pressed"]
+[connection signal="pressed" from="VBoxContainer/credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="settings/Control/settings outline/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="credits/Control/credits popup/back_2" to="." method="_on_back_2_pressed"]
+[connection signal="pressed" from="stats/Control/stats popup/progress" to="." method="_on_progress_pressed"]
+[connection signal="pressed" from="stats/Control/stats popup/achievements" to="." method="_on_achievements_pressed"]
+[connection signal="pressed" from="stats/Control/stats popup/time spent" to="." method="_on_time_spent_pressed"]
+[connection signal="pressed" from="stats/Control/stats popup/days" to="." method="_on_days_pressed"]
+[connection signal="pressed" from="stats/Control/stats popup/back_3" to="." method="_on_back_3_pressed"]

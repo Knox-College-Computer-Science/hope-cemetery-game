@@ -55,16 +55,17 @@ player: Whatever, man. Is Charles the one who called me in my dreams?
 Soldier: Gonna hav’ta ask him yourself. You can find him outside the mausoleum. Good luck. Kid like you’s gonna need it.
 # If the player approached the Mausoleum, they find Charles.
 # Then, the following exchange takes place:
-Charles:  I hope Henry didn’t give you too hard of a time. Sometimes he takes his job too seriously!
+Charles: I hope Henry didn’t give you too hard of a time. Sometimes he takes his job too seriously!
 player: It’s fine, he’s probably not used to seeing living people.
 Charles: Yeah, yer different than the other living. It may take the people here some time to realize that.
 player: Are you Charles– (cut off)
 Charles: Why yes! I’m Charles Miller of the 19th Illinois Regiment. I was born on September the 3rd of 1839 right here in Galesburg and I went to Knox College before joining the war. I need your help with something. Before I went off to war I knew a girl, Lorraine Barquet. She was the most beautiful girl I’d ever seen, but I never got to tell her how I felt. I need you to tell her.
 player: Me? Why me?
-Charles: Due to my current state, I can’t physically affect anything. Last thing I remember is the Battle of Stone Creek. Then all of a sudden I’m right back in Galesburg. I’ve tried to go back to the last day I saw her but there is nothing I can do. You, however, can do something. Due to your deep ties to this town you are able to change both its past and its future. 
+Charles: Due to my current state, I can’t physically affect anything. Last thing I remember is the Battle of Stone Creek. Then all of a sudden I’m right back in Galesburg. I’ve tried to go back to the last day I saw her but there is nothing I can do. You, however, can do something. Due to your deep ties to this town you are able to change both its past and its future.
 player: What do I need to do?
 Charles: I can take you back to that day, but you need to find a way to convince the past me to tell her how he feels. Just try not to change anything else or it could mess up the present.
 - I'm ready to go.
-	Charles: Alright, just step into this mausoleum, count to five, and when you leave you’ll be back in the year 1858! 
+	Charles: Alright, just step into this mausoleum, count to five, and when you leave you’ll be back in the year 1858!
 - I’m not ready yet.
 	Charles: Alright, just come back when you are.
+[signal arg_type="dict"]

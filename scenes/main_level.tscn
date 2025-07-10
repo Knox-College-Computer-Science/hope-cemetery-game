@@ -1,26 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=14 format=3 uid="uid://oh2basiek65h"]
 
-[ext_resource type="PackedScene" uid="uid://cb6q4s8g4n1qm" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
+[ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
+[ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
 [ext_resource type="PackedScene" uid="uid://dhnijtw7hrb0t" path="res://scenes/ui/mini_map.tscn" id="3_8ra5a"]
 [ext_resource type="Script" uid="uid://c8ys2mi3foboo" path="res://scenes/panel.gd" id="3_bq26l"]
-[ext_resource type="PackedScene" uid="uid://dq5se8m6btwbd" path="res://scenes/npcs/old_nun.tscn" id="4_8ra5a"]
-[ext_resource type="PackedScene" uid="uid://pc6ujaccnolj" path="res://scenes/hopeCemetery.tscn" id="5_8ra5a"]
-[ext_resource type="PackedScene" uid="uid://d2us2ce2r2aa1" path="res://scenes/npcs/samuel.tscn" id="5_bq26l"]
+[ext_resource type="PackedScene" uid="uid://dj01ajpsannte" path="res://scenes/npcs/old_nun.tscn" id="4_8ra5a"]
+[ext_resource type="PackedScene" uid="uid://ccp8s4m6qg4yw" path="res://scenes/npcs/samuel.tscn" id="5_bq26l"]
 [ext_resource type="Texture2D" uid="uid://7aswvnmu3yui" path="res://art/sprites/maryallen.png" id="5_iqu8w"]
 [ext_resource type="PackedScene" uid="uid://nwf6o6fsy0fl" path="res://scenes/npcs/gw_gale.tscn" id="7_u2c82"]
 [ext_resource type="PackedScene" uid="uid://bknka6w4s8st3" path="res://scenes/npcs/charles.tscn" id="8_k5pu3"]
+[ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_ui.tscn" id="11_2sb77"]
+[ext_resource type="AudioStream" uid="uid://c1g80en158rtm" path="res://audio/music/Cemetery Music.wav" id="12_fkrx8"]
+[ext_resource type="PackedScene" uid="uid://c8sys3msyjs8i" path="res://scenes/trueHopeCemetery.tscn" id="13_mwgft"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fr2l"]
+radius = 47.0425
 
 [node name="Game Level" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2, 0)
-
-[node name="hopeCemetery" parent="." instance=ExtResource("5_8ra5a")]
-position = Vector2(-84, 0)
+script = ExtResource("1_5fr2l")
 
 [node name="PlayerCat" parent="." instance=ExtResource("1_6we3w")]
 z_index = 1
-position = Vector2(52, -68)
+position = Vector2(137, -72)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCat"]
 zoom = Vector2(3, 3)
@@ -52,6 +56,17 @@ position = Vector2(56, 47)
 [node name="Sprite2D" parent="OldNun" index="0"]
 texture = ExtResource("5_iqu8w")
 
+[node name="StationaryNPC" parent="OldNun" index="1" node_paths=PackedStringArray("immediate_interaction_area")]
+interact_immediately = true
+immediate_interaction_area = NodePath("Area2D")
+immediate_timeline = "Hope Cemetary"
+
+[node name="Area2D" type="Area2D" parent="OldNun/StationaryNPC" index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OldNun/StationaryNPC/Area2D"]
+shape = SubResource("CircleShape2D_5fr2l")
+debug_color = Color(0.79385, 0.425992, 7.70092e-07, 0.42)
+
 [node name="Samuel" parent="." instance=ExtResource("5_bq26l")]
 z_index = 1
 position = Vector2(322, -94)
@@ -62,6 +77,15 @@ position = Vector2(103, 80)
 [node name="Charles" parent="." instance=ExtResource("8_k5pu3")]
 z_index = 1
 position = Vector2(569, -127)
+
+[node name="backpackUI" parent="." instance=ExtResource("11_2sb77")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_fkrx8")
+
+[node name="trueHopeCemetery2" parent="." instance=ExtResource("13_mwgft")]
+
+[connection signal="body_entered" from="OldNun/StationaryNPC/Area2D" to="." method="_on_area_2d_body_entered"]
 
 [editable path="MiniMap"]
 [editable path="OldNun"]

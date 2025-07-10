@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq5se8m6btwbd"]
+[gd_scene load_steps=4 format=3 uid="uid://dj01ajpsannte"]
 
 [ext_resource type="Texture2D" uid="uid://duk48gsoior4q" path="res://art/sprites/oldnunfordebate.png" id="1_62nut"]
-[ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="2_0ikwc"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/stationaryNPC.tscn" id="2_0ikwc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmak7"]
 size = Vector2(7, 12)

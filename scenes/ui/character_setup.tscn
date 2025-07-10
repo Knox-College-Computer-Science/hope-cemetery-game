@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2b8odpkmetye"]
+
+[ext_resource type="Script" uid="uid://b2daub8f5jphd" path="res://scripts/ui/character_setup.gd" id="1_0n5el"]
+
+[node name="character setup" type="Node2D"]
+script = ExtResource("1_0n5el")
+
+[node name="name" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 500.0
+offset_top = 182.0
+offset_right = 634.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "enter your name:"
+horizontal_alignment = 1
+
+[node name="name input" type="LineEdit" parent="."]
+offset_left = 500.0
+offset_top = 216.0
+offset_right = 646.0
+offset_bottom = 247.0
+placeholder_text = "type here"
+alignment = 1
+
+[node name="major" type="Label" parent="."]
+offset_left = 500.0
+offset_top = 255.0
+offset_right = 649.0
+offset_bottom = 278.0
+text = "choose your major:"
+
+[node name="major pick" type="OptionButton" parent="."]
+offset_left = 500.0
+offset_top = 288.0
+offset_right = 644.0
+offset_bottom = 318.0
+
+[node name="next" type="Button" parent="."]
+offset_left = 545.0
+offset_top = 400.0
+offset_right = 601.0
+offset_bottom = 431.0
+text = "next >"
+
+[connection signal="pressed" from="next" to="." method="_on_next_pressed"]

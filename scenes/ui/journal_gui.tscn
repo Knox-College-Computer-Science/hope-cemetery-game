@@ -1,0 +1,477 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnsn84ulbrw0y"]
+
+[ext_resource type="Script" uid="uid://c6k6xykkr1wvj" path="res://scripts/ui/quest_visibility.gd" id="1_rwxds"]
+[ext_resource type="Texture2D" uid="uid://b6gw85n7nla1i" path="res://scenes/ui/standing_menu_assets/edited_journal_pages.jpeg" id="2_uo60h"]
+[ext_resource type="Script" uid="uid://ciacq7puujx2" path="res://scripts/ui/scroll_visibility.gd" id="3_uo60h"]
+[ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="4_25tqd"]
+[ext_resource type="Script" uid="uid://b7e6bx3xmph36" path="res://scripts/ui/people_gui.gd" id="4_fko3c"]
+[ext_resource type="Script" uid="uid://d0os6q5aj8xa3" path="res://scripts/ui/main_act_quest_box.gd" id="4_rampt"]
+
+[node name="journal_gui" type="CanvasLayer"]
+layer = 4
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 140.0
+offset_top = 41.0
+offset_right = 1070.0
+offset_bottom = 602.0
+script = ExtResource("1_rwxds")
+
+[node name="EditedJournalPages" type="Sprite2D" parent="Control"]
+position = Vector2(466, 280)
+scale = Vector2(1.06286, 0.979094)
+texture = ExtResource("2_uo60h")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 11.0
+offset_right = 464.0
+offset_bottom = 557.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 0
+offset_top = 144.0
+offset_right = 444.0
+offset_bottom = 462.0
+theme_override_constants/separation = 40
+
+[node name="quest_journal_button" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Quests"
+
+[node name="people_button" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "People"
+
+[node name="Button" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Credits"
+
+[node name="quest_gui" type="CanvasLayer" parent="Control"]
+layer = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui"]
+offset_left = 602.0
+offset_top = 48.0
+offset_right = 1053.0
+offset_bottom = 594.0
+script = ExtResource("3_uo60h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer"]
+layout_mode = 2
+
+[node name="questLog" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "   Quest Log"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="mainQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "Main Quests"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="main_act_quest_box" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("4_rampt")
+
+[node name="letter_quest" type="MenuButton" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Deliver the Love Letter"
+
+[node name="love_letter_desc" type="PopupMenu" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/letter_quest"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/letter_quest/love_letter_desc"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="letter_description" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/letter_quest/love_letter_desc/VBoxContainer"]
+layout_mode = 2
+
+[node name="close_letter" type="Button" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/letter_quest/love_letter_desc/VBoxContainer"]
+layout_mode = 2
+
+[node name="investiage_quest" type="MenuButton" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "A New Hope"
+
+[node name="new_hope_pop" type="PopupPanel" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/investiage_quest"]
+auto_translate_mode = 1
+position = Vector2i(0, 132)
+size = Vector2i(508, 60)
+borderless = false
+max_size = Vector2i(1000, 60)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/investiage_quest/new_hope_pop"]
+custom_minimum_size = Vector2(500, 60)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 504.0
+offset_bottom = 76.0
+
+[node name="description" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/investiage_quest/new_hope_pop/VBoxContainer"]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Go to hope cemetary"
+autowrap_mode = 3
+max_lines_visible = 5
+
+[node name="woman_close" type="Button" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/investiage_quest/new_hope_pop/VBoxContainer"]
+layout_mode = 2
+
+[node name="masoleum" type="MenuButton" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Go to the Masoleum"
+
+[node name="masoleum_pop_up" type="PopupMenu" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/masoleum"]
+auto_translate_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/masoleum/masoleum_pop_up"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="masoleum_description" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/masoleum/masoleum_pop_up/VBoxContainer"]
+layout_mode = 2
+text = "Investigate Inside the Masoleum. Follow the old woman's order to go into the cemetary."
+
+[node name="close_masoleum" type="Button" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/masoleum/masoleum_pop_up/VBoxContainer"]
+layout_mode = 2
+
+[node name="noQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+visible = false
+layout_mode = 2
+text = "No Active Main Quests"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="sideQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer3/PanelContainer"]
+layout_mode = 2
+text = "Side Quests"
+
+[node name="MarginContainer4" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer4/PanelContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer4/PanelContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer4/PanelContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="noSideQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer4/PanelContainer"]
+layout_mode = 2
+text = "No Active Side Quests"
+
+[node name="compQuest" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "   Completed Quests"
+
+[node name="MarginContainer5" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+
+[node name="mainQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer5/PanelContainer"]
+layout_mode = 2
+text = "Main Quests (completed)"
+
+[node name="MarginContainer6" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6"]
+layout_mode = 2
+
+[node name="noQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer"]
+layout_mode = 2
+text = "No Completed Main Quests"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="main_comp_quest_box" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("4_rampt")
+
+[node name="comp_letter_quest" type="MenuButton" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Deliver the Love Letter"
+
+[node name="love_letter_desc" type="PopupMenu" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_letter_quest"]
+auto_translate_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_letter_quest/love_letter_desc"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="letter_description" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_letter_quest/love_letter_desc/VBoxContainer"]
+layout_mode = 2
+
+[node name="close_letter" type="Button" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_letter_quest/love_letter_desc/VBoxContainer"]
+layout_mode = 2
+
+[node name="comp_investiage_quest" type="MenuButton" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Investigate Message"
+
+[node name="comp_new_hope_pop" type="PopupPanel" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_investiage_quest"]
+auto_translate_mode = 1
+position = Vector2i(0, 132)
+size = Vector2i(608, 60)
+borderless = false
+max_size = Vector2i(1000, 60)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_investiage_quest/comp_new_hope_pop"]
+custom_minimum_size = Vector2(600, 60)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 604.0
+offset_bottom = 143.0
+
+[node name="description" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_investiage_quest/comp_new_hope_pop/VBoxContainer"]
+custom_minimum_size = Vector2(600, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Go to Hope Cemetery
+Talk to the old woman.
+Explore the cemetery.
+Find a way to get past Henry.
+Talk to the ghosts in the cemetery.
+Go find charles outside of the mausoleum. 
+Prepare to depart to the past."
+autowrap_mode = 3
+max_lines_visible = 5
+
+[node name="woman_close" type="Button" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_investiage_quest/comp_new_hope_pop/VBoxContainer"]
+layout_mode = 2
+
+[node name="comp_masoleum" type="MenuButton" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Go to the Masoleum"
+
+[node name="masoleum_pop_up" type="PopupMenu" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_masoleum"]
+auto_translate_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_masoleum/masoleum_pop_up"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="masoleum_description" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_masoleum/masoleum_pop_up/VBoxContainer"]
+layout_mode = 2
+text = "Investigate Inside the Masoleum. Follow the old woman's order to go into the cemetary."
+
+[node name="close_masoleum" type="Button" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_masoleum/masoleum_pop_up/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer7"]
+layout_mode = 2
+
+[node name="sideQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer7/PanelContainer"]
+layout_mode = 2
+text = "Side Quests (completed)"
+
+[node name="MarginContainer8" type="MarginContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer8"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer8/PanelContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer8/PanelContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="noSideQuests" type="Label" parent="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer8/PanelContainer"]
+layout_mode = 2
+text = "No Completed Side Quests"
+
+[node name="people_gui" type="CanvasLayer" parent="Control"]
+layer = 5
+visible = false
+script = ExtResource("4_fko3c")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/people_gui"]
+offset_left = 608.0
+offset_top = 55.0
+offset_right = 1046.0
+offset_bottom = 588.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/people_gui/PanelContainer"]
+layout_mode = 2
+
+[node name="alex" type="MenuButton" parent="Control/people_gui/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Alex Roomie"
+icon = ExtResource("4_25tqd")
+
+[node name="alex_popup" type="PopupPanel" parent="Control/people_gui/PanelContainer/VBoxContainer/alex"]
+position = Vector2i(0, 132)
+size = Vector2i(608, 60)
+borderless = false
+max_size = Vector2i(1000, 60)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/people_gui/PanelContainer/VBoxContainer/alex/alex_popup"]
+custom_minimum_size = Vector2(600, 60)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 604.0
+offset_bottom = 76.0
+
+[node name="description" type="Label" parent="Control/people_gui/PanelContainer/VBoxContainer/alex/alex_popup/VBoxContainer"]
+custom_minimum_size = Vector2(600, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "The messiest roommate ever! But loves mischief and is always willing to help you out."
+autowrap_mode = 3
+max_lines_visible = 5
+
+[node name="alex_close" type="Button" parent="Control/people_gui/PanelContainer/VBoxContainer/alex/alex_popup/VBoxContainer"]
+layout_mode = 2
+
+[node name="woman" type="MenuButton" parent="Control/people_gui/PanelContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Mysterious Woman"
+icon = ExtResource("4_25tqd")
+
+[node name="woman_popup" type="PopupPanel" parent="Control/people_gui/PanelContainer/VBoxContainer/woman"]
+auto_translate_mode = 1
+position = Vector2i(0, 132)
+size = Vector2i(608, 60)
+borderless = false
+max_size = Vector2i(1000, 60)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/people_gui/PanelContainer/VBoxContainer/woman/woman_popup"]
+custom_minimum_size = Vector2(600, 60)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 604.0
+offset_bottom = 76.0
+
+[node name="description" type="Label" parent="Control/people_gui/PanelContainer/VBoxContainer/woman/woman_popup/VBoxContainer"]
+custom_minimum_size = Vector2(600, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "She is a mysterious woman."
+autowrap_mode = 3
+max_lines_visible = 5
+
+[node name="woman_close" type="Button" parent="Control/people_gui/PanelContainer/VBoxContainer/woman/woman_popup/VBoxContainer"]
+layout_mode = 2
+
+[node name="henry" type="MenuButton" parent="Control/people_gui/PanelContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Henry Harris"
+icon = ExtResource("4_25tqd")
+
+[node name="henry_popup" type="PopupPanel" parent="Control/people_gui/PanelContainer/VBoxContainer/henry"]
+auto_translate_mode = 1
+position = Vector2i(0, 132)
+size = Vector2i(608, 60)
+borderless = false
+max_size = Vector2i(1000, 60)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/people_gui/PanelContainer/VBoxContainer/henry/henry_popup"]
+custom_minimum_size = Vector2(600, 60)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 604.0
+offset_bottom = 91.0
+
+[node name="description" type="Label" parent="Control/people_gui/PanelContainer/VBoxContainer/henry/henry_popup/VBoxContainer"]
+custom_minimum_size = Vector2(600, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "The spirit of a railroad worker. Now volunteers as the spirits’ guard making sure no living gets past… you managed to wear him down though.
+"
+autowrap_mode = 3
+max_lines_visible = 5
+
+[node name="henry_close" type="Button" parent="Control/people_gui/PanelContainer/VBoxContainer/henry/henry_popup/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/Panel/VBoxContainer/quest_journal_button" to="Control" method="_on_quest_journal_button_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/people_button" to="Control" method="_on_people_button_pressed"]
+[connection signal="toggled" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/letter_quest" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box" method="_on_letter_quest_toggled"]
+[connection signal="pressed" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/letter_quest/love_letter_desc/VBoxContainer/close_letter" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box" method="_on_close_letter_pressed"]
+[connection signal="toggled" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/investiage_quest" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box" method="_on_investiage_quest_toggled"]
+[connection signal="pressed" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/investiage_quest/new_hope_pop/VBoxContainer/woman_close" to="Control/people_gui" method="_on_woman_close_pressed"]
+[connection signal="toggled" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/masoleum" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box" method="_on_masoleum_toggled"]
+[connection signal="pressed" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box/masoleum/masoleum_pop_up/VBoxContainer/close_masoleum" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer/main_act_quest_box" method="_on_close_masoleum_pressed"]
+[connection signal="toggled" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_letter_quest" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box" method="_on_letter_quest_toggled"]
+[connection signal="pressed" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_letter_quest/love_letter_desc/VBoxContainer/close_letter" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box" method="_on_close_letter_pressed"]
+[connection signal="toggled" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_investiage_quest" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box" method="_on_investiage_quest_toggled"]
+[connection signal="pressed" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_investiage_quest/comp_new_hope_pop/VBoxContainer/woman_close" to="Control/people_gui" method="_on_woman_close_pressed"]
+[connection signal="toggled" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_masoleum" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box" method="_on_masoleum_toggled"]
+[connection signal="pressed" from="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box/comp_masoleum/masoleum_pop_up/VBoxContainer/close_masoleum" to="Control/quest_gui/PanelContainer/VBoxContainer/MarginContainer6/PanelContainer/ScrollContainer/main_comp_quest_box" method="_on_close_masoleum_pressed"]
+[connection signal="toggled" from="Control/people_gui/PanelContainer/VBoxContainer/alex" to="Control/people_gui" method="_on_alex_toggled"]
+[connection signal="pressed" from="Control/people_gui/PanelContainer/VBoxContainer/alex/alex_popup/VBoxContainer/alex_close" to="Control/people_gui" method="_on_alex_close_pressed"]
+[connection signal="toggled" from="Control/people_gui/PanelContainer/VBoxContainer/woman" to="Control/people_gui" method="_on_woman_toggled"]
+[connection signal="pressed" from="Control/people_gui/PanelContainer/VBoxContainer/woman/woman_popup/VBoxContainer/woman_close" to="Control/people_gui" method="_on_woman_close_pressed"]
+[connection signal="toggled" from="Control/people_gui/PanelContainer/VBoxContainer/henry" to="Control/people_gui" method="_on_henry_toggled"]
+[connection signal="pressed" from="Control/people_gui/PanelContainer/VBoxContainer/henry/henry_popup/VBoxContainer/henry_close" to="Control/people_gui" method="_on_henry_close_pressed"]

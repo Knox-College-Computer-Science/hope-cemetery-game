@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhnijtw7hrb0t"]
+[gd_scene load_steps=4 format=3 uid="uid://b5pdh1gx5ij2h"]
 
 [ext_resource type="Script" uid="uid://cibmw0wrvrd24" path="res://scripts/ui/minimap.gd" id="1_agqwp"]
 [ext_resource type="Texture2D" uid="uid://cgrbkh6ngv08t" path="res://art/sprites/pixil-frame-0.png" id="2_uyd5h"]
