@@ -101,7 +101,6 @@ shape = SubResource("RectangleShape2D_5fr2l")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_8upyn")
 hframes = 2
-frame = 1
 
 [node name="Timer" type="Timer" parent="."]
 

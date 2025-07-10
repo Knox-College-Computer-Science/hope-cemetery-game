@@ -4,23 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://dhnijtw7hrb0t" path="res://scenes/ui/mini_map.tscn" id="3_8ra5a"]
 [ext_resource type="Script" uid="uid://c8ys2mi3foboo" path="res://scenes/panel.gd" id="3_bq26l"]
 [ext_resource type="PackedScene" uid="uid://dq5se8m6btwbd" path="res://scenes/npcs/old_nun.tscn" id="4_8ra5a"]
-[ext_resource type="PackedScene" path="res://scenes/hopeCemetery.tscn" id="5_8ra5a"]
+[ext_resource type="PackedScene" uid="uid://pc6ujaccnolj" path="res://scenes/hopeCemetery.tscn" id="5_8ra5a"]
 [ext_resource type="PackedScene" uid="uid://d2us2ce2r2aa1" path="res://scenes/npcs/samuel.tscn" id="5_bq26l"]
 [ext_resource type="Texture2D" uid="uid://7aswvnmu3yui" path="res://art/sprites/maryallen.png" id="5_iqu8w"]
-[ext_resource type="PackedScene" path="res://scenes/npcs/gw_gale.tscn" id="7_u2c82"]
+[ext_resource type="PackedScene" uid="uid://nwf6o6fsy0fl" path="res://scenes/npcs/gw_gale.tscn" id="7_u2c82"]
 [ext_resource type="PackedScene" uid="uid://bknka6w4s8st3" path="res://scenes/npcs/charles.tscn" id="8_k5pu3"]
 
 [node name="Game Level" type="Node2D"]
+z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2, 0)
 
+[node name="hopeCemetery" parent="." instance=ExtResource("5_8ra5a")]
+position = Vector2(-84, 0)
+
 [node name="PlayerCat" parent="." instance=ExtResource("1_6we3w")]
 z_index = 1
-position = Vector2(19, 11)
-scale = Vector2(2, 2)
+position = Vector2(52, -68)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCat"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [node name="MiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8ra5a")]
@@ -45,7 +48,6 @@ color = Color(1, 0.372549, 1, 1)
 
 [node name="OldNun" parent="." instance=ExtResource("4_8ra5a")]
 position = Vector2(56, 47)
-scale = Vector2(2, 2)
 
 [node name="Sprite2D" parent="OldNun" index="0"]
 texture = ExtResource("5_iqu8w")
@@ -53,22 +55,13 @@ texture = ExtResource("5_iqu8w")
 [node name="Samuel" parent="." instance=ExtResource("5_bq26l")]
 z_index = 1
 position = Vector2(322, -94)
-scale = Vector2(2, 2)
-
-[node name="hopeCemetery" parent="." instance=ExtResource("5_8ra5a")]
-position = Vector2(-84, 0)
 
 [node name="GWGale" parent="." instance=ExtResource("7_u2c82")]
 position = Vector2(103, 80)
-scale = Vector2(2, 2)
 
 [node name="Charles" parent="." instance=ExtResource("8_k5pu3")]
 z_index = 1
 position = Vector2(569, -127)
-scale = Vector2(2, 2)
-
-[node name="Sprite2D" parent="Charles" index="2"]
-frame = 0
 
 [editable path="MiniMap"]
 [editable path="OldNun"]
