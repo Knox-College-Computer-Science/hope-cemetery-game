@@ -107,7 +107,7 @@ hframes = 8
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ff0s2")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = 0
+parameters/Idle/blend_position = -0.840098
 parameters/Walk/blend_position = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
