@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://c8xnd2sw0365m"]
 
-[ext_resource type="Script" path="res://scripts/player/player_cat.gd" id="1_0geaf"]
+[ext_resource type="Script" uid="uid://bnu6s3b7e2gl1" path="res://scripts/player/player_cat.gd" id="1_0geaf"]
 [ext_resource type="Texture2D" uid="uid://bq0frcp06bnk1" path="res://art/sprites/PlayerWalk.png" id="2_0geaf"]
 [ext_resource type="AudioStream" uid="uid://58ofqml6gbct" path="res://audio/music/walking outside step.wav" id="2_4klkc"]
 
