@@ -1,6 +1,6 @@
 extends Panel
 
-var ItemClass = preload("res://scenes/ui/item.tscn")
+var ItemClass = preload("res://scenes/ui/backpack_gui/item.tscn")
 var item = null
 
 func _ready():

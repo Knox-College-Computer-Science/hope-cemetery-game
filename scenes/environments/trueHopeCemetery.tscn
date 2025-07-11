@@ -1,9 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://c8sys3msyjs8i"]
 
-[ext_resource type="Texture2D" uid="uid://cgrbkh6ngv08t" path="res://art/sprites/pixil-frame-0.png" id="1_4g13s"]
 [ext_resource type="Texture2D" uid="uid://dhj30avswnyw4" path="res://art/tilesets/fence_atlas.png" id="1_aa1mp"]
-[ext_resource type="Texture2D" uid="uid://b5orhbsxwpxxk" path="res://art/tilesets/pixil-frame-0 (3).png" id="1_m3mva"]
-[ext_resource type="Texture2D" uid="uid://f00savq7s5m0" path="res://art/sprites/pixil-frame-0 (1).png" id="2_vuwnr"]
 [ext_resource type="Texture2D" uid="uid://b5orhbsxwpxxk" path="res://art/tilesets/pixil-frame-0 (3).png" id="1_pwm57"]
 [ext_resource type="Texture2D" uid="uid://cgrbkh6ngv08t" path="res://art/sprites/pixil-frame-0.png" id="2_o0fsa"]
 [ext_resource type="Texture2D" uid="uid://f00savq7s5m0" path="res://art/sprites/pixil-frame-0 (1).png" id="3_i8qcl"]

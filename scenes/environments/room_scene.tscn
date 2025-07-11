@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dkif71if1xibt" path="res://art/environment/dorm/dormbackground.png" id="7_r8psk"]
 [ext_resource type="Texture2D" uid="uid://bben8aev0a50k" path="res://art/environment/dorm/dormspritesheet.png" id="8_k8xhb"]
 [ext_resource type="Texture2D" uid="uid://b5uftsehvwdtn" path="res://art/sprites/icon.svg" id="8_q8nly"]
-[ext_resource type="PackedScene" uid="uid://ca6wc8pbh1o8m" path="res://scenes/player/portal_area.tscn" id="9_q8nly"]
+[ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="9_q8nly"]
 [ext_resource type="AudioStream" uid="uid://dsc8pbrsq86wa" path="res://audio/music/dorm room samba-consolidatd.wav" id="10_e12k6"]
 
 [sub_resource type="Curve2D" id="Curve2D_k8xhb"]
@@ -262,7 +262,7 @@ region_enabled = true
 region_rect = Rect2(172, 8, 36, 24)
 
 [node name="PortalArea" parent="." instance=ExtResource("9_q8nly")]
-file_path = "res://scenes/main_level.tscn"
+file_path = "res://scenes/environments/main_level.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortalArea"]
 position = Vector2(-229, 51)
