@@ -1,0 +1,15 @@
+# If the player approaches George, this exchange happens:
+George: I heard you were the warm body that Charles recruited. It’s good to meet you! The name’s George.
+- George Washington Gale? Founder of Galesburg?
+	# {This choice is only available if the player chose a HUMANITIES major}
+	George: Indeed, that’s me. I reckon it could get quite perplexing with the scores of George's about.
+	player: Well, it’s nice to meet you-
+	George: I acquired this land in the year 1835 with the intention of opening up a manual labor college, a place where young men might refine both hand and mind in the service of both truth and virtue. From my understanding this institution is the one you now attend. \
+	internal_dialogue\: (I don’t know if I needed to know all that.)
+- Can you tell me about the cemetery?
+	George: We opened the cemetery here in 1836  to bury those that died on the way from New York. Many of Galesburg’s most important citizens are buried here like me, George Ferris, and George Churchill and many others.
+	player: Ferris? Like the creator of the Ferris wheel?
+	George: The very same!
+	internal_dialogue: (So many Georges…)
+- What do you know about Charles Miller?
+	George: Charles is a good man. Attended Knox for a few years, met a girl there, but then went off to war. He died in the Battle of Stone Creek and never got to tell her how he felt. I reckon the assistance he needs from you has something to do with that. I’m pretty sure she liked poetry…

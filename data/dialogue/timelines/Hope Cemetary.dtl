@@ -1,12 +1,14 @@
 # *Player appoaches Old Woman*
 "Old Woman": Well, hello, child! Glad you got the message. They are waiting for you inside.
-# Note: Need to figure out how to go back to other dialogue options.
+label Old Woman Questions
 - Who are you?
 	"Old Woman": My name is Mary West. I watch over the cemetery at night to make sure nobody gets in - or out - who isn’t supposed to.
+	jump Old Woman Questions
 - How did you know I was coming?
 	"Old Woman": We sent out a message to you while you were sleeping. We could sense your spirit was on the way.
 	player: So you sent me a message through my dream?
 	"Old Woman": I didn’t, but Charles did. He’s just inside.
+	jump Old Woman Questions
 - No way I’m going in there! (Leave)
 - Okay? (Enter Hope Cemetery)
 # (Player enters the cemetery)
@@ -68,4 +70,3 @@ Charles: I can take you back to that day, but you need to find a way to convince
 	Charles: Alright, just step into this mausoleum, count to five, and when you leave you’ll be back in the year 1858!
 - I’m not ready yet.
 	Charles: Alright, just come back when you are.
-[signal arg_type="dict"]

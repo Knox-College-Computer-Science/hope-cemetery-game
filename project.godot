@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="hope-cemetery-game"
-run/main_scene="uid://busb7wt6vs227"
+run/main_scene="uid://oh2basiek65h"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -37,6 +37,11 @@ directories/dch_directory={
 directories/dtl_directory={
 "Dream": "res://data/dialogue/timelines/Dream.dtl",
 "Hope Cemetary": "res://data/dialogue/timelines/Hope Cemetary.dtl",
+"enter_cemetery": "res://data/dialogue/timelines/enter_cemetery.dtl",
+"first_encounter_charles": "res://data/dialogue/timelines/first_encounter_charles.dtl",
+"first_encounter_george": "res://data/dialogue/timelines/first_encounter_george.dtl",
+"first_encounter_henry": "res://data/dialogue/timelines/first_encounter_henry.dtl",
+"first_encounter_samuel": "res://data/dialogue/timelines/first_encounter_samuel.dtl",
 "room_scene": "res://data/dialogue/timelines/room_scene.dtl",
 "test_timeline": "res://data/dialogue/timelines/test_timeline.dtl"
 }

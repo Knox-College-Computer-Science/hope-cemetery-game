@@ -1,0 +1,15 @@
+# *Player eventually encounters Henry*
+"Henry Henderson": Hey! You’re not dead. What are you doing here?
+- <Lie> I was embalmed.
+	# {This choice is only available if the player selected a STEM major}
+	"Henry Henderson": Hey, you look spiffy! I didn’t expect that doggone science poppycock to work out. Come on in!
+- I’m expected.
+	"Henry Henderson": I didn’t hear about no living coming tonight. You run on now, you lily-livered mooch!
+- Get outta my way.
+	"Henry Henderson": Joke's on you, I'm incorporeal!
+	internal_dialogue: (I need to find something for him to let me in…)
+# Note: Only available if the player has the locket.
+- I’m here to return this.
+	"Henry Henderson": Oh, hey, that’s George’s! Why don’t you go give it to him, he’s the fella by the big pointy grave.
+# The player can now access a different part of the cemetery.
+# The player can encounter two ghosts here, George and Samuel.
