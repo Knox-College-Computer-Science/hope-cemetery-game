@@ -13,6 +13,18 @@
 [ext_resource type="AudioStream" uid="uid://c1g80en158rtm" path="res://audio/music/Cemetery Music.wav" id="12_fkrx8"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="13_adxub"]
 [ext_resource type="PackedScene" uid="uid://c8sys3msyjs8i" path="res://scenes/trueHopeCemetery.tscn" id="13_mwgft"]
+[ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_ppseo"]
+[ext_resource type="PackedScene" uid="uid://pc6ujaccnolj" path="res://scenes/environments/TestTileMap.tscn" id="2_wmj1g"]
+[ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="3_j4bxd"]
+[ext_resource type="PackedScene" uid="uid://b5pdh1gx5ij2h" path="res://scenes/maps/mini_map.tscn" id="4_t4qpy"]
+[ext_resource type="Script" uid="uid://c8ys2mi3foboo" path="res://scripts/environments/panel.gd" id="5_wpr1v"]
+[ext_resource type="PackedScene" uid="uid://dj01ajpsannte" path="res://scenes/npcs/old_nun.tscn" id="6_vojlb"]
+[ext_resource type="Texture2D" uid="uid://7aswvnmu3yui" path="res://art/sprites/maryallen.png" id="7_tgadu"]
+[ext_resource type="PackedScene" uid="uid://ccp8s4m6qg4yw" path="res://scenes/npcs/samuel.tscn" id="8_k2sjw"]
+[ext_resource type="PackedScene" uid="uid://nwf6o6fsy0fl" path="res://scenes/npcs/gw_gale.tscn" id="9_w6u8o"]
+[ext_resource type="PackedScene" uid="uid://bknka6w4s8st3" path="res://scenes/npcs/charles.tscn" id="10_sqoxl"]
+[ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_gui/backpack_ui.tscn" id="11_2fmha"]
+[ext_resource type="AudioStream" uid="uid://c1g80en158rtm" path="res://audio/music/Cemetery Music.wav" id="12_5hvul"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fr2l"]
 radius = 47.0425
@@ -31,8 +43,12 @@ z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2, 0)
 script = ExtResource("1_5fr2l")
+[node name="Game Level" type="Node2D"]
+script = ExtResource("1_ppseo")
 
-[node name="PlayerCat" parent="." instance=ExtResource("1_6we3w")]
+[node name="trueHopeCemetery" parent="." instance=ExtResource("2_wmj1g")]
+
+[node name="PlayerCat" parent="." instance=ExtResource("3_j4bxd")]
 z_index = 1
 position = Vector2(-197, 10)
 
@@ -40,7 +56,7 @@ position = Vector2(-197, 10)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
-[node name="MiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8ra5a")]
+[node name="MiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_t4qpy")]
 player = NodePath("../PlayerCat")
 
 [node name="Camera2D" parent="MiniMap/SubViewportContainer/SubViewport" index="1"]
@@ -50,7 +66,7 @@ zoom = Vector2(0.2, 0.2)
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_bq26l")
+script = ExtResource("5_wpr1v")
 target = NodePath("../../PlayerCat")
 
 [node name="ColorRect" type="ColorRect" parent="MiniMap/Panel"]
@@ -62,9 +78,12 @@ color = Color(1, 0.372549, 1, 1)
 
 [node name="OldNun" parent="." instance=ExtResource("4_8ra5a")]
 position = Vector2(-117, 13)
+[node name="OldNun" parent="." instance=ExtResource("6_vojlb")]
+position = Vector2(233, 62)
+scale = Vector2(2, 2)
 
 [node name="Sprite2D" parent="OldNun" index="0"]
-texture = ExtResource("5_iqu8w")
+texture = ExtResource("7_tgadu")
 
 [node name="StationaryNPC" parent="OldNun" index="1" node_paths=PackedStringArray("immediate_interaction_area")]
 interact_immediately = true
@@ -77,7 +96,7 @@ immediate_timeline = "Hope Cemetary"
 shape = SubResource("CircleShape2D_5fr2l")
 debug_color = Color(0.79385, 0.425992, 7.70092e-07, 0.42)
 
-[node name="Samuel" parent="." instance=ExtResource("5_bq26l")]
+[node name="Samuel" parent="." instance=ExtResource("8_k2sjw")]
 z_index = 1
 position = Vector2(322, -94)
 
@@ -94,8 +113,11 @@ debug_color = Color(0.833183, 0.390406, 1.92523e-07, 0.42)
 
 [node name="GWGale" parent="." instance=ExtResource("7_u2c82")]
 position = Vector2(103, 80)
+[node name="GWGale" parent="." instance=ExtResource("9_w6u8o")]
+position = Vector2(338, 74)
+scale = Vector2(2, 2)
 
-[node name="Charles" parent="." instance=ExtResource("8_k5pu3")]
+[node name="Charles" parent="." instance=ExtResource("10_sqoxl")]
 z_index = 1
 position = Vector2(569, -127)
 
@@ -110,10 +132,10 @@ immediate_timeline = "first_encounter_charles"
 shape = SubResource("CircleShape2D_mwgft")
 debug_color = Color(0.880649, 0.337851, 0, 0.42)
 
-[node name="backpackUI" parent="." instance=ExtResource("11_2sb77")]
+[node name="backpackUI" parent="." instance=ExtResource("11_2fmha")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_fkrx8")
+stream = ExtResource("12_5hvul")
 
 [node name="trueHopeCemetery2" parent="." instance=ExtResource("13_mwgft")]
 

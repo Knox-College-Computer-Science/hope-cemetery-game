@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjlyddsh6v5t7"]
 
-[ext_resource type="Script" uid="uid://c6k6xykkr1wvj" path="res://scripts/ui/quest_visibility.gd" id="1_vieii"]
+[ext_resource type="Script" uid="uid://c6k6xykkr1wvj" path="res://scripts/ui/backpack_gui/quest_visibility.gd" id="1_vieii"]
 [ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="2_tdja1"]
 
 [node name="achievments" type="CanvasLayer"]

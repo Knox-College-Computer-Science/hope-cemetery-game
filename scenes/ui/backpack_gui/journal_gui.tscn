@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dnsn84ulbrw0y"]
 
-[ext_resource type="Script" uid="uid://c6k6xykkr1wvj" path="res://scripts/ui/quest_visibility.gd" id="1_rwxds"]
+[ext_resource type="Script" uid="uid://c6k6xykkr1wvj" path="res://scripts/ui/backpack_gui/quest_visibility.gd" id="1_rwxds"]
 [ext_resource type="Texture2D" uid="uid://b6gw85n7nla1i" path="res://scenes/ui/standing_menu_assets/edited_journal_pages.jpeg" id="2_uo60h"]
-[ext_resource type="Script" uid="uid://ciacq7puujx2" path="res://scripts/ui/scroll_visibility.gd" id="3_uo60h"]
+[ext_resource type="Script" uid="uid://ciacq7puujx2" path="res://scripts/ui/backpack_gui/scroll_visibility.gd" id="3_uo60h"]
 [ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="4_25tqd"]
-[ext_resource type="Script" uid="uid://b7e6bx3xmph36" path="res://scripts/ui/people_gui.gd" id="4_fko3c"]
-[ext_resource type="Script" uid="uid://d0os6q5aj8xa3" path="res://scripts/ui/main_act_quest_box.gd" id="4_rampt"]
+[ext_resource type="Script" uid="uid://b7e6bx3xmph36" path="res://scripts/ui/backpack_gui/people_gui.gd" id="4_fko3c"]
+[ext_resource type="Script" uid="uid://d0os6q5aj8xa3" path="res://scripts/ui/backpack_gui/main_act_quest_box.gd" id="4_rampt"]
 
 [node name="journal_gui" type="CanvasLayer"]
 layer = 4
