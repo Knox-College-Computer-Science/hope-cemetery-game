@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cclqu11k27f0r" path="res://backgrounds/default_inventory_background.png" id="1_psafj"]
 [ext_resource type="Texture2D" uid="uid://4nt0y4fmwcu5" path="res://backgrounds/item_slot_default_background.png" id="2_5tt2m"]
-[ext_resource type="Script" uid="uid://dw5qdroduq83r" path="res://scripts/ui/slot.gd" id="3_5tt2m"]
+[ext_resource type="Script" uid="uid://dw5qdroduq83r" path="res://scripts/ui/backpack_gui/slot.gd" id="3_5tt2m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mrqgh"]
 texture = ExtResource("2_5tt2m")

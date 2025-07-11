@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://oh2basiek65h"]
+
+[ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_ppseo"]
+[ext_resource type="PackedScene" uid="uid://pc6ujaccnolj" path="res://scenes/environments/TestTileMap.tscn" id="2_wmj1g"]
+[ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="3_j4bxd"]
+[ext_resource type="PackedScene" uid="uid://b5pdh1gx5ij2h" path="res://scenes/maps/mini_map.tscn" id="4_t4qpy"]
+[ext_resource type="Script" uid="uid://c8ys2mi3foboo" path="res://scripts/environments/panel.gd" id="5_wpr1v"]
+[ext_resource type="PackedScene" uid="uid://dj01ajpsannte" path="res://scenes/npcs/old_nun.tscn" id="6_vojlb"]
+[ext_resource type="Texture2D" uid="uid://7aswvnmu3yui" path="res://art/sprites/maryallen.png" id="7_tgadu"]
+[ext_resource type="PackedScene" uid="uid://ccp8s4m6qg4yw" path="res://scenes/npcs/samuel.tscn" id="8_k2sjw"]
+[ext_resource type="PackedScene" uid="uid://nwf6o6fsy0fl" path="res://scenes/npcs/gw_gale.tscn" id="9_w6u8o"]
+[ext_resource type="PackedScene" uid="uid://bknka6w4s8st3" path="res://scenes/npcs/charles.tscn" id="10_sqoxl"]
+[ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_gui/backpack_ui.tscn" id="11_2fmha"]
+[ext_resource type="AudioStream" uid="uid://c1g80en158rtm" path="res://audio/music/Cemetery Music.wav" id="12_5hvul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fr2l"]
+radius = 47.0425
+
+[node name="Game Level" type="Node2D"]
+script = ExtResource("1_ppseo")
+
+[node name="trueHopeCemetery" parent="." instance=ExtResource("2_wmj1g")]
+
+[node name="PlayerCat" parent="." instance=ExtResource("3_j4bxd")]
+z_index = 1
+position = Vector2(92, 12)
+scale = Vector2(2, 2)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCat"]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+
+[node name="MiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_t4qpy")]
+player = NodePath("../PlayerCat")
+
+[node name="Camera2D" parent="MiniMap/SubViewportContainer/SubViewport" index="1"]
+zoom = Vector2(0.2, 0.2)
+
+[node name="Panel" type="Panel" parent="MiniMap" node_paths=PackedStringArray("target")]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_wpr1v")
+target = NodePath("../../PlayerCat")
+
+[node name="ColorRect" type="ColorRect" parent="MiniMap/Panel"]
+z_index = 2
+layout_mode = 0
+offset_right = 11.0
+offset_bottom = 15.0
+color = Color(1, 0.372549, 1, 1)
+
+[node name="OldNun" parent="." instance=ExtResource("6_vojlb")]
+position = Vector2(233, 62)
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" parent="OldNun" index="0"]
+texture = ExtResource("7_tgadu")
+
+[node name="StationaryNPC" parent="OldNun" index="1" node_paths=PackedStringArray("immediate_interaction_area")]
+interact_immediately = true
+immediate_interaction_area = NodePath("Area2D")
+immediate_timeline = "Hope Cemetary"
+
+[node name="Area2D" type="Area2D" parent="OldNun/StationaryNPC" index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OldNun/StationaryNPC/Area2D"]
+shape = SubResource("CircleShape2D_5fr2l")
+debug_color = Color(0.79385, 0.425992, 7.70092e-07, 0.42)
+
+[node name="Samuel" parent="." instance=ExtResource("8_k2sjw")]
+z_index = 1
+position = Vector2(302, -43)
+scale = Vector2(2, 2)
+
+[node name="GWGale" parent="." instance=ExtResource("9_w6u8o")]
+position = Vector2(338, 74)
+scale = Vector2(2, 2)
+
+[node name="Charles" parent="." instance=ExtResource("10_sqoxl")]
+z_index = 1
+position = Vector2(423, -2)
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" parent="Charles" index="2"]
+frame = 0
+
+[node name="backpackUI" parent="." instance=ExtResource("11_2fmha")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_5hvul")
+
+[connection signal="body_entered" from="OldNun/StationaryNPC/Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="MiniMap"]
+[editable path="OldNun"]
+[editable path="Samuel"]
+[editable path="Charles"]

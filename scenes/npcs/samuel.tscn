@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://ccp8s4m6qg4yw"]
 
-[ext_resource type="Script" path="res://scenes/samuel.gd" id="1_hj7ay"]
+[ext_resource type="Script" uid="uid://defg31gc4nanv" path="res://scripts/npcs/samuel.gd" id="1_hj7ay"]
 [ext_resource type="Texture2D" uid="uid://cau48b1lhvjha" path="res://art/sprites/samuelghost.png" id="2_n5krh"]
-[ext_resource type="PackedScene" path="res://scenes/npcs/stationaryNPC.tscn" id="3_wb8rs"]
+[ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="3_wb8rs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ra5a"]
 

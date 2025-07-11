@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://nwf6o6fsy0fl"]
 
-[ext_resource type="Script" uid="uid://s3aext8ehflx" path="res://scenes/GWGale.gd" id="1_y8qyd"]
+[ext_resource type="Script" uid="uid://s3aext8ehflx" path="res://scripts/npcs/GWGale.gd" id="1_y8qyd"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="2_8nacv"]
 [ext_resource type="Texture2D" uid="uid://b8xlsri6ndk5g" path="res://art/sprites/GWGaleghost.png" id="3_8upyn"]
 

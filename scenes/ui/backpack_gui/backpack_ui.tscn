@@ -1,15 +1,15 @@
 [gd_scene load_steps=54 format=3 uid="uid://blj618qddarlu"]
 
 [ext_resource type="Texture2D" uid="uid://dsh3xpqi7ms74" path="res://scenes/ui/standing_menu_assets/closed_backpack.jpg" id="1_ompis"]
-[ext_resource type="Script" uid="uid://dmqibapscqjh6" path="res://scripts/ui/backpack_ui.gd" id="1_sy68c"]
+[ext_resource type="Script" uid="uid://dmqibapscqjh6" path="res://scripts/ui/backpack_gui/backpack_ui.gd" id="1_sy68c"]
 [ext_resource type="Texture2D" uid="uid://dllmn8d0ou48y" path="res://scenes/ui/standing_menu_assets/open_backpack.jpg" id="2_sy68c"]
 [ext_resource type="Texture2D" uid="uid://b3i2q1wc3paao" path="res://scenes/ui/standing_menu_assets/small_map.jpg" id="3_n2kom"]
 [ext_resource type="Texture2D" uid="uid://dgmo00l0w666h" path="res://scenes/ui/standing_menu_assets/small_question.jpg" id="4_qt74l"]
 [ext_resource type="Texture2D" uid="uid://bp8w2bscq4slm" path="res://scenes/ui/standing_menu_assets/small_porto.jpg" id="5_jakuk"]
 [ext_resource type="Texture2D" uid="uid://bv7nio8lot6if" path="res://art/ui items/BookflipAnimation.png" id="7_qt74l"]
-[ext_resource type="PackedScene" uid="uid://dnsn84ulbrw0y" path="res://scenes/ui/journal_gui.tscn" id="7_r83im"]
+[ext_resource type="PackedScene" uid="uid://dnsn84ulbrw0y" path="res://scenes/ui/backpack_gui/journal_gui.tscn" id="7_r83im"]
 [ext_resource type="AudioStream" uid="uid://t14tpnxqd17t" path="res://audio/sfx/flipping book pages.wav" id="8_jakuk"]
-[ext_resource type="PackedScene" uid="uid://ck37kvs6oh6wg" path="res://scenes/ui/inventory.tscn" id="9_n2kom"]
+[ext_resource type="PackedScene" uid="uid://ck37kvs6oh6wg" path="res://scenes/ui/backpack_gui/inventory.tscn" id="9_n2kom"]
 [ext_resource type="PackedScene" uid="uid://dawt3grro5es2" path="res://scenes/ui/pause_menu.tscn" id="10_qt74l"]
 [ext_resource type="AudioStream" uid="uid://mgv85jwyxy7s" path="res://audio/sfx/zipper backpack.wav" id="12_ny1vg"]
 

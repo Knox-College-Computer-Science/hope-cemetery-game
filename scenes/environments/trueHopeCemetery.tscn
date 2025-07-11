@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=4 uid="uid://c8sys3msyjs8i"]
 
-[ext_resource type="Texture2D" uid="uid://cgrbkh6ngv08t" path="res://art/sprites/pixil-frame-0.png" id="1_4g13s"]
-[ext_resource type="Texture2D" uid="uid://b5orhbsxwpxxk" path="res://art/tilesets/pixil-frame-0 (3).png" id="1_m3mva"]
-[ext_resource type="Texture2D" uid="uid://f00savq7s5m0" path="res://art/sprites/pixil-frame-0 (1).png" id="2_vuwnr"]
+[ext_resource type="Texture2D" uid="uid://b5orhbsxwpxxk" path="res://art/tilesets/pixil-frame-0 (3).png" id="1_pwm57"]
+[ext_resource type="Texture2D" uid="uid://cgrbkh6ngv08t" path="res://art/sprites/pixil-frame-0.png" id="2_o0fsa"]
+[ext_resource type="Texture2D" uid="uid://f00savq7s5m0" path="res://art/sprites/pixil-frame-0 (1).png" id="3_i8qcl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0pluy"]
-texture = ExtResource("1_m3mva")
+texture = ExtResource("1_pwm57")
 margins = Vector2i(6, 10)
 1:1/0 = 0
 2:1/0 = 0
@@ -195,7 +195,7 @@ margins = Vector2i(6, 10)
 23:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0vkk"]
-texture = ExtResource("1_m3mva")
+texture = ExtResource("1_pwm57")
 margins = Vector2i(3, 2)
 1:1/0 = 0
 2:1/0 = 0
@@ -392,7 +392,7 @@ sources/1 = SubResource("TileSetAtlasSource_0pluy")
 sources/2 = SubResource("TileSetAtlasSource_k0vkk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pd8lo"]
-texture = ExtResource("1_m3mva")
+texture = ExtResource("1_pwm57")
 margins = Vector2i(3, 2)
 1:1/0 = 0
 2:1/0 = 0
@@ -577,15 +577,15 @@ margins = Vector2i(3, 2)
 27:9/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vuwnr"]
-texture = ExtResource("1_4g13s")
+texture = ExtResource("2_o0fsa")
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m3mva"]
-texture = ExtResource("2_vuwnr")
+texture = ExtResource("3_i8qcl")
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7gkl"]
-texture = ExtResource("1_m3mva")
+texture = ExtResource("1_pwm57")
 3:8/0 = 0
 4:8/0 = 0
 5:8/0 = 0
@@ -593,7 +593,7 @@ texture = ExtResource("1_m3mva")
 7:10/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v54e7"]
-texture = ExtResource("1_m3mva")
+texture = ExtResource("1_pwm57")
 margins = Vector2i(0, 8)
 4:9/0 = 0
 

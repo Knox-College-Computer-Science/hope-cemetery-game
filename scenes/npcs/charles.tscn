@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bknka6w4s8st3"]
 
-[ext_resource type="Script" path="res://scenes/Charles.gd" id="1_wunsn"]
+[ext_resource type="Script" uid="uid://dnrsj5dwo4sfg" path="res://scripts/npcs/Charles.gd" id="1_wunsn"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="2_0fv55"]
 [ext_resource type="Texture2D" uid="uid://ct7bfn4g7hvuf" path="res://art/sprites/Charles.png" id="3_oxrrt"]
 

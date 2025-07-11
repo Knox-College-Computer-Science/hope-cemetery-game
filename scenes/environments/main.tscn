@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmpbbds6kqfae"]
 
-[ext_resource type="PackedScene" uid="uid://b2sxib8l5xexe" path="res://scenes/player/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://cb5ljtqnl67oa" path="res://scenes/environments/map.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dq26q4afxw28m" path="res://scenes/environments/map.tscn" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://dgmo00l0w666h" path="res://scenes/ui/standing_menu_assets/small_question.jpg" id="3_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://b8s5iqugihmpq" path="res://scenes/ui/standing_menu_assets/space_button.png" id="4_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_ui.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_gui/backpack_ui.tscn" id="5_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(87, 94)
