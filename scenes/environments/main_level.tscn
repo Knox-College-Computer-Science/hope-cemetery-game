@@ -78,7 +78,7 @@ debug_color = Color(0.79385, 0.425992, 7.70092e-07, 0.42)
 
 [node name="Samuel" parent="." instance=ExtResource("5_bq26l")]
 z_index = 1
-position = Vector2(322, -94)
+position = Vector2(304, -131)
 
 [node name="StationaryNPC" parent="Samuel" index="1" node_paths=PackedStringArray("immediate_interaction_area")]
 interact_immediately = true
@@ -96,7 +96,7 @@ position = Vector2(103, 80)
 
 [node name="Charles" parent="." instance=ExtResource("8_k5pu3")]
 z_index = 1
-position = Vector2(569, -127)
+position = Vector2(368, -127)
 
 [node name="StationaryNPC" parent="Charles" index="0" node_paths=PackedStringArray("immediate_interaction_area")]
 interact_immediately = true

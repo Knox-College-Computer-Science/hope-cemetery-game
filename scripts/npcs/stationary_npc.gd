@@ -38,7 +38,9 @@ func _ready():
 	if(animation_player is AnimatedSprite2D && default_animation != ""):
 		animation_player.play(default_animation)
 	if(interact_immediately && immediate_timeline != "" && is_instance_valid(immediate_interaction_area)):
-		immediate_interaction_area.set_collision_mask_value(2, true)
+		immediate_interaction_area.collision_layer = 0x0000
+		immediate_interaction_area.collision_mask = 0x0002
+		#immediate_interaction_area.set_collision_mask_value(2, true)
 		immediate_interaction_area.area_entered.connect(play_dialogue)
 	
 	# Set height of interact prompt
@@ -74,5 +76,6 @@ func _on_cool_down_timer_timeout():
 
 func play_dialogue(area):
 	if(!already_had_immediate_encounter && !disabled):
+		print(area.name)
 		already_had_immediate_encounter = true
 		Dialogic.start(immediate_timeline)
