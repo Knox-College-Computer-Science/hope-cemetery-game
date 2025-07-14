@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="hope-cemetery-game"
-run/main_scene="uid://busb7wt6vs227"
+run/main_scene="uid://oh2basiek65h"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -93,6 +93,10 @@ window/size/viewport_height=720
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
+[global_group]
+
+saveable="These nodes will be saved by GameSaver. Must have the save() function properly implemented."
 
 [input]
 

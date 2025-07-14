@@ -195,7 +195,8 @@ graph_offset = Vector2(105.063, -55.9068)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esxlc"]
 size = Vector2(10, 26)
 
-[node name="PlayerCat" type="CharacterBody2D"]
+[node name="PlayerCat" type="CharacterBody2D" groups=["saveable"]]
+z_index = 1
 z_as_relative = false
 script = ExtResource("1_0geaf")
 

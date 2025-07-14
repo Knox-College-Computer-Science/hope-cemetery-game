@@ -59,3 +59,6 @@ func pick_new_state():
 func _on_timer_timeout() -> void:
 	footsteps_sfx.play()
 	timer.start()
+
+func save():
+	return ["position"]

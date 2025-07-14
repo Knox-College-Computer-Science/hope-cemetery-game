@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv12mavlcqe1w"]
+
+[ext_resource type="Script" uid="uid://cy2s67d7e5uas" path="res://data/GameSaver/game_saver.gd" id="1_fnllt"]
+
+[node name="GameSaver" type="Node"]
+script = ExtResource("1_fnllt")
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Save" type="Button" parent="Debug"]
+offset_left = 75.0
+offset_top = 604.0
+offset_right = 307.0
+offset_bottom = 692.0
+text = "SAVE"
+
+[node name="Load" type="Button" parent="Debug"]
+offset_left = 335.0
+offset_top = 604.0
+offset_right = 567.0
+offset_bottom = 692.0
+text = "LOAD"
+
+[connection signal="pressed" from="Debug/Save" to="." method="save_game"]
+[connection signal="pressed" from="Debug/Load" to="." method="load_game"]
