@@ -166,11 +166,11 @@ func clear():
 	for file in files:
 		DirAccess.remove_absolute("user://"+file)
 
-
 func _on_save_pressed():
 	save_level()
-
 
 func _on_load_pressed():
 	load_level()
 	
+func _on_clear_pressed():
+	clear()

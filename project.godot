@@ -24,6 +24,7 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 glob_quest="*res://scripts/globals/glob_quest.gd"
 glob_people="*res://scripts/globals/glob_people.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+GlobalUtilities="*res://scripts/globals/global_utilities.gd"
 
 [dialogic]
 

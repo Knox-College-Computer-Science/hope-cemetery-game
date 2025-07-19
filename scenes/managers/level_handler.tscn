@@ -10,21 +10,4 @@ opening_scene = ExtResource("2_ey7k7")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="HUD"]
-offset_left = 954.0
-offset_top = 538.0
-offset_right = 1120.0
-offset_bottom = 605.0
-text = "Next"
-
-[node name="Clear" type="Button" parent="HUD"]
-offset_left = 954.0
-offset_top = 461.0
-offset_right = 1122.0
-offset_bottom = 521.0
-text = "Clear"
-
 [node name="GameSaver" parent="." instance=ExtResource("3_ey7k7")]
-
-[connection signal="pressed" from="HUD/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="HUD/Clear" to="." method="_on_clear_pressed"]
