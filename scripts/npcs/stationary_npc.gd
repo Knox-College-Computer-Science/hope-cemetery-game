@@ -11,7 +11,7 @@ see choreographed_npc.tscn.
 
 ## Sprite2D or AnimatedSprite2D that is being used to visualize this character.
 @export var animation_player : Node2D
-@export var default_animation : String
+@export var default_animation : String = "default"
 ## Conversation that starts when the player interacts with this npc deliberately
 @export var timeline : String
 @export var show_prompt : bool = true
@@ -79,3 +79,6 @@ func play_dialogue(area):
 		print(area.name)
 		already_had_immediate_encounter = true
 		Dialogic.start(immediate_timeline)
+
+func save():
+	return ["interact_immediately"]
