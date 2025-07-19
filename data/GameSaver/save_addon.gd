@@ -1,5 +1,7 @@
 extends Node
 
+### CURRENTLY NOT FUNCTIONAL
+
 @export var attributes : Array[String]
 @export var class_of_object : String
 

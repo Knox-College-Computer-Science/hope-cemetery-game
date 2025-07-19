@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dv12mavlcqe1w"]
 
-[ext_resource type="Script" uid="uid://cy2s67d7e5uas" path="res://data/GameSaver/game_saver.gd" id="1_fnllt"]
+[ext_resource type="Script" uid="uid://bk2abvwakjexc" path="res://data/GameSaver/game_level_saver.gd" id="1_fnllt"]
 
 [node name="GameSaver" type="Node"]
 script = ExtResource("1_fnllt")
@@ -21,5 +21,5 @@ offset_right = 567.0
 offset_bottom = 692.0
 text = "LOAD"
 
-[connection signal="pressed" from="Debug/Save" to="." method="save_game"]
-[connection signal="pressed" from="Debug/Load" to="." method="load_game"]
+[connection signal="pressed" from="Debug/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Debug/Load" to="." method="_on_load_pressed"]
