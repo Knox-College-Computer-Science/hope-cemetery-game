@@ -63,13 +63,16 @@ func save_level():
 	var scene_array = []
 	for i in saveable_scenes:
 		var data = {"scene_file_path":i.scene_file_path, "$index":ind}
-		if i.has_method("save") && i.save() != null:
+		if i.has_method("save") && i.save() == null:
+			ind += 1
+			continue
+		if i.has_method("save"):
 			for attr in i.save():
 				if(get_node_attr_value(attr, i) == null):
 					push_warning(attr+" in "+i.name+" is equal to null! It might not exist as an attribute!")
 				data[attr] = get_node_attr_value(attr, i)
-			saved_game.item_states.append(data)
-			scene_array.append(i)
+		saved_game.item_states.append(data)
+		scene_array.append(i)
 		ind += 1
 	
 	# Link children and parents
@@ -88,19 +91,27 @@ func save_level():
 
 func load_level():
 	var saved_game = load("user://"+get_file_name(world_scene)+".tres")
-	print(get_file_name(world_scene))
+	#print(get_file_name(world_scene))
 	if(!is_instance_valid(saved_game)):
 		return
 	get_tree().call_group("saveable", "queue_free")
 	var scene_array = []
+	var new_scene
 	for item in saved_game.item_states:
-		var new_scene = load(item["scene_file_path"]).instantiate()
+		if(item["scene_file_path"] != ""):
+			new_scene = load(item["scene_file_path"]).instantiate()
+		else:
+			#print("New class instantiated: "+item["class_of_object"])
+			new_scene = ClassDB.instantiate(item["class_of_object"])
+			new_scene.set("script", item["script"])
+		
 		for key in item:
 			if(not key in meta_keys):
 				#print("set "+get_node_attr(key)+" as "+str(item[key]))
 				get_final_child(key, new_scene).set(get_node_attr(key), item[key])
 		if(new_scene.has_method("on_load")):
 			new_scene.on_load()
+		new_scene.add_to_group("saveable")
 		scene_array.append(new_scene)
 	
 	# Add children nodes to parents
@@ -113,7 +124,6 @@ func load_level():
 			parent_node.add_child(node)
 			
 	
-	
 func save_autoloads():
 	var saved_autoloads = SavedGame.new()
 	for autoload in autoloads_to_save:
@@ -121,7 +131,7 @@ func save_autoloads():
 		for p in get_node("/root/"+autoload).get_property_list():
 			data[p["name"]] = get_node("/root/"+autoload).get(p["name"])
 		saved_autoloads.item_states.append(data)
-	print(saved_autoloads.item_states)
+	#print(saved_autoloads.item_states)
 	ResourceSaver.save(saved_autoloads, AUTOLOAD_SAVE_PATH)
 	Dialogic.Save.save("", false, Dialogic.Save.ThumbnailMode.NONE)
 	

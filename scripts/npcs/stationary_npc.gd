@@ -81,4 +81,4 @@ func play_dialogue(area):
 		Dialogic.start(immediate_timeline)
 
 func save():
-	return ["interact_immediately"]
+	return ["position", "interact_immediately"]

@@ -83,6 +83,7 @@ curve = SubResource("Curve2D_e12k6")
 [node name="Alex" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("5_faceq")]
 z_as_relative = false
 position = Vector2(-28, 69)
+priority = 1
 animation_player = NodePath("AnimatedSprite2D")
 prompt_height = -30.0
 metadata/_edit_group_ = true
@@ -110,6 +111,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_r8psk")
 
 [node name="Bed" type="StaticBody2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(-29, 59)
 metadata/_edit_group_ = true
@@ -131,6 +133,7 @@ region_rect = Rect2(120, 2, 48, 30)
 polygon = PackedVector2Array(-214, 50, 0, 50, 0, 119, -214, 119, -214, 65, -222, 65, -222, 126, 7, 125, 7, 44, -214, 43)
 
 [node name="Desk" type="StaticBody2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(-34, 43)
 metadata/_edit_group_ = true
@@ -148,6 +151,7 @@ region_enabled = true
 region_rect = Rect2(41, 4, 34, 28)
 
 [node name="TrashBin" type="StaticBody2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(-40, 42)
 metadata/_edit_group_ = true
@@ -202,6 +206,7 @@ region_enabled = true
 region_rect = Rect2(172, 8, 36, 24)
 
 [node name="Bed2" type="StaticBody2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(-27, 111)
 metadata/_edit_group_ = true

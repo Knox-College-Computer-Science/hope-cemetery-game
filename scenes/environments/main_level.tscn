@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
 [ext_resource type="PackedScene" uid="uid://b5pdh1gx5ij2h" path="res://scenes/maps/mini_map.tscn" id="3_8ra5a"]
 [ext_resource type="Script" uid="uid://c8ys2mi3foboo" path="res://scripts/environments/panel.gd" id="3_bq26l"]
-[ext_resource type="PackedScene" uid="uid://by24p1308eqfv" path="res://scenes/player/player_camera.tscn" id="3_j4bxd"]
+[ext_resource type="Script" uid="uid://c4oahd5vhesp4" path="res://data/GameSaver/save_addon.gd" id="3_rqbiw"]
 [ext_resource type="Texture2D" uid="uid://7aswvnmu3yui" path="res://art/sprites/maryallen.png" id="5_iqu8w"]
 [ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_gui/backpack_ui.tscn" id="11_2sb77"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="13_adxub"]
@@ -38,7 +38,11 @@ script = ExtResource("1_5fr2l")
 [node name="PlayerCat" parent="." instance=ExtResource("1_6we3w")]
 position = Vector2(-197, 10)
 
-[node name="Camera2D" parent="PlayerCat" instance=ExtResource("3_j4bxd")]
+[node name="Camera2D" type="Camera2D" parent="PlayerCat"]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("3_rqbiw")
 
 [node name="MiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8ra5a")]
 visible = false
@@ -80,12 +84,9 @@ position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_ff0s2")
 disabled = true
 
-[node name="StationaryNPC2" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") instance=ExtResource("13_adxub")]
+[node name="StationaryNPC2" parent="." instance=ExtResource("13_adxub")]
 position = Vector2(-107, 1)
-animation_player = NodePath("AnimatedSprite2D")
-interact_immediately = true
-immediate_interaction_area = NodePath("Area2D")
-immediate_timeline = "Hope Cemetary"
+script = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC2"]
 sprite_frames = SubResource("SpriteFrames_rqbiw")

@@ -7,6 +7,8 @@ extends Node
 var current_scene : Node
 
 func _ready():
+	GlobalUtilities.level_handler = self
+	game_saver.clear()
 	game_saver.load_autoloads()
 	switch_scene(opening_scene)
 	

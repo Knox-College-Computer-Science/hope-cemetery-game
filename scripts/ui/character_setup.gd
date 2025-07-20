@@ -54,6 +54,6 @@ func _on_next_pressed() -> void:
 	print("Selected Major:", selected_major)
 	print("Category: ", category)
 	
-	get_tree().change_scene_to_file("res://scenes/environments/room_scene.tscn") 
+	get_tree().change_scene_to_file("res://scenes/managers/level_handler.tscn") 
 	#for now next button is linked to the main scene
 	#later to be linked to the another scene? 
