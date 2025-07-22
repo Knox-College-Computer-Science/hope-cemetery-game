@@ -120,7 +120,6 @@ shape = SubResource("RectangleShape2D_4vqht")
 [node name="MapPopup" type="PopupPanel" parent="Node2D/citymap"]
 initial_position = 1
 size = Vector2i(1400, 1400)
-visible = true
 script = ExtResource("10_4vqht")
 
 [node name="TextureRect" type="TextureRect" parent="Node2D/citymap/MapPopup"]

@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1ha37bcrsenp"]
+[gd_scene load_steps=4 format=3 uid="uid://d1ha37bcrsenp"]
 
 [ext_resource type="Texture2D" uid="uid://dr7iyya2b372t" path="res://art/beauty_shots/warflashback1.png" id="1_3st1k"]
 [ext_resource type="Script" uid="uid://dqwxq67v2goiy" path="res://scenes/environments/old_main.gd" id="1_xcdgc"]
+[ext_resource type="PackedScene" uid="uid://pc6ujaccnolj" path="res://scenes/environments/TestTileMap.tscn" id="3_43gwf"]
 
 [node name="OldMain" type="Node2D"]
 script = ExtResource("1_xcdgc")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 offset_left = 226.0
 offset_top = 130.0
 offset_right = 834.0
@@ -22,3 +24,7 @@ offset_right = 132.0
 offset_bottom = 70.0
 text = "Home
 "
+
+[node name="TestTileMap" parent="." instance=ExtResource("3_43gwf")]
+position = Vector2(30, 278)
+rotation = -0.00817622
