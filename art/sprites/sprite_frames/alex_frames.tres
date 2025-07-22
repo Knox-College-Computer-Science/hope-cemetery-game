@@ -1,69 +1,51 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://jb7mo0l7yycw"]
-
-[ext_resource type="Texture2D" uid="uid://q4edbwg6syou" path="res://art/sprites/alexroommatewalk.png" id="1_1e2lk"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://jb7mo0l7yycw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u04us"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(112, 0, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibvnb"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(128, 0, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a5fb8"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(80, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6odhv"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(96, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_isdsa"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(112, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5ise"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(128, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkg0p"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(0, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13fr5"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(16, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtf41"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(32, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sca3s"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(48, 40, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qul74"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(0, 0, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fx0b3"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(16, 0, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdxw3"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(32, 0, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxems"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(48, 0, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1261j"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(64, 0, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h71qg"]
-atlas = ExtResource("1_1e2lk")
 region = Rect2(80, 0, 16, 40)
 
 [resource]
