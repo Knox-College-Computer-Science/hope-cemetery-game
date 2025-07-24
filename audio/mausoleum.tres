@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://ctndi0eg6fafy"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://ctndi0eg6fafy"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_73ea7"]
 resource_name = "Reverb"
@@ -9,9 +9,17 @@ hipass = 0.58
 dry = 0.73
 wet = 0.27
 
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_vow8j"]
+resource_name = "Delay"
+tap1_active = false
+tap2_delay_ms = 250.0
+tap2_pan = 0.0
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectReverb_73ea7")
 bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectDelay_vow8j")
+bus/0/effect/1/enabled = true
 bus/1/name = &"main"
 bus/1/solo = false
 bus/1/mute = false
