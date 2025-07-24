@@ -44,7 +44,7 @@ position = Vector2(2, 0)
 script = ExtResource("1_5fr2l")
 
 [node name="PlayerCat" parent="." instance=ExtResource("1_6we3w")]
-position = Vector2(-180.2, 58.5664)
+position = Vector2(1540.63, -164.511)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCat"]
@@ -136,7 +136,7 @@ scale = Vector2(1.01953, 0.605469)
 texture = ExtResource("10_hblg2")
 
 [node name="PortalArea" parent="Mausoleum" instance=ExtResource("11_4vqht")]
-file_path = "res://scenes/player/player_cat.tscn"
+file_path = "res://scenes/environments/mausoleum.tscn"
 automatic = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mausoleum/PortalArea"]

@@ -4,6 +4,7 @@ extends Node
 @export var opening_scene : PackedScene
 @onready var game_saver = $GameSaver
 
+const DEFAULT_BUS_PATH = "res://audio/default_bus_layout.tres"
 var current_scene : Node
 
 func _ready():
@@ -13,6 +14,7 @@ func _ready():
 	switch_scene(opening_scene)
 	
 func switch_scene(scene : PackedScene):
+	AudioServer.set_bus_layout(load(DEFAULT_BUS_PATH))
 	if(is_instance_valid(current_scene)):
 		game_saver.save_level() # Need to be able to specify level
 		remove_child(current_scene)

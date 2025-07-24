@@ -2,7 +2,8 @@ extends Node
 
 """
 TO-DO
-- link node referencces in variables
+- player spawn points
++ link node references in variables
 + automatically save all data if no save function is found
 
 
@@ -65,9 +66,6 @@ var reference_key_name = "saved_node_references"
 var save_addon_path = "res://data/GameSaver/save_addon.gd"
 
 func save_level():
-	#for i in world_scene.get_children(true):
-	#	print(i.get_index(true))
-	#	print(i.name)
 	var saved_game = SavedGame.new()
 	var saveable_scenes = get_tree().get_nodes_in_group("saveable")
 	
@@ -107,8 +105,6 @@ func save_level():
 		if(has_property(i, reference_key_name)):
 			for prop in i.get(reference_key_name):
 				if(is_instance_valid(i.get(prop))):
-					#print(i.get(prop).name)
-					#print(saveable_scenes.find(i.get(prop)))
 					saved_game.item_states[ind][prop] = saveable_scenes.find(i.get(prop))
 				else:
 					saved_game.item_states[ind][prop] = -1
@@ -119,7 +115,6 @@ func save_level():
 
 func load_level():
 	var saved_game = load("user://"+get_file_name(world_scene)+".tres")
-	#print(get_file_name(world_scene))
 	if(!is_instance_valid(saved_game)):
 		return
 	get_tree().call_group("saveable", "queue_free")
@@ -129,7 +124,6 @@ func load_level():
 		if(item["scene_file_path"] != ""):
 			new_scene = load(item["scene_file_path"]).instantiate()
 		else:
-			#print("New class instantiated: "+item["class_of_object"])
 			new_scene = ClassDB.instantiate(item["class_of_object"])
 			new_scene.set("script", item["script"])
 		
@@ -171,7 +165,6 @@ func save_autoloads():
 		for p in get_node("/root/"+autoload).get_property_list():
 			data[p["name"]] = get_node("/root/"+autoload).get(p["name"])
 		saved_autoloads.item_states.append(data)
-	#print(saved_autoloads.item_states)
 	ResourceSaver.save(saved_autoloads, AUTOLOAD_SAVE_PATH)
 	Dialogic.Save.save("", false, Dialogic.Save.ThumbnailMode.NONE)
 	
