@@ -44,7 +44,7 @@ position = Vector2(2, 0)
 script = ExtResource("1_5fr2l")
 
 [node name="PlayerCat" parent="." instance=ExtResource("1_6we3w")]
-position = Vector2(1606.94, -190.922)
+position = Vector2(-180.2, 58.5664)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCat"]
@@ -91,23 +91,25 @@ immediate_timeline = "enter_cemetery"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier/FirstWalkIn"]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_ff0s2")
-disabled = true
 
-[node name="StationaryNPC2" parent="." instance=ExtResource("13_adxub")]
+[node name="StationaryNPC2" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 position = Vector2(-107, 1)
-script = null
+animation_player = NodePath("AnimatedSprite2D")
+timeline = "Hope Cemetary"
+interact_immediately = true
+immediate_interaction_area = NodePath("Area2D")
+immediate_timeline = "Hope Cemetary"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC2"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC2" groups=["saveable"]]
 sprite_frames = SubResource("SpriteFrames_rqbiw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2" groups=["saveable"]]
 shape = SubResource("RectangleShape2D_hblg2")
 
-[node name="Area2D" type="Area2D" parent="StationaryNPC2"]
+[node name="Area2D" type="Area2D" parent="StationaryNPC2" groups=["saveable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2/Area2D" groups=["saveable"]]
 shape = SubResource("CircleShape2D_rqbiw")
-disabled = true
 debug_color = Color(0.685245, 0.500834, 0, 0.42)
 
 [node name="Mausoleum" type="Sprite2D" parent="."]

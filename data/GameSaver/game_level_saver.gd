@@ -1,6 +1,11 @@
 extends Node
 
 """
+TO-DO
+- link node referencces in variables
++ automatically save all data if no save function is found
+
+
 NEEDED TO USE GAMELEVELSAVER:
 	- game_saver.gd
 	- "saveable" global group
@@ -41,20 +46,28 @@ with, there are different workflows you should take.
 	be in the saveable group and return their own list of attributes
 	when the save function is called on them, just like their parent.
 	Note that the child must be its own scene and the child's parent
-	must also be saveable.
+	must also be saveable. Alternatively, you can add the save_addon.gd
+	script to the node if it has no script.
+	
+MAINTAINING NODE REFERENCES
+1. Make sure that the reference you are saving points to an
+   object that is also being saved. (Use the save_addon if needed.)
+2. Add a variable called "saved_node_references". This should hold
+   a list of the names of variables that have node references.
 """
  
 const AUTOLOAD_SAVE_PATH = "user://autoload_save_data.tres"
 @export var world_scene : Node
 @export var autoloads_to_save : Array[String]
-var meta_keys = ["scene_file_path", "$index", "$parent_index", "$autoload"]
+var meta_keys = ["scene_file_path", "$index", "$parent_index", "$autoload", "owner"]
 var child_delimiter = "$"
+var reference_key_name = "saved_node_references"
+var save_addon_path = "res://data/GameSaver/save_addon.gd"
 
 func save_level():
 	#for i in world_scene.get_children(true):
 	#	print(i.get_index(true))
 	#	print(i.name)
-	
 	var saved_game = SavedGame.new()
 	var saveable_scenes = get_tree().get_nodes_in_group("saveable")
 	
@@ -63,10 +76,15 @@ func save_level():
 	var scene_array = []
 	for i in saveable_scenes:
 		var data = {"scene_file_path":i.scene_file_path, "$index":ind}
-		if i.has_method("save") && i.save() == null:
-			ind += 1
-			continue
-		if i.has_method("save"):
+		if(!is_instance_valid(i.get_script())):
+			i.set_script(load(save_addon_path))
+			i.class_of_object = i.get_class()
+		if(has_property(i, reference_key_name)):
+			data[reference_key_name] = i.get(reference_key_name)
+		if !i.has_method("save"): 
+			for attr in i.get_property_list():
+				data[attr["name"]] = get_node_attr_value(attr["name"], i)
+		elif i.has_method("save") && i.save() != null:
 			for attr in i.save():
 				if(get_node_attr_value(attr, i) == null):
 					push_warning(attr+" in "+i.name+" is equal to null! It might not exist as an attribute!")
@@ -75,15 +93,25 @@ func save_level():
 		scene_array.append(i)
 		ind += 1
 	
-	# Link children and parents
 	ind = 0
 	for i in scene_array:
+		# Link children and parents
 		var parent_index
 		if(i.get_parent() == world_scene):
 			parent_index = -1
 		else:
 			parent_index = saveable_scenes.find(i.get_parent())
 		saved_game.item_states[ind]["$parent_index"] = parent_index
+		
+		# Link nodes references by index
+		if(has_property(i, reference_key_name)):
+			for prop in i.get(reference_key_name):
+				if(is_instance_valid(i.get(prop))):
+					#print(i.get(prop).name)
+					#print(saveable_scenes.find(i.get(prop)))
+					saved_game.item_states[ind][prop] = saveable_scenes.find(i.get(prop))
+				else:
+					saved_game.item_states[ind][prop] = -1
 		ind += 1
 
 	# Save resources
@@ -105,24 +133,36 @@ func load_level():
 			new_scene = ClassDB.instantiate(item["class_of_object"])
 			new_scene.set("script", item["script"])
 		
+		var set_position = false
 		for key in item:
-			if(not key in meta_keys):
-				#print("set "+get_node_attr(key)+" as "+str(item[key]))
+			if(not key in meta_keys or (reference_key_name in item.keys() and key in item[reference_key_name])):
+				if(key == "position" || key == "global_position"):
+					if(set_position):
+						continue
+					else:
+						set_position = true
 				get_final_child(key, new_scene).set(get_node_attr(key), item[key])
 		if(new_scene.has_method("on_load")):
 			new_scene.on_load()
 		new_scene.add_to_group("saveable")
 		scene_array.append(new_scene)
 	
-	# Add children nodes to parents
+	# Add children nodes to parents and link node references
 	for item in saved_game.item_states:
 		var node = scene_array[item["$index"]]
+		
+		#references
+		if(reference_key_name in item.keys()):
+			for prop in node.get(reference_key_name):
+				node.set(prop, scene_array[item[prop]])
+		
+		# parenting
 		if(item["$parent_index"] == -1):
 			world_scene.add_child(node)
 		else:
 			var parent_node = scene_array[item["$parent_index"]]
 			parent_node.add_child(node)
-			
+		
 	
 func save_autoloads():
 	var saved_autoloads = SavedGame.new()
@@ -175,6 +215,13 @@ func clear():
 	var files = DirAccess.get_files_at("user://")
 	for file in files:
 		DirAccess.remove_absolute("user://"+file)
+
+func has_property(node, property):
+	var properties = node.get_property_list()
+	var property_names = []
+	for prop in properties:
+		property_names.append(prop["name"])
+	return property in property_names
 
 func _on_save_pressed():
 	save_level()

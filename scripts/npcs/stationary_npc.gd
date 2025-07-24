@@ -30,6 +30,7 @@ var is_touching_player = false
 var has_just_been_talked_to = false
 var already_had_immediate_encounter = false
 var additional_prompt_height = 0
+var saved_node_references = ["immediate_interaction_area", "animation_player"]
 
 @onready var interact_prompt = $InteractPrompt
 
@@ -79,6 +80,3 @@ func play_dialogue(area):
 		print(area.name)
 		already_had_immediate_encounter = true
 		Dialogic.start(immediate_timeline)
-
-func save():
-	return ["position", "interact_immediately"]
