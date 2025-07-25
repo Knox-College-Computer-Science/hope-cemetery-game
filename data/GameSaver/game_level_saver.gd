@@ -113,7 +113,7 @@ func save_level():
 	# Save resources
 	ResourceSaver.save(saved_game, "user://"+get_file_name(world_scene)+".tres")
 
-func load_level(player_position: bool = false):
+func load_level():
 	var saved_game = load("user://"+get_file_name(world_scene)+".tres")
 	if(!is_instance_valid(saved_game)):
 		return

@@ -35,7 +35,7 @@ func switch_scene(scene : PackedScene):
 	add_child(current_scene)
 	game_saver.world_scene = current_scene
 	game_saver.save_autoloads()
-
+	
 ## Switch scene and load save data
 func switch_and_load_scene(scene : PackedScene):
 	switch_scene(scene)
@@ -54,9 +54,9 @@ func switch_and_load_scene_by_path(path : String):
 func switch_scene_with_spawn_point(scene : PackedScene, spawn_pt : String):
 	switch_scene(scene)
 	var player_position = GlobalUtilities.player.position
-	print(player_position)
 	await get_tree().create_timer(2).timeout
 	game_saver.load_level()
+	await get_tree().create_timer(2).timeout
 	if(spawn_pt == ""):
 		print("empty spawn point")
 		GlobalUtilities.player.position = player_position
