@@ -1,7 +1,11 @@
 extends Sprite2D
 
 @export var spawn_point_name : String
+@export var show_point = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
+	$Label.text = spawn_point_name
+	if(!show_point):
+		hide()
+	else:
+		$Label.show()

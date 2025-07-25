@@ -7,3 +7,15 @@
 z_index = 5
 texture = ExtResource("1_neaf5")
 script = ExtResource("2_v3wpw")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = 21.0
+offset_right = 26.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.86351, 0, 0.00811484, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+text = "test"
+horizontal_alignment = 1

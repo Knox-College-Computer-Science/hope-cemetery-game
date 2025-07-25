@@ -309,6 +309,8 @@ editor_draw_limits = true
 
 [node name="PortalArea" parent="." instance=ExtResource("3_nftc7")]
 file_path = "res://scenes/environments/main_level.tscn"
+automatic = false
+spawn_point = "a"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortalArea"]
 position = Vector2(0.5, 138)

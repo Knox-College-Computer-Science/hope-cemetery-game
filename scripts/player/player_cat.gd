@@ -9,8 +9,12 @@ extends CharacterBody2D
 @onready var timer = $Timer
 
 func _ready():
+	GlobalUtilities.player = self
 	update_animation_parameters(startDir)
 	#$"../Alex/room music".play()
+
+func on_load():
+	GlobalUtilities.player = self
 	
 func _physics_process(_delta):
 	var input_direction = Vector2(

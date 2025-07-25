@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=19 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="10_hblg2"]
 [ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_gui/backpack_ui.tscn" id="11_2sb77"]
 [ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="11_4vqht"]
+[ext_resource type="PackedScene" uid="uid://dtjd2cjs6ndfo" path="res://scenes/player/spawn_point.tscn" id="12_ppseo"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="13_adxub"]
 [ext_resource type="PackedScene" uid="uid://c8sys3msyjs8i" path="res://scenes/environments/trueHopeCemetery.tscn" id="13_mwgft"]
 
@@ -142,5 +143,15 @@ automatic = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mausoleum/PortalArea"]
 position = Vector2(-1, 65)
 shape = SubResource("RectangleShape2D_ppseo")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("12_ppseo")]
+position = Vector2(1603.95, -189.087)
+spawn_point_name = "m"
+show_point = true
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("12_ppseo")]
+position = Vector2(1557, -270)
+spawn_point_name = "a"
+show_point = true
 
 [editable path="MiniMap"]
