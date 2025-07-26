@@ -55,32 +55,19 @@ func switch_and_load_scene_by_path(path : String):
 func switch_scene_with_spawn_point(scene : PackedScene, spawn_pt : String):
 	var new_level = get_new_level_instance(scene)
 	var original_player = get_player(new_level)
-	#"""
-	print("new scene: "+new_level.name)
-	print("original position: "+str(original_player.position))
-	#await get_tree().create_timer(2).timeout
 	game_saver.load_level()
-	print("position after load: "+str(get_player(new_level).position))
-	#await get_tree().create_timer(2).timeout
 	if(spawn_pt == ""):
-		print("empty spawn point")
 		get_player(new_level).position = original_player.position
 	else:
-		print("spawn point named "+spawn_pt)
 		var points = get_nodes_in_group(new_level, "spawn_point")
 		var point_found = false
 		for p in points:
-			print("point: "+p.spawn_point_name)
 			if(p.spawn_point_name == spawn_pt):
 				get_player(new_level).position = p.position
 				point_found = true
-				print_debug(p.position)
-				print_debug(get_player(new_level).position)
 		if(!point_found):
 			print("Spawn point "+spawn_pt+" does not exist!")
 			push_error("Spawn point "+spawn_pt+" does not exist!")
-	#switch_scene(new_level)
-	#"""
 	game_saver.save_level()
 	current_scene = new_level
 	add_child(new_level)
@@ -89,7 +76,6 @@ func get_player(node):
 	var children : Array = node.get_children().duplicate()
 	for child in children:
 		if(child.is_in_group("player")):
-			print("player name: "+child.name)
 			return child
 		var player_child = get_player(child)
 		if(player_child != null):

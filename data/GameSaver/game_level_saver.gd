@@ -2,7 +2,9 @@ extends Node
 
 """
 TO-DO
-- player spawn points
+- Save files should be seperated some how. Load level saves according
+  to save files
++ player spawn points
 + link node references in variables
 + automatically save all data if no save function is found
 
