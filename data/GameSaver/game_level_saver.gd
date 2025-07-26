@@ -67,14 +67,20 @@ var save_addon_path = "res://data/GameSaver/save_addon.gd"
 
 func save_level():
 	var saved_game = SavedGame.new()
+	"""var nodes = get_saveable_nodes(world_scene)
+	for n in nodes:
+		print(n.name)
 	var saveable_scenes = get_tree().get_nodes_in_group("saveable")
-	
+	"""
+	var saveable_scenes = get_saveable_nodes(world_scene)
 	# Add items and their attributes to SavedGame resource
 	var ind = 0
 	var scene_array = []
 	for i in saveable_scenes:
 		var data = {"scene_file_path":i.scene_file_path, "$index":ind}
 		if(!is_instance_valid(i.get_script())):
+			if(!is_instance_valid(load(save_addon_path))):
+				print_debug("WARNING! save_addon_path is likely incorrect!")
 			i.set_script(load(save_addon_path))
 			i.class_of_object = i.get_class()
 		if(has_property(i, reference_key_name)):
@@ -117,7 +123,7 @@ func load_level():
 	var saved_game = load("user://"+get_file_name(world_scene)+".tres")
 	if(!is_instance_valid(saved_game)):
 		return
-	get_tree().call_group("saveable", "queue_free")
+	delete_saveable_nodes(world_scene)
 	var scene_array = []
 	var new_scene
 	for item in saved_game.item_states:
@@ -140,6 +146,9 @@ func load_level():
 			new_scene.on_load()
 		new_scene.add_to_group("saveable")
 		scene_array.append(new_scene)
+		
+	if(world_scene.has_method("on_load")):
+		world_scene.on_load()
 	
 	# Add children nodes to parents and link node references
 	for item in saved_game.item_states:
@@ -215,6 +224,23 @@ func has_property(node, property):
 	for prop in properties:
 		property_names.append(prop["name"])
 	return property in property_names
+
+func get_saveable_nodes(node) -> Array[Node]:
+	var children : Array = node.get_children().duplicate()
+	var saveable_children : Array[Node] = []
+	for child in children:
+		if(child.is_in_group("saveable")):
+			saveable_children.append(child)
+		saveable_children.append_array(get_saveable_nodes(child))
+	#for child in node.get_children():
+	#	saveable_children.append_array(get_saveable_nodes(child))
+	return saveable_children
+
+func delete_saveable_nodes(node):
+	var saveable_nodes = get_saveable_nodes(node)
+	for n in saveable_nodes:
+		n.get_parent().remove_child(n)
+		n.queue_free()
 
 func _on_save_pressed():
 	save_level()

@@ -145,13 +145,7 @@ position = Vector2(-1, 65)
 shape = SubResource("RectangleShape2D_ppseo")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("12_ppseo")]
-position = Vector2(1603.95, -189.087)
+position = Vector2(1699, -212)
 spawn_point_name = "m"
-show_point = true
-
-[node name="SpawnPoint2" parent="." instance=ExtResource("12_ppseo")]
-position = Vector2(1557, -270)
-spawn_point_name = "a"
-show_point = true
 
 [editable path="MiniMap"]
