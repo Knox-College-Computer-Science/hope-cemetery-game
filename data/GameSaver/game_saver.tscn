@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dv12mavlcqe1w"]
 
-[ext_resource type="Script" uid="uid://bk2abvwakjexc" path="res://data/GameSaver/game_level_saver.gd" id="1_fnllt"]
+[ext_resource type="Script" uid="uid://b3y7yrrkovfvs" path="res://data/GameSaver/game_slot_saver.gd" id="1_fnllt"]
 
 [node name="GameSaver" type="Node"]
 script = ExtResource("1_fnllt")
@@ -8,6 +8,7 @@ script = ExtResource("1_fnllt")
 [node name="Debug" type="CanvasLayer" parent="."]
 
 [node name="Save" type="Button" parent="Debug"]
+visible = false
 offset_left = 75.0
 offset_top = 604.0
 offset_right = 307.0
@@ -16,6 +17,7 @@ focus_mode = 0
 text = "SAVE"
 
 [node name="Load" type="Button" parent="Debug"]
+visible = false
 offset_left = 335.0
 offset_top = 604.0
 offset_right = 567.0
@@ -31,6 +33,4 @@ offset_bottom = 693.0
 focus_mode = 0
 text = "Clear"
 
-[connection signal="pressed" from="Debug/Save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="Debug/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="Debug/Clear" to="." method="_on_clear_pressed"]

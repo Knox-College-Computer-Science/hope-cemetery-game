@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvacb6qh3nyqq"]
+
+[ext_resource type="Script" uid="uid://dltnq4f5jdmmg" path="res://data/GameSaver/save_screen.gd" id="1_3n4uj"]
+[ext_resource type="Texture2D" uid="uid://bonvp4mu5k1fx" path="res://data/GameSaver/empty.png" id="1_bxsd8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n4uj"]
+bg_color = Color(0.277671, 0.246608, 0.254714, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="SaveScreen" type="CanvasLayer"]
+script = ExtResource("1_3n4uj")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+visibility_layer = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -391.0
+offset_top = -234.0
+offset_right = 391.0
+offset_bottom = 261.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3n4uj")
+
+[node name="Title" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 19.0
+offset_right = 404.0
+offset_bottom = 106.0
+theme_override_colors/default_color = Color(1, 0.464747, 0.249375, 1)
+theme_override_colors/font_outline_color = Color(1, 0.828486, 0.536053, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/shadow_offset_x = 5
+theme_override_font_sizes/italics_font_size = 50
+bbcode_enabled = true
+text = "[i]GameSaver™[/i]"
+
+[node name="Title2" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 19.0
+offset_right = 756.0
+offset_bottom = 106.0
+theme_override_colors/default_color = Color(1, 0.464747, 0.249375, 1)
+theme_override_colors/font_outline_color = Color(1, 0.828486, 0.536053, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_offset_x = 5
+bbcode_enabled = true
+text = "[i]The [b]fastest[/b] way to save your data!
+Your fully implemented save system is just a few clicks away![/i]"
+
+[node name="SaveSlots" type="ItemList" parent="Panel"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 115.0
+offset_right = 712.0
+offset_bottom = 409.0
+focus_mode = 0
+item_count = 3
+fixed_icon_size = Vector2i(120, 90)
+item_0/text = "Slot1 - No data"
+item_0/icon = ExtResource("1_bxsd8")
+item_1/text = "Slot2 - No data"
+item_1/icon = ExtResource("1_bxsd8")
+item_2/text = "Slot3 - No data"
+item_2/icon = ExtResource("1_bxsd8")
+
+[node name="SaveButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 436.0
+offset_right = 331.0
+offset_bottom = 471.0
+tooltip_text = "Select a slot to save to"
+disabled = true
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 436.0
+offset_right = 579.0
+offset_bottom = 471.0
+tooltip_text = "Select a slot to save to"
+disabled = true
+text = "Load
+"
+
+[node name="ShowButton" type="Button" parent="."]
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 122.0
+offset_bottom = 64.0
+text = "Save"
+
+[connection signal="item_selected" from="Panel/SaveSlots" to="." method="_on_save_slots_item_selected"]
+[connection signal="button_down" from="Panel/SaveButton" to="." method="_on_save_button_button_down"]
+[connection signal="pressed" from="Panel/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="ShowButton" to="." method="_on_show_button_pressed"]

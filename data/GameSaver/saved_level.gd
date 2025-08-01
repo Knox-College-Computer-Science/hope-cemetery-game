@@ -1,4 +1,4 @@
 extends Resource
-class_name SavedGame
+class_name SavedLevel
 
 @export var item_states = []

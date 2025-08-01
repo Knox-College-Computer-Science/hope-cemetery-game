@@ -82,14 +82,14 @@ color = Color(1, 0.372549, 1, 1)
 
 [node name="trueHopeCemetery2" parent="." instance=ExtResource("13_mwgft")]
 
-[node name="Barrier" parent="." node_paths=PackedStringArray("immediate_interaction_area") instance=ExtResource("13_adxub")]
+[node name="Barrier" parent="." node_paths=PackedStringArray("immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 interact_immediately = true
 immediate_interaction_area = NodePath("FirstWalkIn")
 immediate_timeline = "enter_cemetery"
 
-[node name="FirstWalkIn" type="Area2D" parent="Barrier"]
+[node name="FirstWalkIn" type="Area2D" parent="Barrier" groups=["saveable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier/FirstWalkIn"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier/FirstWalkIn" groups=["saveable"]]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_ff0s2")
 
