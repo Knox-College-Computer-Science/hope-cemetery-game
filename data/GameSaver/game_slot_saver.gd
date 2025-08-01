@@ -210,6 +210,7 @@ func save_game(slot: int):
 		print_debug("Saving file "+file+" to "+slot_names[slot]+". Path: "+"user://save/"+slot_names[slot]+"/"+file)
 
 func load_game(slot: int):
+	clear_temp()
 	if(slot > slot_names.size()):
 		push_error("Trying to load from invalid slot!")
 		return
