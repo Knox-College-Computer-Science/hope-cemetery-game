@@ -13,7 +13,6 @@ func _on_area_entered(area):
 	else:
 		is_inside = true
 
-
 func _on_area_exited(area):
 	is_inside = false
 	

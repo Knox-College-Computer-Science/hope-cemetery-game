@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=20 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dtjd2cjs6ndfo" path="res://scenes/player/spawn_point.tscn" id="12_ppseo"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="13_adxub"]
 [ext_resource type="PackedScene" uid="uid://c8sys3msyjs8i" path="res://scenes/environments/trueHopeCemetery.tscn" id="13_mwgft"]
+[ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="13_wmj1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0s2"]
 size = Vector2(20, 66)
@@ -147,5 +148,8 @@ shape = SubResource("RectangleShape2D_ppseo")
 [node name="SpawnPoint" parent="." instance=ExtResource("12_ppseo")]
 position = Vector2(1699, -212)
 spawn_point_name = "m"
+
+[node name="SavePoint" parent="." instance=ExtResource("13_wmj1g")]
+position = Vector2(1592.07, -255.248)
 
 [editable path="MiniMap"]

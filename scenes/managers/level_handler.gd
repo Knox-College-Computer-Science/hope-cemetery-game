@@ -96,3 +96,6 @@ func get_nodes_in_group(node, group) -> Array[Node]:
 			group_children.append(child)
 		group_children.append_array(get_nodes_in_group(child, group))
 	return group_children
+
+func toggle_save_screen():
+	$SaveScreen.toggle_panel()

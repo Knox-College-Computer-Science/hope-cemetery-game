@@ -37,11 +37,11 @@ texture = ExtResource("2_v7721")
 [node name="LightBeams" type="CPUParticles2D" parent="."]
 z_index = 5
 position = Vector2(0, -135)
-amount = 6
+amount = 12
 texture = SubResource("GradientTexture2D_v7721")
 lifetime = 5.0
 emission_shape = 1
-emission_sphere_radius = 45.0
+emission_sphere_radius = 30.0
 gravity = Vector2(0, 0)
 color_ramp = SubResource("Gradient_ju2un")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cowk363toufok"]
+[gd_scene load_steps=23 format=4 uid="uid://cowk363toufok"]
 
 [ext_resource type="Texture2D" uid="uid://btel4j8sjdxx3" path="res://art/tilesets/pixil-frame-0 (2).png" id="1_qsqi1"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="2_nftc7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dslptq4854v7u" path="res://scenes/player/time_portal.tscn" id="5_navl4"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="6_a3vgh"]
 [ext_resource type="Texture2D" uid="uid://ct7bfn4g7hvuf" path="res://art/sprites/Charles.png" id="7_52b8r"]
+[ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="8_52b8r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6e8fu"]
 texture = ExtResource("1_qsqi1")
@@ -415,3 +416,6 @@ shape = SubResource("RectangleShape2D_3ukle")
 position = Vector2(54, 23)
 shape = SubResource("RectangleShape2D_a3vgh")
 debug_color = Color(0.850031, 0.373169, 5.77569e-07, 0.42)
+
+[node name="SavePoint" parent="." instance=ExtResource("8_52b8r")]
+position = Vector2(50.7181, -55.5938)
