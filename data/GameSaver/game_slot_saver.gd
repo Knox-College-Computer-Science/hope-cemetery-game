@@ -67,7 +67,8 @@ MAINTAINING NODE REFERENCES
    a list of the names of variables that have node references.
 """
 
-const TEMPORARY_SAVE_DATA_PATH = "user://save/temp"
+const SAVE_DIRECTORY = "user://save"
+const TEMPORARY_SAVE_DATA_PATH = SAVE_DIRECTORY+"/temp"
 const AUTOLOAD_SAVE_PATH = TEMPORARY_SAVE_DATA_PATH+"/autoload_save_data.tres"
 const SAVE_ADDON_PATH = "res://data/GameSaver/save_addon.gd"
 
@@ -83,7 +84,7 @@ var child_delimiter = "$"
 var reference_key_name = "saved_node_references"
 
 func save_level():
-	var saved_game = SavedLevel.new()
+	var saved_level = SavedLevel.new()
 	var saveable_scenes = get_saveable_nodes(world_scene)
 	
 	# Add items and their attributes to SavedLevel resource
@@ -93,7 +94,8 @@ func save_level():
 		var data = {"scene_file_path":i.scene_file_path, "$index":ind}
 		if(!is_instance_valid(i.get_script())):
 			if(!is_instance_valid(load(SAVE_ADDON_PATH))):
-				print_debug("WARNING! save_addon_path is likely incorrect!")
+				push_error("SAVE_ADDON_PATH is likely incorrect! It should give the correct
+				path to the save_addon.gd script.")
 			i.set_script(load(SAVE_ADDON_PATH))
 			i.class_of_object = i.get_class()
 		if(has_property(i, reference_key_name)):
@@ -106,7 +108,7 @@ func save_level():
 				if(get_node_attr_value(attr, i) == null):
 					push_warning(attr+" in "+i.name+" is equal to null! It might not exist as an attribute!")
 				data[attr] = get_node_attr_value(attr, i)
-		saved_game.item_states.append(data)
+		saved_level.item_states.append(data)
 		scene_array.append(i)
 		ind += 1
 	
@@ -118,30 +120,30 @@ func save_level():
 			parent_index = -1
 		else:
 			parent_index = saveable_scenes.find(i.get_parent())
-		saved_game.item_states[ind]["$parent_index"] = parent_index
+		saved_level.item_states[ind]["$parent_index"] = parent_index
 		
 		# Link nodes references by index
 		if(has_property(i, reference_key_name)):
 			for prop in i.get(reference_key_name):
 				if(is_instance_valid(i.get(prop))):
-					saved_game.item_states[ind][prop] = saveable_scenes.find(i.get(prop))
+					saved_level.item_states[ind][prop] = saveable_scenes.find(i.get(prop))
 				else:
-					saved_game.item_states[ind][prop] = -1
+					saved_level.item_states[ind][prop] = -1
 		ind += 1
 
 	# Save resources
 	if(!DirAccess.dir_exists_absolute(TEMPORARY_SAVE_DATA_PATH)):
 		DirAccess.make_dir_recursive_absolute(TEMPORARY_SAVE_DATA_PATH)
-	ResourceSaver.save(saved_game, TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
+	ResourceSaver.save(saved_level, TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
 
 func load_level():
-	var saved_game = load(TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
-	if(!is_instance_valid(saved_game)):
+	var saved_level = load(TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
+	if(!is_instance_valid(saved_level)):
 		return
 	delete_saveable_nodes(world_scene)
 	var scene_array = []
 	var new_scene
-	for item in saved_game.item_states:
+	for item in saved_level.item_states:
 		if(item["scene_file_path"] != ""):
 			new_scene = load(item["scene_file_path"]).instantiate()
 		else:
@@ -166,7 +168,7 @@ func load_level():
 		world_scene.on_load()
 	
 	# Add children nodes to parents and link node references
-	for item in saved_game.item_states:
+	for item in saved_level.item_states:
 		var node = scene_array[item["$index"]]
 		
 		#references
@@ -221,24 +223,24 @@ func save_game(slot: int, metadata: SaveMetadata = null):
 	clear_slot(slot)
 	
 	# Put data from temp into slot
-	if(!DirAccess.dir_exists_absolute("user://save/"+slot_names[slot])):
-		DirAccess.make_dir_recursive_absolute("user://save/"+slot_names[slot])
-	for file in DirAccess.get_files_at(TEMPORARY_SAVE_DATA_PATH+"/"):
-		DirAccess.copy_absolute(TEMPORARY_SAVE_DATA_PATH+"/"+file, "user://save/"+slot_names[slot]+"/"+file)
-		print_debug("Saving file "+file+" to "+slot_names[slot]+". Path: "+"user://save/"+slot_names[slot]+"/"+file)
+	if(!DirAccess.dir_exists_absolute(SAVE_DIRECTORY+"/"+slot_names[slot])):
+		DirAccess.make_dir_recursive_absolute(SAVE_DIRECTORY+"/"+slot_names[slot])
+	for file in DirAccess.get_files_at(TEMPORARY_SAVE_DATA_PATH):
+		DirAccess.copy_absolute(TEMPORARY_SAVE_DATA_PATH+"/"+file, SAVE_DIRECTORY+"/"+slot_names[slot]+"/"+file)
+		#print_debug("Saving file "+file+" to "+slot_names[slot]+". Path: "+SAVE_DIRECTORY+"/"+slot_names[slot]+"/"+file)
 
 func load_game(slot: int):
 	clear_temp()
 	if(slot > slot_names.size()):
 		push_error("Trying to load from invalid slot!")
 		return
-	for file in DirAccess.get_files_at("user://save/"+slot_names[slot]):
-		DirAccess.copy_absolute("user://save/"+slot_names[slot]+"/"+file, TEMPORARY_SAVE_DATA_PATH+"/"+file)
-		print_debug("Loading file "+file+" from slot "+str(slot))
+	for file in DirAccess.get_files_at(SAVE_DIRECTORY+"/"+slot_names[slot]):
+		DirAccess.copy_absolute(SAVE_DIRECTORY+"/"+slot_names[slot]+"/"+file, TEMPORARY_SAVE_DATA_PATH+"/"+file)
+		#print_debug("Loading file "+file+" from slot "+str(slot))
 	load_autoloads(slot_names[slot])
 
 func get_save_metadata(slot: int):
-	var meta : SaveMetadata = load("user://save/"+slot_names[slot]+"/metadata.tres")
+	var meta : SaveMetadata = load(SAVE_DIRECTORY+"/"+slot_names[slot]+"/metadata.tres")
 	return meta
 
 func get_node_attr_value(attr : String, parent : Node):
@@ -285,7 +287,7 @@ func clear_path(path: String):
 		clear_path(path+"/"+dir)
 
 func clear_slot(slot: int):
-	clear_path("user://save/"+slot_names[slot])
+	clear_path(SAVE_DIRECTORY+"/"+slot_names[slot])
 
 func has_property(node, property):
 	var properties = node.get_property_list()
