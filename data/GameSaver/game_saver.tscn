@@ -26,6 +26,7 @@ focus_mode = 0
 text = "LOAD"
 
 [node name="Clear" type="Button" parent="Debug"]
+visible = false
 offset_left = 1054.0
 offset_top = 618.0
 offset_right = 1255.0

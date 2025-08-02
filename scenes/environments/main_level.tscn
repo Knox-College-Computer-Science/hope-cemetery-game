@@ -150,7 +150,7 @@ position = Vector2(1699, -212)
 spawn_point_name = "m"
 
 [node name="SavePoint" parent="." instance=ExtResource("13_wmj1g")]
-position = Vector2(1592.07, -255.248)
+position = Vector2(1602, -247)
 save_description = "Outside Mausoleum"
 
 [editable path="MiniMap"]

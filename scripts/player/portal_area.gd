@@ -2,6 +2,8 @@ extends Area2D
 
 @export var file_path : String
 @export var automatic : bool = true
+## Name of the spawn point where you want the player to start.
+## Leave it blank for the player to start in the defualt position for the scene.
 @export var spawn_point : String
 
 var is_inside = false
