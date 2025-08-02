@@ -14,9 +14,8 @@ opening_scene = ExtResource("2_ey7k7")
 [node name="GameSaver" parent="." node_paths=PackedStringArray("screenshot_viewport") instance=ExtResource("3_ey7k7")]
 screenshot_viewport = NodePath("../SubViewportContainer/SubViewport")
 
-[node name="SaveScreen" parent="." node_paths=PackedStringArray("game_saver", "level_handler") instance=ExtResource("4_wbwxe")]
+[node name="SaveScreen" parent="." node_paths=PackedStringArray("game_saver") instance=ExtResource("4_wbwxe")]
 game_saver = NodePath("../GameSaver")
-level_handler = NodePath("..")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 1286.0

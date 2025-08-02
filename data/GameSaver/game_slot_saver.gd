@@ -2,8 +2,9 @@ extends Node
 
 """
 TO-DO
-- dialogic saving in slots?
-- Allow for storing metadata that applies to whole game save
++ make get_metadata(slot: int) function (also access by string?)
++ dialogic saving in slots?
++ Allow for storing metadata (via resources) that applies to whole game save
 + Save files should be seperated some how. Load level saves according
   to save files
 + Also seperate autoloads into slots
@@ -12,10 +13,14 @@ TO-DO
 + automatically save all data if no save function is found
 
 
-NEEDED TO USE GAMELEVELSAVER:
-	- game_saver.gd
+NEEDED TO USE GAMESLOTSAVER:
+	- game_slot_saver.gd
 	- "saveable" global group
-	- saved_game.gd
+	- saved_level.gd
+	- save_addon.gd
+
+RECOMMENDED COMPONENTS:
+	- save_screen scene
 
 TO SAVE A SCENE:
 	(NOTE: must be it's own scene)
@@ -177,7 +182,7 @@ func load_level():
 			var parent_node = scene_array[item["$parent_index"]]
 			parent_node.add_child(node)
 		
-func save_autoloads():
+func save_autoloads(dialogic_slot = ""):
 	var saved_autoloads = SavedLevel.new()
 	for autoload in autoloads_to_save:
 		var data = {"$autoload": autoload}
@@ -185,9 +190,9 @@ func save_autoloads():
 			data[p["name"]] = get_node("/root/"+autoload).get(p["name"])
 		saved_autoloads.item_states.append(data)
 	ResourceSaver.save(saved_autoloads, AUTOLOAD_SAVE_PATH)
-	Dialogic.Save.save("", false, Dialogic.Save.ThumbnailMode.NONE)
+	Dialogic.Save.save(dialogic_slot, false, Dialogic.Save.ThumbnailMode.NONE)
 	
-func load_autoloads():
+func load_autoloads(dialogic_slot = ""):
 	var saved_autoloads = load(AUTOLOAD_SAVE_PATH)
 	if(!is_instance_valid(saved_autoloads)):
 		return
@@ -195,14 +200,27 @@ func load_autoloads():
 		for property in al:
 			if(not property in meta_keys):
 				get_node("/root/"+al["$autoload"]).set(property, al[property])
-	Dialogic.Save.load()
+	Dialogic.Save.load(dialogic_slot)
 
-func save_game(slot: int):
-	save_image()
-	save_autoloads()
+func save_game(slot: int, metadata: SaveMetadata = null):
 	if(slot > slot_names.size()):
 		push_error("Trying to save to invalid slot!")
 		return
+		
+	save_image()
+	save_autoloads(slot_names[slot])
+	
+	# Save metadata
+	if(!is_instance_valid(metadata)):
+		var new_data = SaveMetadata.new()
+		ResourceSaver.save(new_data, TEMPORARY_SAVE_DATA_PATH+"/metadata.tres")
+	else:
+		ResourceSaver.save(metadata, TEMPORARY_SAVE_DATA_PATH+"/metadata.tres")
+	
+	# Clear slot that data is being moved to
+	clear_slot(slot)
+	
+	# Put data from temp into slot
 	if(!DirAccess.dir_exists_absolute("user://save/"+slot_names[slot])):
 		DirAccess.make_dir_recursive_absolute("user://save/"+slot_names[slot])
 	for file in DirAccess.get_files_at(TEMPORARY_SAVE_DATA_PATH+"/"):
@@ -217,8 +235,12 @@ func load_game(slot: int):
 	for file in DirAccess.get_files_at("user://save/"+slot_names[slot]):
 		DirAccess.copy_absolute("user://save/"+slot_names[slot]+"/"+file, TEMPORARY_SAVE_DATA_PATH+"/"+file)
 		print_debug("Loading file "+file+" from slot "+str(slot))
-	load_autoloads()
-	
+	load_autoloads(slot_names[slot])
+
+func get_save_metadata(slot: int):
+	var meta : SaveMetadata = load("user://save/"+slot_names[slot]+"/metadata.tres")
+	return meta
+
 func get_node_attr_value(attr : String, parent : Node):
 	if(not child_delimiter in attr):
 		return parent.get(attr)
@@ -261,6 +283,9 @@ func clear_path(path: String):
 		DirAccess.remove_absolute(path+"/"+file)
 	for dir in DirAccess.get_directories_at(path):
 		clear_path(path+"/"+dir)
+
+func clear_slot(slot: int):
+	clear_path("user://save/"+slot_names[slot])
 
 func has_property(node, property):
 	var properties = node.get_property_list()

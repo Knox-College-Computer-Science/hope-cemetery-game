@@ -419,3 +419,4 @@ debug_color = Color(0.850031, 0.373169, 5.77569e-07, 0.42)
 
 [node name="SavePoint" parent="." instance=ExtResource("8_52b8r")]
 position = Vector2(50.7181, -55.5938)
+save_description = "Inside Mausoleum"

@@ -22,8 +22,6 @@ func get_new_level_instance(scene : PackedScene):
 		remove_child(current_scene)
 		current_scene.queue_free()
 	var new_scene = scene.instantiate()
-	SaveMetaData.current_level_path = new_scene.scene_file_path
-	print_debug(SaveMetaData.current_level_path)
 	game_saver.world_scene = new_scene
 	return new_scene
 	
@@ -37,8 +35,6 @@ func switch_scene(scene : PackedScene, save_data = true):
 		remove_child(current_scene)
 		current_scene.queue_free()
 	current_scene = scene.instantiate()
-	SaveMetaData.current_level_path = current_scene.scene_file_path
-	print_debug(SaveMetaData.current_level_path)
 	display_node.add_child(current_scene)
 	game_saver.world_scene = current_scene
 	
@@ -97,5 +93,8 @@ func get_nodes_in_group(node, group) -> Array[Node]:
 		group_children.append_array(get_nodes_in_group(child, group))
 	return group_children
 
-func toggle_save_screen():
-	$SaveScreen.toggle_panel()
+func toggle_save_screen(save_desc = ""):
+	var meta = SaveMetadata.new()
+	meta.current_level_path = current_scene.scene_file_path
+	meta.save_description = save_desc
+	$SaveScreen.toggle_panel(meta)

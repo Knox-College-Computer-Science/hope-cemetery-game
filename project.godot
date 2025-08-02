@@ -25,7 +25,6 @@ glob_quest="*res://scripts/globals/glob_quest.gd"
 glob_people="*res://scripts/globals/glob_people.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GlobalUtilities="*res://scripts/globals/global_utilities.gd"
-SaveMetaData="*res://scripts/globals/save_meta_data.gd"
 
 [dialogic]
 
