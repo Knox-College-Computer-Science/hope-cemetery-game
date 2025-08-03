@@ -1,4 +1,4 @@
-extends Area2D
+extends InteractionArea
 
 """
 Basic NPC character that doesn't move but can be talked to. Requires an
@@ -14,7 +14,7 @@ see choreographed_npc.tscn.
 @export var default_animation : String = "default"
 ## Conversation that starts when the player interacts with this npc deliberately
 @export var timeline : String
-@export var show_prompt : bool = true
+@export var show_npc_prompt : bool = true
 @export var prompt_height : float
 ## If true, the character will not be able to interact with this npc.
 @export var disabled : bool
@@ -22,7 +22,7 @@ see choreographed_npc.tscn.
 ## If true, this npc will start a timeline as soon as the player hits the interaction area
 @export var interact_immediately : bool
 ## If the player enters this area, the timeline specified will start
-@export var immediate_interaction_area : Area2D
+@export var immediate_interaction_area : InteractionArea
 ## Dialogue timeline to play when player enters area
 @export var immediate_timeline : String
 
@@ -35,20 +35,21 @@ var saved_node_references = ["immediate_interaction_area", "animation_player"]
 @onready var interact_prompt = $InteractPrompt
 
 func _ready():
+	super()
 	Dialogic.timeline_ended.connect(cooldown)
 	if(animation_player is AnimatedSprite2D && default_animation != ""):
 		animation_player.play(default_animation)
 	if(interact_immediately && immediate_timeline != "" && is_instance_valid(immediate_interaction_area)):
-		immediate_interaction_area.collision_layer = 0x0000
-		immediate_interaction_area.collision_mask = 0x0002
-		#immediate_interaction_area.set_collision_mask_value(2, true)
-		immediate_interaction_area.area_entered.connect(play_dialogue)
+		immediate_interaction_area.show_prompt = false
+		immediate_interaction_area.automatic = true
+		immediate_interaction_area.entered.connect(play_dialogue)
 	
-	# Set height of interact prompt
+	# Set height of interact prompt  
 	interact_prompt.global_position.y += prompt_height
-	
-func _process(delta):
-	if(Dialogic.current_timeline == null && is_touching_player && Input.is_action_just_pressed("interact") && !has_just_been_talked_to && !disabled):
+
+func _on_activated():
+	print("hiya!")
+	if(Dialogic.current_timeline == null && !has_just_been_talked_to && !disabled):
 		interact_prompt.hide()
 		Dialogic.start(timeline)
 		has_just_been_talked_to = true
@@ -56,17 +57,14 @@ func _process(delta):
 func switch_animation(new_animation):
 	animation_player.play(new_animation)
 
-func face_right(dir):
+func face_right(dir: bool):
 	animation_player.flip_h = !dir
 
 func _on_area_entered(area):
-	if(show_prompt && !has_just_been_talked_to && !disabled):
-		interact_prompt.show()
-	is_touching_player = true
+	pass
 
 func _on_area_exited(area):
-	interact_prompt.hide()
-	is_touching_player = false
+	pass
 
 func cooldown():
 	if(has_just_been_talked_to):
@@ -75,8 +73,14 @@ func cooldown():
 func _on_cool_down_timer_timeout():
 	has_just_been_talked_to = false
 
-func play_dialogue(area):
+func play_dialogue():
 	if(!already_had_immediate_encounter && !disabled):
-		print(area.name)
 		already_had_immediate_encounter = true
 		Dialogic.start(immediate_timeline)
+
+func _on_entered():
+	if(show_npc_prompt && !has_just_been_talked_to && !disabled):
+		interact_prompt.show()
+
+func _on_exited():
+	interact_prompt.hide()

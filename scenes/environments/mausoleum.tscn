@@ -1,12 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://cowk363toufok"]
+[gd_scene load_steps=10 format=4 uid="uid://cowk363toufok"]
 
 [ext_resource type="Texture2D" uid="uid://btel4j8sjdxx3" path="res://art/tilesets/pixil-frame-0 (2).png" id="1_qsqi1"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="2_nftc7"]
 [ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="3_nftc7"]
 [ext_resource type="PackedScene" uid="uid://bdytfccw6s26r" path="res://scenes/audio/bus_layout_changer.tscn" id="4_6e8fu"]
 [ext_resource type="PackedScene" uid="uid://dslptq4854v7u" path="res://scenes/player/time_portal.tscn" id="5_navl4"]
-[ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="6_a3vgh"]
-[ext_resource type="Texture2D" uid="uid://ct7bfn4g7hvuf" path="res://art/sprites/Charles.png" id="7_52b8r"]
 [ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="8_52b8r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6e8fu"]
@@ -292,76 +290,6 @@ sources/0 = SubResource("TileSetAtlasSource_6e8fu")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e8fu"]
 size = Vector2(181, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f5gf2"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ljfi"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5gwja"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(32, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6svg"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(48, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jipo1"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(64, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4otfl"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(80, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3g1uj"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(96, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqk1h"]
-atlas = ExtResource("7_52b8r")
-region = Rect2(112, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_s0evt"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f5gf2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ljfi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5gwja")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m6svg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jipo1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4otfl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3g1uj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tqk1h")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ukle"]
-size = Vector2(20, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3vgh"]
-size = Vector2(151, 20)
-
 [node name="Mausoleum" type="Node2D"]
 y_sort_enabled = true
 
@@ -397,28 +325,6 @@ layout_path = "res://audio/mausoleum.tres"
 
 [node name="TimePortal" parent="." instance=ExtResource("5_navl4")]
 position = Vector2(-2, -36)
-
-[node name="Charles" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("6_a3vgh")]
-position = Vector2(-55, 11)
-animation_player = NodePath("Sprite2D")
-interact_immediately = true
-immediate_interaction_area = NodePath("Area2D")
-immediate_timeline = "first_encounter_charles"
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Charles" groups=["saveable"]]
-sprite_frames = SubResource("SpriteFrames_s0evt")
-frame_progress = 0.167772
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Charles" groups=["saveable"]]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_3ukle")
-
-[node name="Area2D" type="Area2D" parent="Charles" groups=["saveable"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Charles/Area2D" groups=["saveable"]]
-position = Vector2(54, 23)
-shape = SubResource("RectangleShape2D_a3vgh")
-debug_color = Color(0.850031, 0.373169, 5.77569e-07, 0.42)
 
 [node name="SavePoint" parent="." instance=ExtResource("8_52b8r")]
 position = Vector2(50.7181, -55.5938)

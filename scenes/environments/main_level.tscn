@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=32 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="11_4vqht"]
 [ext_resource type="PackedScene" uid="uid://dtjd2cjs6ndfo" path="res://scenes/player/spawn_point.tscn" id="12_ppseo"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="13_adxub"]
+[ext_resource type="Texture2D" uid="uid://ct7bfn4g7hvuf" path="res://art/sprites/Charles.png" id="13_j4bxd"]
 [ext_resource type="PackedScene" uid="uid://c8sys3msyjs8i" path="res://scenes/environments/trueHopeCemetery.tscn" id="13_mwgft"]
 [ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="13_wmj1g"]
+[ext_resource type="PackedScene" uid="uid://ccf81jq8qw3do" path="res://scenes/player/interaction_area.tscn" id="14_j4bxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0s2"]
 size = Vector2(20, 66)
@@ -37,6 +39,76 @@ size = Vector2(117, 71)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppseo"]
 size = Vector2(37, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5gf2"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ljfi"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gwja"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6svg"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jipo1"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4otfl"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g1uj"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqk1h"]
+atlas = ExtResource("13_j4bxd")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4qpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5gf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ljfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gwja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6svg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jipo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4otfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g1uj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqk1h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpr1v"]
+size = Vector2(20, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4qpy"]
+size = Vector2(127, 41)
 
 [node name="Game Level" type="Node2D"]
 z_as_relative = false
@@ -149,5 +221,26 @@ spawn_point_name = "m"
 [node name="SavePoint" parent="." instance=ExtResource("13_wmj1g")]
 position = Vector2(1602, -247)
 save_description = "Outside Mausoleum"
+
+[node name="Charles" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
+position = Vector2(1657, -219)
+animation_player = NodePath("Sprite2D")
+interact_immediately = true
+immediate_interaction_area = NodePath("InteractionArea")
+immediate_timeline = "first_encounter_charles"
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Charles" groups=["saveable"]]
+sprite_frames = SubResource("SpriteFrames_t4qpy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charles" groups=["saveable"]]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_wpr1v")
+
+[node name="InteractionArea" parent="Charles" instance=ExtResource("14_j4bxd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charles/InteractionArea"]
+position = Vector2(41, 6)
+shape = SubResource("RectangleShape2D_t4qpy")
+debug_color = Color(0.804735, 0.41672, 0, 0.42)
 
 [editable path="MiniMap"]

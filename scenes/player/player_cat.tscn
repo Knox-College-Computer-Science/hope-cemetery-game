@@ -194,7 +194,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(105.063, -55.9068)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esxlc"]
-size = Vector2(10, 9)
+size = Vector2(6, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqcwo"]
 atlas = ExtResource("4_p24ap")
@@ -252,7 +252,6 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="InteractionCollision" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_esxlc")
 debug_color = Color(0.920586, 5.86233e-05, 0.69434, 0.42)
 
