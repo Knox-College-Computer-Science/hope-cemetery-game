@@ -140,7 +140,6 @@ texture = ExtResource("10_hblg2")
 
 [node name="PortalArea" parent="Mausoleum" instance=ExtResource("11_4vqht")]
 file_path = "res://scenes/environments/mausoleum.tscn"
-automatic = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mausoleum/PortalArea"]
 position = Vector2(-1, 65)

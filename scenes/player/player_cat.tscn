@@ -259,7 +259,7 @@ debug_color = Color(0.920586, 5.86233e-05, 0.69434, 0.42)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.68
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="InteractionPrompt" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -37)
 sprite_frames = SubResource("SpriteFrames_eqqqk")

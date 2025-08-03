@@ -37,6 +37,11 @@ func _physics_process(_delta):
 	# Handle interactions
 	if(Input.is_action_just_pressed("interact")):
 		activate_interactive_areas()
+	var areas_inside = false
+	for area in $InteractionArea.get_overlapping_areas():
+		if(area is InteractionArea && area.show_prompt && !area.activated_since_entering):
+			areas_inside = true
+	$InteractionPrompt.visible = areas_inside
 
 func update_animation_parameters(move_input : Vector2):
 	if(move_input.x < 0):

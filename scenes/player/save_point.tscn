@@ -38,5 +38,6 @@ position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_fn8s1")
 debug_color = Color(0.957318, 0, 0.533218, 0.42)
 
+[connection signal="activated" from="." to="." method="_on_activated"]
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
