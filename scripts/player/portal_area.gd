@@ -1,4 +1,4 @@
-extends Area2D
+extends Area2D #extends InteractionArea class?
 
 @export var file_path : String
 @export var automatic : bool = true
@@ -10,14 +10,11 @@ var is_inside = false
 
 func _on_area_entered(area):
 	#get_tree().change_scene_to_file(file_path)
-	if(automatic):
-		GlobalUtilities.level_handler.switch_scene_with_spawn_point(load(file_path), spawn_point)
-	else:
-		is_inside = true
+	is_inside = true
 
 func _on_area_exited(area):
 	is_inside = false
 	
 func _process(delta):
-	if(Input.is_action_just_pressed("interact") && is_inside):
+	if((Input.is_action_just_pressed("interact") || automatic) && is_inside):
 		GlobalUtilities.level_handler.switch_scene_with_spawn_point(load(file_path), spawn_point)

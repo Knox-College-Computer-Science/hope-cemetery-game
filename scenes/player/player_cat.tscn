@@ -266,4 +266,6 @@ sprite_frames = SubResource("SpriteFrames_eqqqk")
 autoplay = "default"
 frame_progress = 0.695336
 
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

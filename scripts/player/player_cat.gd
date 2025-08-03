@@ -33,6 +33,10 @@ func _physics_process(_delta):
 	
 	# This snaps the sprite position into the pixel grid
 	sprite.global_position = global_position.round()
+	
+	# Handle interactions
+	if(Input.is_action_just_pressed("interact")):
+		activate_interactive_areas()
 
 func update_animation_parameters(move_input : Vector2):
 	if(move_input.x < 0):
@@ -64,3 +68,16 @@ func _on_timer_timeout() -> void:
 
 func save():
 	return ["position"]
+
+func _on_interaction_area_area_entered(area):
+	if(area is InteractionArea):
+		area.enter()
+
+func _on_interaction_area_area_exited(area):
+	if(area is InteractionArea):
+		area.exit()
+
+func activate_interactive_areas():
+	for area in $InteractionArea.get_overlapping_areas():
+		if(area is InteractionArea):
+			area.activate()
