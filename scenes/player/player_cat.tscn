@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://c8xnd2sw0365m"]
+[gd_scene load_steps=29 format=3 uid="uid://c8xnd2sw0365m"]
 
 [ext_resource type="Script" uid="uid://bnu6s3b7e2gl1" path="res://scripts/player/player_cat.gd" id="1_0geaf"]
 [ext_resource type="Texture2D" uid="uid://bq0frcp06bnk1" path="res://art/sprites/PlayerWalk.png" id="2_0geaf"]
 [ext_resource type="AudioStream" uid="uid://58ofqml6gbct" path="res://audio/music/walking outside step.wav" id="2_4klkc"]
+[ext_resource type="Texture2D" uid="uid://dan1obs3p77o6" path="res://art/ui items/interaction_prompt.png" id="4_p24ap"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0geaf"]
 radius = 3.0
@@ -195,6 +196,28 @@ graph_offset = Vector2(105.063, -55.9068)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esxlc"]
 size = Vector2(10, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqcwo"]
+atlas = ExtResource("4_p24ap")
+region = Rect2(0, 0, 30, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyd5m"]
+atlas = ExtResource("4_p24ap")
+region = Rect2(30, 0, 30, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eqqqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqcwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyd5m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="PlayerCat" type="CharacterBody2D" groups=["player", "saveable"]]
 z_index = 1
 z_as_relative = false
@@ -235,5 +258,12 @@ debug_color = Color(0.920586, 5.86233e-05, 0.69434, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.68
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -37)
+sprite_frames = SubResource("SpriteFrames_eqqqk")
+autoplay = "default"
+frame_progress = 0.695336
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
