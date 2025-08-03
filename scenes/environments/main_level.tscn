@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=19 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="11_4vqht"]
 [ext_resource type="PackedScene" uid="uid://dtjd2cjs6ndfo" path="res://scenes/player/spawn_point.tscn" id="12_ppseo"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="13_adxub"]
-[ext_resource type="PackedScene" uid="uid://ccf81jq8qw3do" path="res://scenes/player/interaction_area.tscn" id="13_j4bxd"]
 [ext_resource type="PackedScene" uid="uid://c8sys3msyjs8i" path="res://scenes/environments/trueHopeCemetery.tscn" id="13_mwgft"]
 [ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="13_wmj1g"]
 
@@ -38,8 +37,6 @@ size = Vector2(117, 71)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppseo"]
 size = Vector2(37, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4qpy"]
 
 [node name="Game Level" type="Node2D"]
 z_as_relative = false
@@ -142,7 +139,7 @@ texture = ExtResource("10_hblg2")
 file_path = "res://scenes/environments/mausoleum.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mausoleum/PortalArea"]
-position = Vector2(-1, 65)
+position = Vector2(-1, 59)
 shape = SubResource("RectangleShape2D_ppseo")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("12_ppseo")]
@@ -152,12 +149,5 @@ spawn_point_name = "m"
 [node name="SavePoint" parent="." instance=ExtResource("13_wmj1g")]
 position = Vector2(1602, -247)
 save_description = "Outside Mausoleum"
-
-[node name="InteractionArea" parent="." instance=ExtResource("13_j4bxd")]
-z_index = 5
-position = Vector2(1590.93, -163.375)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("RectangleShape2D_t4qpy")
 
 [editable path="MiniMap"]

@@ -407,7 +407,7 @@ immediate_timeline = "first_encounter_charles"
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Charles" groups=["saveable"]]
 sprite_frames = SubResource("SpriteFrames_s0evt")
-frame_progress = 0.249182
+frame_progress = 0.167772
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Charles" groups=["saveable"]]
 position = Vector2(0, 2.5)

@@ -34,7 +34,7 @@ sprite_frames = SubResource("SpriteFrames_q04e1")
 offset = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -1.5)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_fn8s1")
 debug_color = Color(0.957318, 0, 0.533218, 0.42)
 
