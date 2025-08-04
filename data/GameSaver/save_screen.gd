@@ -61,7 +61,6 @@ func get_external_texture(path):
 
 func _on_load_button_pressed():
 	game_saver.load_game(selected_slot)
-	print(game_saver.get_save_metadata(selected_slot).current_level_path)
 	GlobalUtilities.level_handler.switch_and_load_scene_by_path(game_saver.get_save_metadata(selected_slot).current_level_path, false)
 	game_saver.load_level()
 	$Panel.hide()

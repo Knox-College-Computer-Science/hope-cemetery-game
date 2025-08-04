@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=43 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -15,9 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="13_wmj1g"]
 [ext_resource type="PackedScene" uid="uid://ccf81jq8qw3do" path="res://scenes/player/interaction_area.tscn" id="14_j4bxd"]
 [ext_resource type="Texture2D" uid="uid://cau48b1lhvjha" path="res://art/sprites/samuelghost.png" id="15_t4qpy"]
+[ext_resource type="Texture2D" uid="uid://b8xlsri6ndk5g" path="res://art/sprites/GWGaleghost.png" id="16_wpr1v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0s2"]
-size = Vector2(20, 66)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgadu"]
+size = Vector2(20, 67)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rqbiw"]
 animations = [{
@@ -32,8 +33,8 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hblg2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rqbiw"]
-radius = 37.1214
+[sub_resource type="CircleShape2D" id="CircleShape2D_k2sjw"]
+radius = 36.0139
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqbiw"]
 size = Vector2(117, 71)
@@ -138,6 +139,30 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2sjw"]
 size = Vector2(134, 95)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgadu"]
+atlas = ExtResource("16_wpr1v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2sjw"]
+atlas = ExtResource("16_wpr1v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6u8o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgadu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2sjw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqoxl"]
+
 [node name="Game Level" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -182,34 +207,37 @@ color = Color(1, 0.372549, 1, 1)
 
 [node name="Barrier" parent="." node_paths=PackedStringArray("immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 interact_immediately = true
-immediate_interaction_area = NodePath("FirstWalkIn")
+immediate_interaction_area = NodePath("InteractionArea")
 immediate_timeline = "enter_cemetery"
 
-[node name="FirstWalkIn" type="Area2D" parent="Barrier" groups=["saveable"]]
+[node name="InteractionArea" parent="Barrier" instance=ExtResource("14_j4bxd")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier/FirstWalkIn" groups=["saveable"]]
-position = Vector2(0, 10)
-shape = SubResource("RectangleShape2D_ff0s2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier/InteractionArea"]
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_tgadu")
 
 [node name="OldWoman" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 position = Vector2(-107, 1)
 animation_player = NodePath("AnimatedSprite2D")
 timeline = "Hope Cemetary"
 interact_immediately = true
-immediate_interaction_area = NodePath("Area2D")
+immediate_interaction_area = NodePath("InteractionArea")
 immediate_timeline = "Hope Cemetary"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="OldWoman" groups=["saveable"]]
+position = Vector2(-2, 14)
 sprite_frames = SubResource("SpriteFrames_rqbiw")
+offset = Vector2(2, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OldWoman" groups=["saveable"]]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_hblg2")
 
-[node name="Area2D" type="Area2D" parent="OldWoman" groups=["saveable"]]
+[node name="InteractionArea" parent="OldWoman" instance=ExtResource("14_j4bxd")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OldWoman/Area2D" groups=["saveable"]]
-shape = SubResource("CircleShape2D_rqbiw")
-debug_color = Color(0.685245, 0.500834, 0, 0.42)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OldWoman/InteractionArea"]
+shape = SubResource("CircleShape2D_k2sjw")
+debug_color = Color(0.781772, 0.435827, 1.92523e-07, 0.42)
 
 [node name="Mausoleum" type="Sprite2D" parent="."]
 z_index = 1
@@ -272,27 +300,44 @@ position = Vector2(21.75, 6)
 shape = SubResource("RectangleShape2D_t4qpy")
 debug_color = Color(0.804735, 0.41672, 0, 0.42)
 
-[node name="StationaryNPC" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
+[node name="Henry" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 position = Vector2(1678, -165)
 animation_player = NodePath("AnimatedSprite2D")
 interact_immediately = true
 immediate_interaction_area = NodePath("InteractionArea")
 immediate_timeline = "first_encounter_henry"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC" groups=["saveable"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Henry" groups=["saveable"]]
 position = Vector2(1, 10)
 sprite_frames = SubResource("SpriteFrames_tgadu")
 offset = Vector2(-1, -10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC" groups=["saveable"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Henry" groups=["saveable"]]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_vojlb")
 
-[node name="InteractionArea" parent="StationaryNPC" groups=["saveable"] instance=ExtResource("14_j4bxd")]
+[node name="InteractionArea" parent="Henry" groups=["saveable"] instance=ExtResource("14_j4bxd")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC/InteractionArea" groups=["saveable"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Henry/InteractionArea" groups=["saveable"]]
 position = Vector2(8, -24.5)
 shape = SubResource("RectangleShape2D_k2sjw")
 debug_color = Color(0.788796, 0.430164, 0, 0.42)
+
+[node name="George" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("13_adxub")]
+position = Vector2(80, -42)
+animation_player = NodePath("AnimatedSprite2D")
+timeline = "first_encounter_george"
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="George"]
+position = Vector2(1, 12)
+sprite_frames = SubResource("SpriteFrames_w6u8o")
+autoplay = "default"
+frame_progress = 0.429425
+offset = Vector2(-1, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="George"]
+position = Vector2(2, 14)
+shape = SubResource("RectangleShape2D_sqoxl")
 
 [editable path="MiniMap"]

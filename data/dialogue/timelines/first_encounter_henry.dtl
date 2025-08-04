@@ -1,5 +1,5 @@
 # *Player eventually encounters Henry*
-"Henry Henderson": Hey! You’re not dead. What are you doing here?
+"Henry Henderson": Hey! [pause=0.5]You’re not dead. What are you doing here?
 - <Lie> I was embalmed.
 	# {This choice is only available if the player selected a STEM major}
 	"Henry Henderson": Hey, you look spiffy! I didn’t expect that doggone science poppycock to work out. Come on in!
