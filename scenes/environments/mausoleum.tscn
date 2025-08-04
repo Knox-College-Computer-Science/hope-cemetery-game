@@ -323,9 +323,18 @@ shape = SubResource("RectangleShape2D_6e8fu")
 [node name="BusLayoutChanger" parent="." instance=ExtResource("4_6e8fu")]
 layout_path = "res://audio/mausoleum.tres"
 
-[node name="TimePortal" parent="." instance=ExtResource("5_navl4")]
-position = Vector2(-2, -36)
+[node name="TimePortal" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_navl4")]
+position = Vector2(1, -36)
+player = NodePath("../PlayerCat")
 
 [node name="SavePoint" parent="." instance=ExtResource("8_52b8r")]
 position = Vector2(50.7181, -55.5938)
 save_description = "Inside Mausoleum"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+offset_left = -357.0
+offset_top = -265.0
+offset_right = 341.0
+offset_bottom = 266.0
+color = Color(0.0646232, 0.0638943, 0.105273, 1)

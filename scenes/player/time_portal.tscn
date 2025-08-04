@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dslptq4854v7u"]
+[gd_scene load_steps=12 format=3 uid="uid://dslptq4854v7u"]
 
+[ext_resource type="Script" uid="uid://cx5qyqqmhpeae" path="res://scripts/player/time_portal.gd" id="1_li7o8"]
 [ext_resource type="Texture2D" uid="uid://djonc3hp7c7o6" path="res://art/particles/white_sparkle.png" id="2_31q04"]
 [ext_resource type="Texture2D" uid="uid://dy375fqlidgg0" path="res://art/particles/triangle.png" id="2_ju2un"]
 [ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="2_v7721"]
+[ext_resource type="PackedScene" uid="uid://ccf81jq8qw3do" path="res://scenes/player/interaction_area.tscn" id="4_31q04"]
 
 [sub_resource type="Gradient" id="Gradient_37idf"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -26,7 +28,11 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 offsets = PackedFloat32Array(0, 0.179389, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="TimePortal" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_li7o8"]
+radius = 17.0294
+
+[node name="TimePortal" type="Node2D" groups=["saveable"]]
+script = ExtResource("1_li7o8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -73,3 +79,11 @@ gravity = Vector2(0, 0)
 scale_amount_min = 0.3
 scale_amount_max = 0.4
 color_ramp = SubResource("Gradient_li7o8")
+
+[node name="InteractionArea" parent="." instance=ExtResource("4_31q04")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_li7o8")
+
+[connection signal="activated" from="InteractionArea" to="." method="_on_interaction_area_activated"]

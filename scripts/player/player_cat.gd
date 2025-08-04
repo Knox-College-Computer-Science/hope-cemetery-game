@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var footsteps_sfx = $footstep
 @onready var timer = $Timer
 
+var input_disabled
+
 func _ready():
 	GlobalUtilities.player = self
 	update_animation_parameters(startDir)
@@ -17,6 +19,9 @@ func on_load():
 	GlobalUtilities.player = self
 	
 func _physics_process(_delta):
+	if(input_disabled):
+		return
+	
 	var input_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")

@@ -246,7 +246,7 @@ position = Vector2(1699, -212)
 spawn_point_name = "m"
 
 [node name="SavePoint" parent="." instance=ExtResource("13_wmj1g")]
-position = Vector2(1602, -247)
+position = Vector2(1600, -248)
 save_description = "Outside Mausoleum"
 
 [node name="Charles" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
@@ -272,25 +272,25 @@ position = Vector2(21.75, 6)
 shape = SubResource("RectangleShape2D_t4qpy")
 debug_color = Color(0.804735, 0.41672, 0, 0.42)
 
-[node name="StationaryNPC" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") instance=ExtResource("13_adxub")]
+[node name="StationaryNPC" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 position = Vector2(1678, -165)
 animation_player = NodePath("AnimatedSprite2D")
 interact_immediately = true
 immediate_interaction_area = NodePath("InteractionArea")
 immediate_timeline = "first_encounter_henry"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC" groups=["saveable"]]
 position = Vector2(1, 10)
 sprite_frames = SubResource("SpriteFrames_tgadu")
 offset = Vector2(-1, -10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC" groups=["saveable"]]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_vojlb")
 
-[node name="InteractionArea" parent="StationaryNPC" instance=ExtResource("14_j4bxd")]
+[node name="InteractionArea" parent="StationaryNPC" groups=["saveable"] instance=ExtResource("14_j4bxd")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC/InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC/InteractionArea" groups=["saveable"]]
 position = Vector2(8, -24.5)
 shape = SubResource("RectangleShape2D_k2sjw")
 debug_color = Color(0.788796, 0.430164, 0, 0.42)

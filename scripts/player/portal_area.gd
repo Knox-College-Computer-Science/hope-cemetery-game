@@ -7,4 +7,5 @@ extends InteractionArea
 
 
 func _on_activated():
+	GlobalUtilities.player.input_disabled = true
 	GlobalUtilities.level_handler.switch_scene_with_spawn_point(load(file_path), spawn_point)

@@ -28,3 +28,15 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1286, 718)
 render_target_update_mode = 4
+
+[node name="FadeCanvas" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Fade" type="ColorRect" parent="FadeCanvas"]
+visible = false
+z_as_relative = false
+offset_left = -31.0
+offset_top = -26.0
+offset_right = 1321.0
+offset_bottom = 746.0
+color = Color(0, 0, 0, 1)

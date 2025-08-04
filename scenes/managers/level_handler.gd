@@ -5,9 +5,13 @@ extends Node
 @onready var game_saver = $GameSaver
 ## The levels are made a child of this node so that screenshots can be taken
 @onready var display_node = $SubViewportContainer/SubViewport
+@onready var fade = $FadeCanvas/Fade
 
 const DEFAULT_BUS_PATH = "res://audio/default_bus_layout.tres"
 var current_scene : Node
+var fade_tween : Tween = null
+
+signal fade_complete
 
 func _ready():
 	GlobalUtilities.level_handler = self
@@ -55,6 +59,8 @@ func switch_and_load_scene_by_path(path : String, save_data = true):
 	switch_and_load_scene(scene, save_data)
 
 func switch_scene_with_spawn_point(scene : PackedScene, spawn_pt : String):
+	fade_out()
+	await fade_complete
 	var new_level = get_new_level_instance(scene)
 	var original_player = get_player(new_level)
 	game_saver.load_level()
@@ -73,6 +79,7 @@ func switch_scene_with_spawn_point(scene : PackedScene, spawn_pt : String):
 	game_saver.save_level()
 	current_scene = new_level
 	display_node.add_child(new_level)
+	fade_in()
 
 func get_player(node):
 	var children : Array = node.get_children().duplicate()
@@ -98,3 +105,24 @@ func toggle_save_screen(save_desc = ""):
 	meta.current_level_path = current_scene.scene_file_path
 	meta.save_description = save_desc
 	$SaveScreen.toggle_panel(meta)
+
+func fade_out(color: Color = Color.BLACK, duration: float = .5):
+	color.a = 0
+	fade.color = color
+	fade.show()
+	if(is_instance_valid(fade_tween)):
+		fade_tween.kill()
+	fade_tween = get_tree().create_tween()
+	fade_tween.tween_property(fade, "color", Color(color.r, color.g, color.b, 1), duration)
+	fade_tween.finished.connect(finish_fade_out)
+
+func finish_fade_out():
+	fade_complete.emit()
+
+func fade_in(duration: float = .5):
+	var color = fade.color
+	if(is_instance_valid(fade_tween)):
+		fade_tween.kill()
+	fade_tween = get_tree().create_tween()
+	fade_tween.tween_property(fade, "color", Color(color.r, color.g, color.b, 0), duration)
+	fade_tween.finished.connect(fade.hide)
