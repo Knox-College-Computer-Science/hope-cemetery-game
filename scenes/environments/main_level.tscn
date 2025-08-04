@@ -1,4 +1,5 @@
 [gd_scene load_steps=17 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=20 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -8,9 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://7aswvnmu3yui" path="res://art/sprites/maryallen.png" id="5_iqu8w"]
 [ext_resource type="Script" uid="uid://dw0g3ehniqb4r" path="res://scenes/environments/MapPopup.gd" id="10_4vqht"]
 [ext_resource type="Texture2D" uid="uid://vbj2ya5xehv4" path="res://art/map_cropped.jpeg" id="10_hblg2"]
+[ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="10_hblg2"]
 [ext_resource type="PackedScene" uid="uid://blj618qddarlu" path="res://scenes/ui/backpack_gui/backpack_ui.tscn" id="11_2sb77"]
+[ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="11_4vqht"]
+[ext_resource type="PackedScene" uid="uid://dtjd2cjs6ndfo" path="res://scenes/player/spawn_point.tscn" id="12_ppseo"]
 [ext_resource type="PackedScene" uid="uid://bus0mj0a28s62" path="res://scenes/npcs/stationaryNPC.tscn" id="13_adxub"]
 [ext_resource type="PackedScene" uid="uid://c8sys3msyjs8i" path="res://scenes/environments/trueHopeCemetery.tscn" id="13_mwgft"]
+[ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="13_wmj1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff0s2"]
 size = Vector2(20, 66)
@@ -33,6 +38,11 @@ radius = 37.1214
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vqht"]
 size = Vector2(18, 73)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqbiw"]
+size = Vector2(117, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppseo"]
+size = Vector2(37, 20)
 
 [node name="Game Level" type="Node2D"]
 z_as_relative = false
@@ -41,7 +51,8 @@ position = Vector2(2, 0)
 script = ExtResource("1_5fr2l")
 
 [node name="PlayerCat" parent="." instance=ExtResource("1_6we3w")]
-position = Vector2(-197, 10)
+position = Vector2(1540.63, -164.511)
+metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCat"]
 zoom = Vector2(3, 3)
@@ -77,31 +88,34 @@ color = Color(1, 0.372549, 1, 1)
 
 [node name="trueHopeCemetery2" parent="." instance=ExtResource("13_mwgft")]
 
-[node name="Barrier" parent="." node_paths=PackedStringArray("immediate_interaction_area") instance=ExtResource("13_adxub")]
+[node name="Barrier" parent="." node_paths=PackedStringArray("immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 interact_immediately = true
 immediate_interaction_area = NodePath("FirstWalkIn")
 immediate_timeline = "enter_cemetery"
 
-[node name="FirstWalkIn" type="Area2D" parent="Barrier"]
+[node name="FirstWalkIn" type="Area2D" parent="Barrier" groups=["saveable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier/FirstWalkIn"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier/FirstWalkIn" groups=["saveable"]]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_ff0s2")
-disabled = true
 
-[node name="StationaryNPC2" parent="." instance=ExtResource("13_adxub")]
+[node name="StationaryNPC2" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") groups=["saveable"] instance=ExtResource("13_adxub")]
 position = Vector2(-107, 1)
-script = null
+animation_player = NodePath("AnimatedSprite2D")
+timeline = "Hope Cemetary"
+interact_immediately = true
+immediate_interaction_area = NodePath("Area2D")
+immediate_timeline = "Hope Cemetary"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC2"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StationaryNPC2" groups=["saveable"]]
 sprite_frames = SubResource("SpriteFrames_rqbiw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2" groups=["saveable"]]
 shape = SubResource("RectangleShape2D_hblg2")
 
-[node name="Area2D" type="Area2D" parent="StationaryNPC2"]
+[node name="Area2D" type="Area2D" parent="StationaryNPC2" groups=["saveable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2/Area2D" groups=["saveable"]]
 shape = SubResource("CircleShape2D_rqbiw")
 debug_color = Color(0.685245, 0.500834, 0, 0.42)
 
@@ -154,5 +168,43 @@ offset_left = 365.0
 offset_top = 595.0
 offset_right = 470.0
 offset_bottom = 751.0
+[node name="Mausoleum" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(1696, -295)
+texture = ExtResource("10_hblg2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Mausoleum"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mausoleum/StaticBody2D"]
+position = Vector2(-0.5, 24.5)
+shape = SubResource("RectangleShape2D_rqbiw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mausoleum"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 44)
+scale = Vector2(0.226563, 0.289063)
+texture = ExtResource("10_hblg2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Mausoleum"]
+modulate = Color(0.54099, 0.54099, 0.54099, 1)
+position = Vector2(-0.250023, -25.75)
+scale = Vector2(1.01953, 0.605469)
+texture = ExtResource("10_hblg2")
+
+[node name="PortalArea" parent="Mausoleum" instance=ExtResource("11_4vqht")]
+file_path = "res://scenes/environments/mausoleum.tscn"
+automatic = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mausoleum/PortalArea"]
+position = Vector2(-1, 65)
+shape = SubResource("RectangleShape2D_ppseo")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("12_ppseo")]
+position = Vector2(1699, -212)
+spawn_point_name = "m"
+
+[node name="SavePoint" parent="." instance=ExtResource("13_wmj1g")]
+position = Vector2(1602, -247)
+save_description = "Outside Mausoleum"
 
 [editable path="MiniMap"]

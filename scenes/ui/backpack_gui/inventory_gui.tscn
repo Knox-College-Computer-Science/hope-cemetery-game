@@ -1,5 +1,4 @@
 [gd_scene load_steps=0 format=3 uid="uid://bqubffbjesvx1"]
-[gd_scene format=3 uid="uid://bpw57bcx1wof1"]
 
 [node name="inventory_gui" type="CanvasLayer"]
 

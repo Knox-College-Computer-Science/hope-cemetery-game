@@ -2,17 +2,25 @@ extends Node
 
 """
 TO-DO
-- Save files should be seperated some how. Load level saves according
++ make get_metadata(slot: int) function (also access by string?)
++ dialogic saving in slots?
++ Allow for storing metadata (via resources) that applies to whole game save
++ Save files should be seperated some how. Load level saves according
   to save files
++ Also seperate autoloads into slots
 + player spawn points
 + link node references in variables
 + automatically save all data if no save function is found
 
 
-NEEDED TO USE GAMELEVELSAVER:
-	- game_saver.gd
+NEEDED TO USE GAMESLOTSAVER:
+	- game_slot_saver.gd
 	- "saveable" global group
-	- saved_game.gd
+	- saved_level.gd
+	- save_addon.gd
+
+RECOMMENDED COMPONENTS:
+	- save_screen scene
 
 TO SAVE A SCENE:
 	(NOTE: must be it's own scene)
@@ -58,32 +66,35 @@ MAINTAINING NODE REFERENCES
 2. Add a variable called "saved_node_references". This should hold
    a list of the names of variables that have node references.
 """
- 
-const AUTOLOAD_SAVE_PATH = "user://autoload_save_data.tres"
+
+const TEMPORARY_SAVE_DATA_PATH = "user://save/temp"
+const AUTOLOAD_SAVE_PATH = TEMPORARY_SAVE_DATA_PATH+"/autoload_save_data.tres"
+const SAVE_ADDON_PATH = "res://data/GameSaver/save_addon.gd"
+
+## Scene to be saved/loaded when save_level or load_level are called.
 @export var world_scene : Node
+## Autoload singletons to be saved. Enter their name as they appear in the scene tree.
 @export var autoloads_to_save : Array[String]
+@export var screenshot_viewport : Node
+
+var slot_names = ["Slot 1", "Slot 2", "Slot 3"]
 var meta_keys = ["scene_file_path", "$index", "$parent_index", "$autoload", "owner"]
 var child_delimiter = "$"
 var reference_key_name = "saved_node_references"
-var save_addon_path = "res://data/GameSaver/save_addon.gd"
 
 func save_level():
-	var saved_game = SavedGame.new()
-	"""var nodes = get_saveable_nodes(world_scene)
-	for n in nodes:
-		print(n.name)
-	var saveable_scenes = get_tree().get_nodes_in_group("saveable")
-	"""
+	var saved_game = SavedLevel.new()
 	var saveable_scenes = get_saveable_nodes(world_scene)
-	# Add items and their attributes to SavedGame resource
+	
+	# Add items and their attributes to SavedLevel resource
 	var ind = 0
 	var scene_array = []
 	for i in saveable_scenes:
 		var data = {"scene_file_path":i.scene_file_path, "$index":ind}
 		if(!is_instance_valid(i.get_script())):
-			if(!is_instance_valid(load(save_addon_path))):
+			if(!is_instance_valid(load(SAVE_ADDON_PATH))):
 				print_debug("WARNING! save_addon_path is likely incorrect!")
-			i.set_script(load(save_addon_path))
+			i.set_script(load(SAVE_ADDON_PATH))
 			i.class_of_object = i.get_class()
 		if(has_property(i, reference_key_name)):
 			data[reference_key_name] = i.get(reference_key_name)
@@ -119,10 +130,12 @@ func save_level():
 		ind += 1
 
 	# Save resources
-	ResourceSaver.save(saved_game, "user://"+get_file_name(world_scene)+".tres")
+	if(!DirAccess.dir_exists_absolute(TEMPORARY_SAVE_DATA_PATH)):
+		DirAccess.make_dir_recursive_absolute(TEMPORARY_SAVE_DATA_PATH)
+	ResourceSaver.save(saved_game, TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
 
 func load_level():
-	var saved_game = load("user://"+get_file_name(world_scene)+".tres")
+	var saved_game = load(TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
 	if(!is_instance_valid(saved_game)):
 		return
 	delete_saveable_nodes(world_scene)
@@ -159,7 +172,8 @@ func load_level():
 		#references
 		if(reference_key_name in item.keys()):
 			for prop in node.get(reference_key_name):
-				node.set(prop, scene_array[item[prop]])
+				if(int(item[prop]) != -1):
+					node.set(prop, scene_array[int(item[prop])])
 		
 		# parenting
 		if(item["$parent_index"] == -1):
@@ -168,18 +182,17 @@ func load_level():
 			var parent_node = scene_array[item["$parent_index"]]
 			parent_node.add_child(node)
 		
-	
-func save_autoloads():
-	var saved_autoloads = SavedGame.new()
+func save_autoloads(dialogic_slot = ""):
+	var saved_autoloads = SavedLevel.new()
 	for autoload in autoloads_to_save:
 		var data = {"$autoload": autoload}
 		for p in get_node("/root/"+autoload).get_property_list():
 			data[p["name"]] = get_node("/root/"+autoload).get(p["name"])
 		saved_autoloads.item_states.append(data)
 	ResourceSaver.save(saved_autoloads, AUTOLOAD_SAVE_PATH)
-	Dialogic.Save.save("", false, Dialogic.Save.ThumbnailMode.NONE)
+	Dialogic.Save.save(dialogic_slot, false, Dialogic.Save.ThumbnailMode.NONE)
 	
-func load_autoloads():
+func load_autoloads(dialogic_slot = ""):
 	var saved_autoloads = load(AUTOLOAD_SAVE_PATH)
 	if(!is_instance_valid(saved_autoloads)):
 		return
@@ -187,7 +200,46 @@ func load_autoloads():
 		for property in al:
 			if(not property in meta_keys):
 				get_node("/root/"+al["$autoload"]).set(property, al[property])
-	Dialogic.Save.load()
+	Dialogic.Save.load(dialogic_slot)
+
+func save_game(slot: int, metadata: SaveMetadata = null):
+	if(slot > slot_names.size()):
+		push_error("Trying to save to invalid slot!")
+		return
+		
+	save_image()
+	save_autoloads(slot_names[slot])
+	
+	# Save metadata
+	if(!is_instance_valid(metadata)):
+		var new_data = SaveMetadata.new()
+		ResourceSaver.save(new_data, TEMPORARY_SAVE_DATA_PATH+"/metadata.tres")
+	else:
+		ResourceSaver.save(metadata, TEMPORARY_SAVE_DATA_PATH+"/metadata.tres")
+	
+	# Clear slot that data is being moved to
+	clear_slot(slot)
+	
+	# Put data from temp into slot
+	if(!DirAccess.dir_exists_absolute("user://save/"+slot_names[slot])):
+		DirAccess.make_dir_recursive_absolute("user://save/"+slot_names[slot])
+	for file in DirAccess.get_files_at(TEMPORARY_SAVE_DATA_PATH+"/"):
+		DirAccess.copy_absolute(TEMPORARY_SAVE_DATA_PATH+"/"+file, "user://save/"+slot_names[slot]+"/"+file)
+		print_debug("Saving file "+file+" to "+slot_names[slot]+". Path: "+"user://save/"+slot_names[slot]+"/"+file)
+
+func load_game(slot: int):
+	clear_temp()
+	if(slot > slot_names.size()):
+		push_error("Trying to load from invalid slot!")
+		return
+	for file in DirAccess.get_files_at("user://save/"+slot_names[slot]):
+		DirAccess.copy_absolute("user://save/"+slot_names[slot]+"/"+file, TEMPORARY_SAVE_DATA_PATH+"/"+file)
+		print_debug("Loading file "+file+" from slot "+str(slot))
+	load_autoloads(slot_names[slot])
+
+func get_save_metadata(slot: int):
+	var meta : SaveMetadata = load("user://save/"+slot_names[slot]+"/metadata.tres")
+	return meta
 
 func get_node_attr_value(attr : String, parent : Node):
 	if(not child_delimiter in attr):
@@ -215,10 +267,25 @@ func get_final_child(attr : String, parent : Node):
 func get_file_name(node):
 	return node.scene_file_path.split(".tscn")[0].split("/")[-1]
 
-func clear():
+func clear_all():
 	var files = DirAccess.get_files_at("user://")
 	for file in files:
 		DirAccess.remove_absolute("user://"+file)
+	for dir in DirAccess.get_directories_at("user://"):
+		clear_path("user://"+dir)
+
+func clear_temp():
+	clear_path(TEMPORARY_SAVE_DATA_PATH+"/")
+
+func clear_path(path: String):
+	var files = DirAccess.get_files_at(path)
+	for file in files:
+		DirAccess.remove_absolute(path+"/"+file)
+	for dir in DirAccess.get_directories_at(path):
+		clear_path(path+"/"+dir)
+
+func clear_slot(slot: int):
+	clear_path("user://save/"+slot_names[slot])
 
 func has_property(node, property):
 	var properties = node.get_property_list()
@@ -234,8 +301,6 @@ func get_saveable_nodes(node) -> Array[Node]:
 		if(child.is_in_group("saveable")):
 			saveable_children.append(child)
 		saveable_children.append_array(get_saveable_nodes(child))
-	#for child in node.get_children():
-	#	saveable_children.append_array(get_saveable_nodes(child))
 	return saveable_children
 
 func delete_saveable_nodes(node):
@@ -244,11 +309,13 @@ func delete_saveable_nodes(node):
 		n.get_parent().remove_child(n)
 		n.queue_free()
 
-func _on_save_pressed():
-	save_level()
-
-func _on_load_pressed():
-	load_level()
+func save_image():
+	if(!is_instance_valid(screenshot_viewport)):
+		return
+	var capture = screenshot_viewport.get_texture().get_image()
+	var filename = TEMPORARY_SAVE_DATA_PATH+"/screenshot.png"
+	capture.save_png(filename)
 	
+
 func _on_clear_pressed():
-	clear()
+	clear_all()

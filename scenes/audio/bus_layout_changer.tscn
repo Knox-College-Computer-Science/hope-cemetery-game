@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdytfccw6s26r"]
+
+[ext_resource type="Script" uid="uid://bhadi1dmd6kk5" path="res://scripts/audio/bus_layout_changer.gd" id="1_igpwn"]
+
+[node name="BusLayoutChanger" type="Node"]
+script = ExtResource("1_igpwn")

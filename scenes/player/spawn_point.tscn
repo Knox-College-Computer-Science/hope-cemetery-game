@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtjd2cjs6ndfo"]
+
+[ext_resource type="Texture2D" uid="uid://d0aqqdktsjuac" path="res://art/debug/spawn_point.png" id="1_neaf5"]
+[ext_resource type="Script" uid="uid://cbfa78bh6ejlt" path="res://scripts/player/spawn_point.gd" id="2_v3wpw"]
+
+[node name="SpawnPoint" type="Sprite2D" groups=["spawn_point"]]
+z_index = 5
+texture = ExtResource("1_neaf5")
+script = ExtResource("2_v3wpw")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = 21.0
+offset_right = 26.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.86351, 0, 0.00811484, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+text = "test"
+horizontal_alignment = 1

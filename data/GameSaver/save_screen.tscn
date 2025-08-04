@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvacb6qh3nyqq"]
+
+[ext_resource type="Script" uid="uid://dltnq4f5jdmmg" path="res://data/GameSaver/save_screen.gd" id="1_3n4uj"]
+[ext_resource type="Texture2D" uid="uid://bonvp4mu5k1fx" path="res://data/GameSaver/empty.png" id="1_bxsd8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n4uj"]
+bg_color = Color(0.277671, 0.246608, 0.254714, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="SaveScreen" type="CanvasLayer"]
+script = ExtResource("1_3n4uj")
+
+[node name="Panel" type="Panel" parent="."]
+visibility_layer = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -391.0
+offset_top = -228.0
+offset_right = 391.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3n4uj")
+
+[node name="SaveSlots" type="ItemList" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 53.0
+offset_right = 320.0
+offset_bottom = 344.0
+grow_horizontal = 2
+focus_mode = 0
+allow_search = false
+item_count = 3
+fixed_icon_size = Vector2i(120, 90)
+item_0/text = "Slot1 - No data"
+item_0/icon = ExtResource("1_bxsd8")
+item_1/text = "Slot2 - No data"
+item_1/icon = ExtResource("1_bxsd8")
+item_2/text = "Slot3 - No data"
+item_2/icon = ExtResource("1_bxsd8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -274.5
+offset_top = -81.0
+offset_right = 274.5
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Select a slot to save to"
+disabled = true
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Select a slot to save to"
+disabled = true
+text = "Load
+"
+
+[node name="HideButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -43.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = 41.0
+grow_horizontal = 0
+text = "X"
+
+[connection signal="item_selected" from="Panel/SaveSlots" to="." method="_on_save_slots_item_selected"]
+[connection signal="button_down" from="Panel/HBoxContainer/SaveButton" to="." method="_on_save_button_button_down"]
+[connection signal="pressed" from="Panel/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Panel/HideButton" to="." method="_on_show_button_pressed"]

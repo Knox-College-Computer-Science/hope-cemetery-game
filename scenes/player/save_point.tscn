@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1ts0ypep3buo"]
+
+[ext_resource type="Script" uid="uid://dhyr0indibpir" path="res://scenes/player/save_point.gd" id="1_jnuo2"]
+[ext_resource type="Texture2D" uid="uid://dju5g41tkb7sx" path="res://data/GameSaver/small_knox_flag.png" id="2_jnuo2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb1n5"]
+atlas = ExtResource("2_jnuo2")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q04e1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb1n5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn8s1"]
+size = Vector2(21, 19)
+
+[node name="SavePoint" type="Area2D"]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_jnuo2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_q04e1")
+offset = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_fn8s1")
+debug_color = Color(0.957318, 0, 0.533218, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
