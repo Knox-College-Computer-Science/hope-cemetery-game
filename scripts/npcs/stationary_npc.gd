@@ -48,7 +48,6 @@ func _ready():
 	interact_prompt.global_position.y += prompt_height
 
 func _on_activated():
-	print("hiya!")
 	if(Dialogic.current_timeline == null && !has_just_been_talked_to && !disabled):
 		interact_prompt.hide()
 		Dialogic.start(timeline)
