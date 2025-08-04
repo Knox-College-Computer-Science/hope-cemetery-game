@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b4j08i851omb2"]
+[gd_scene load_steps=23 format=3 uid="uid://b4j08i851omb2"]
 
 [ext_resource type="Script" uid="uid://cs645mbjrml0" path="res://scripts/managers/room_scene.gd" id="1_r8psk"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_w1efa"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b5uftsehvwdtn" path="res://art/sprites/icon.svg" id="8_q8nly"]
 [ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="9_q8nly"]
 [ext_resource type="AudioStream" uid="uid://dsc8pbrsq86wa" path="res://audio/music/dorm room samba-consolidatd.wav" id="10_e12k6"]
+[ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="11_kg3ul"]
 
 [sub_resource type="Curve2D" id="Curve2D_k8xhb"]
 _data = {
@@ -268,6 +269,9 @@ region_rect = Rect2(172, 8, 36, 24)
 
 [node name="PortalArea" parent="." instance=ExtResource("9_q8nly")]
 file_path = "res://scenes/environments/main_level.tscn"
+spawn_point = "front"
+automatic = true
+show_prompt = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortalArea"]
 position = Vector2(-229, 51)
@@ -276,3 +280,7 @@ debug_color = Color(0.37668, 0.00141023, 0.873411, 0.42)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_e12k6")
+
+[node name="SavePoint" parent="." instance=ExtResource("11_kg3ul")]
+position = Vector2(-101.151, 49.0284)
+save_description = "Dorm Room"

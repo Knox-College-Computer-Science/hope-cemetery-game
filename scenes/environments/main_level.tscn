@@ -273,6 +273,10 @@ shape = SubResource("RectangleShape2D_ppseo")
 position = Vector2(1699, -212)
 spawn_point_name = "m"
 
+[node name="SpawnPoint2" parent="." instance=ExtResource("12_ppseo")]
+position = Vector2(-183.622, 10.5679)
+spawn_point_name = "front"
+
 [node name="SavePoint" parent="." instance=ExtResource("13_wmj1g")]
 position = Vector2(1600, -248)
 save_description = "Outside Mausoleum"
@@ -333,7 +337,7 @@ metadata/_edit_group_ = true
 position = Vector2(1, 12)
 sprite_frames = SubResource("SpriteFrames_w6u8o")
 autoplay = "default"
-frame_progress = 0.429425
+frame_progress = 0.37393
 offset = Vector2(-1, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="George"]

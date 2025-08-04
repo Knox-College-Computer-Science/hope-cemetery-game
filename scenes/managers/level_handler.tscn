@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://ci234jhr62sml"]
 
 [ext_resource type="Script" uid="uid://cw3j8crtysdqw" path="res://scenes/managers/level_handler.gd" id="1_rhpp4"]
-[ext_resource type="PackedScene" uid="uid://oh2basiek65h" path="res://scenes/environments/main_level.tscn" id="2_ey7k7"]
+[ext_resource type="PackedScene" uid="uid://b4j08i851omb2" path="res://scenes/environments/room_scene.tscn" id="2_wbwxe"]
 [ext_resource type="PackedScene" uid="uid://dv12mavlcqe1w" path="res://data/GameSaver/game_saver.tscn" id="3_ey7k7"]
 [ext_resource type="PackedScene" uid="uid://dvacb6qh3nyqq" path="res://data/GameSaver/save_screen.tscn" id="4_wbwxe"]
 
 [node name="LevelHandler" type="Node"]
 script = ExtResource("1_rhpp4")
-opening_scene = ExtResource("2_ey7k7")
+opening_scene = ExtResource("2_wbwxe")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
