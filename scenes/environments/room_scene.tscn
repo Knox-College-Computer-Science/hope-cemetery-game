@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4j08i851omb2"]
+[gd_scene load_steps=20 format=3 uid="uid://b4j08i851omb2"]
 
 [ext_resource type="Script" uid="uid://cs645mbjrml0" path="res://scripts/managers/room_scene.gd" id="1_r8psk"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_w1efa"]
@@ -7,7 +7,6 @@
 [ext_resource type="SpriteFrames" uid="uid://jb7mo0l7yycw" path="res://art/sprites/sprite_frames/alex_frames.tres" id="6_ir6st"]
 [ext_resource type="Texture2D" uid="uid://dkif71if1xibt" path="res://art/environment/dorm/dormbackground.png" id="7_r8psk"]
 [ext_resource type="Texture2D" uid="uid://bben8aev0a50k" path="res://art/environment/dorm/dormspritesheet.png" id="8_k8xhb"]
-[ext_resource type="Texture2D" uid="uid://b5uftsehvwdtn" path="res://art/sprites/icon.svg" id="8_q8nly"]
 [ext_resource type="PackedScene" uid="uid://ctlbtmmdbphiw" path="res://scenes/player/portal_area.tscn" id="9_q8nly"]
 [ext_resource type="AudioStream" uid="uid://dsc8pbrsq86wa" path="res://audio/music/dorm room samba-consolidatd.wav" id="10_e12k6"]
 [ext_resource type="PackedScene" uid="uid://c1ts0ypep3buo" path="res://scenes/player/save_point.tscn" id="11_kg3ul"]
@@ -44,12 +43,6 @@ size = Vector2(15, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8xhb"]
 size = Vector2(35, 11)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kg3ul"]
-size = Vector2(22, 21)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_k8xhb"]
-radius = 20.3961
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjllj"]
 
@@ -222,33 +215,6 @@ texture = ExtResource("8_k8xhb")
 offset = Vector2(1, -5)
 region_enabled = true
 region_rect = Rect2(120, 3, 49, 30)
-
-[node name="StationaryNPC2" parent="." node_paths=PackedStringArray("animation_player", "immediate_interaction_area") instance=ExtResource("5_faceq")]
-position = Vector2(-198, 103)
-animation_player = NodePath("Sprite2D")
-prompt_height = -10.0
-interact_immediately = true
-immediate_interaction_area = NodePath("InteractionArea")
-immediate_timeline = "test_timeline"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2"]
-z_index = 5
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_kg3ul")
-debug_color = Color(0.961248, 0, 0.511433, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="StationaryNPC2"]
-position = Vector2(1, 1.5)
-scale = Vector2(0.15625, 0.148438)
-texture = ExtResource("8_q8nly")
-
-[node name="InteractionArea" type="Area2D" parent="StationaryNPC2"]
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StationaryNPC2/InteractionArea"]
-shape = SubResource("CircleShape2D_k8xhb")
-debug_color = Color(0.856153, 0.366551, 0, 0.42)
 
 [node name="Clothes2" type="Sprite2D" parent="."]
 z_index = -1
