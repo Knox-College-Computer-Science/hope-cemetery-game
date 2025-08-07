@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2rhjnhniv05x"]
+
+[ext_resource type="Script" uid="uid://dkd3goxurc1ly" path="res://scripts/ui/gravestone_description.gd" id="1_hegxv"]
+[ext_resource type="Theme" uid="uid://o402mibbwcv2" path="res://art/themes/gravestone_description_theme.tres" id="2_gnpc4"]
+[ext_resource type="FontFile" uid="uid://c072yy23mfevd" path="res://fonts/Tangerine-Bold.ttf" id="3_6gcks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n63a6"]
+bg_color = Color(0.909798, 0.821394, 0.749942, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.230197, 0.184649, 0.0822051, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="GravestoneDescription" type="CanvasLayer"]
+script = ExtResource("1_hegxv")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -477.0
+offset_top = -301.5
+offset_right = 477.0
+offset_bottom = 301.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n63a6")
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 11.0
+offset_right = 723.0
+offset_bottom = 100.0
+theme = ExtResource("2_gnpc4")
+theme_override_fonts/font = ExtResource("3_6gcks")
+theme_override_font_sizes/font_size = 70
+text = "Mary Sue"

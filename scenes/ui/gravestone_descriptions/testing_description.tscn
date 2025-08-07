@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://1o7gevwmqm1q"]
+
+[ext_resource type="PackedScene" uid="uid://b2rhjnhniv05x" path="res://scenes/ui/gravestone_descriptions/gravestone_description.tscn" id="1_tof2t"]
+[ext_resource type="Texture2D" uid="uid://ct7bfn4g7hvuf" path="res://art/sprites/Charles.png" id="2_tu6kk"]
+[ext_resource type="Texture2D" uid="uid://fsjprfck78v5" path="res://art/beauty_shots/warflashback3.png" id="3_skpi4"]
+[ext_resource type="Texture2D" uid="uid://dxa40taxqabyn" path="res://art/beauty_shots/warflashback4.png" id="4_jptej"]
+[ext_resource type="Texture2D" uid="uid://b5orhbsxwpxxk" path="res://art/tilesets/pixil-frame-0 (3).png" id="5_tof2t"]
+[ext_resource type="Theme" uid="uid://o402mibbwcv2" path="res://art/themes/gravestone_description_theme.tres" id="6_566ev"]
+
+[node name="GravestoneDescription" instance=ExtResource("1_tof2t")]
+
+[node name="Title" parent="Panel" index="0"]
+text = "Hope Cemetery"
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel" index="1"]
+position = Vector2(295, 159.5)
+scale = Vector2(3.57813, 3.3125)
+texture = ExtResource("2_tu6kk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Panel" index="2"]
+position = Vector2(735, 221.5)
+scale = Vector2(0.628631, 0.581964)
+texture = ExtResource("3_skpi4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Panel" index="3"]
+position = Vector2(620, 307.5)
+rotation = -0.165806
+scale = Vector2(0.445983, 0.402411)
+texture = ExtResource("4_jptej")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Panel" index="4"]
+position = Vector2(359, 495.5)
+rotation = 0.0453786
+scale = Vector2(1.06682, 0.959354)
+texture = ExtResource("5_tof2t")
+
+[node name="Label" type="Label" parent="Panel" index="5"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 210.5
+offset_right = 121.0
+offset_bottom = 250.5
+theme = ExtResource("6_566ev")
+text = "Wow!"
+
+[node name="Label2" type="Label" parent="Panel" index="6"]
+layout_mode = 0
+offset_left = 381.0
+offset_top = 213.5
+offset_right = 508.0
+offset_bottom = 253.5
+theme = ExtResource("6_566ev")
+text = "Totally rad!"
+
+[node name="Label3" type="Label" parent="Panel" index="7"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 268.5
+offset_right = 194.0
+offset_bottom = 308.5
+theme = ExtResource("6_566ev")
+text = "This is a pretty nice cemetery you got
+here! Wow! I really really like it!
+Cool!"
+
+[node name="Label4" type="Label" parent="Panel" index="8"]
+layout_mode = 0
+offset_left = 661.0
+offset_top = 477.5
+offset_right = 1026.0
+offset_bottom = 603.5
+theme = ExtResource("6_566ev")
+text = "No way!
+A real life tileset?!?"
