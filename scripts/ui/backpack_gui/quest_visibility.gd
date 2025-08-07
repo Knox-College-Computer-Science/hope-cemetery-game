@@ -43,10 +43,9 @@ func _on_people_button_pressed():
 #makes the quest gui visible
 func _on_quest_journal_button_pressed():
 	emit_signal("quest_button_pressed")
-	glob_quest.update_quests()
-	$quest_gui/PanelContainer.update_quest_log()
 	people_gui.visible = false
 	if quest_gui.visible:
 		quest_gui.visible = false
 	else:
+		$quest_gui/PanelContainer.update_quest_log()
 		quest_gui.visible = true

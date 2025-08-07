@@ -1,68 +1,27 @@
 extends Node
 
-#possible actions to be called
-enum quest_type {
-	mu_ma,
-	ma_mc,
-	su_sa,
-	sa_sc
-}
-
-var unused_main_quest_arr = [] #Add the main quests here
-var unused_side_quest_arr = [] #Add the side quests here
-var act_main_quest_arr = []
-var act_side_quest_arr = []
-var comp_side_quest_arr = []
-var comp_main_quest_arr = []
+var main_quest_map = { #Add the main quests here example: "First Main Quest": {"description": "This is the first quest that you got", "satus": "unused" }
+	"First Main Quest": {"description": "This is the first quest that you got and I want to make the description long enough for it to go over the amount for wrapping", "status": "active" },
+	"Masoleum Quest": {"description": "Enter the masoleum", "status": "complete"},
+	"Letter Quest": {"description": "Return the letter", "status": "unused"}
+} 
+var side_quest_map = { #Add the side quests here example: "First Side Quest": {"description": "This is the first quest that you got", "satus": "unused" }
+	"First Side Quest": {"description": "This is the first quest that you got and I want to make the description long enough for it to go over the amount for wrapping", "status": "complete" }
+} 
 
 #This will be called to move quests accross arrays
-func move_quest(quest: String, quest_change: quest_type):
-	match quest_change:
-		quest_type.mu_ma:
-			print("changing main quest from unused to active")
-			main_un_to_act(quest)
-		quest_type.ma_mc:
-			print("changing main quest from active to complete")
-			main_act_to_comp(quest)
-		quest_type.su_sa:
-			print("changing side quest from unused to active")
-			side_un_to_act(quest)
-		quest_type.sa_sc:
-			print("changing side quest from active to complete")
-			side_act_to_comp(quest)
-
-func main_un_to_act(quest: String):
-	if(unused_main_quest_arr.has(quest) and !act_main_quest_arr.has(quest)):
-		unused_main_quest_arr.erase(quest)
-		act_main_quest_arr.append(quest)
-	elif(act_main_quest_arr.has(quest)):
-		print("The quest was already added to main active")
-	else:
-		print("The quest is not in main unused")
-
-func main_act_to_comp(quest: String):
-	if(act_main_quest_arr.has(quest) and !comp_main_quest_arr.has(quest)):
-		act_main_quest_arr.erase(quest)
-		comp_main_quest_arr.append(quest)
-	elif(comp_main_quest_arr.has(quest)):
-		print("The quest was already added to completed main quests")
-	else:
-		print("The quest is not in active main quests")
-
-func side_un_to_act(quest: String):
-	if(unused_side_quest_arr.has(quest) and !act_side_quest_arr.has(quest)):
-		unused_side_quest_arr.erase(quest)
-		act_side_quest_arr.append(quest)
-	elif(act_side_quest_arr.has(quest)):
-		print("The quest was already added to side active")
-	else:
-		print("The quest is not in side unused")
-
-func side_act_to_comp(quest: String):
-	if(act_side_quest_arr.has(quest) and !comp_side_quest_arr.has(quest)):
-		act_side_quest_arr.erase(quest)
-		comp_side_quest_arr.append(quest)
-	elif(comp_side_quest_arr.has(quest)):
-		print("The quest was already added to side completed")
-	else:
-		print("The quest is not in side active")
+func move_quest(type: bool, quest: String, from: String, to: String):
+	if type == true:
+		print("changing a main quest")
+		if main_quest_map.has(quest):
+			if main_quest_map[quest]["status"] == from:
+				main_quest_map[quest]["status"] = to
+			print(quest + " does not currently have the status: " + from)
+		print("quest not found")
+	elif type == false:
+		print("changing a side quest")
+		if side_quest_map.has(quest):
+			if side_quest_map[quest]["status"] == from:
+				side_quest_map[quest]["status"] = to
+			print(quest + " does not currently have the status: " + from)
+		print("quest not found")

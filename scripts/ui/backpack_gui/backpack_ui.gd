@@ -10,7 +10,8 @@ extends CanvasLayer
 @onready var quest = journal_control.get_node("quest_gui")
 @onready var pause_rect = pause.get_node("ColorRect")
 @onready var qbutanim = $backpack_buttons/Control/quest_button/quest_button_animation
-
+@onready var satchel_animation = $backpack/backpack_animation
+@onready var help_animation = $backpack_buttons/Control/help_button/help_button_animation
 
 #close all canvas layers
 func _ready():
@@ -46,8 +47,10 @@ func _on_backpack_pressed():
 		journal.visible = false
 		journal_control.hide_canvas()
 	if backpack_items.visible == false:
+		satchel_animation.play("open")
 		backpack_items.visible = true
 	else:
+		satchel_animation.play("close")
 		backpack_items.visible = false
 
 #close or open journal gui and play animation
@@ -88,3 +91,9 @@ func reverse_book_animation():
 func _on_quest_journal_button_triggered():
 	qbutanim.play("turnright")
 	$backpack_buttons/Control/AudioStreamPlayer.play()
+
+func _on_help_button_toggled(toggled_on):
+	if(toggled_on):
+		help_animation.play("turn_on")
+	if(!toggled_on):
+		help_animation.play("turn_off")
