@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccf81jq8qw3do"]
 
-[ext_resource type="Script" uid="uid://dgds3n8nffg12" path="res://scenes/player/interaction_area.gd" id="1_whyk4"]
+[ext_resource type="Script" uid="uid://dgds3n8nffg12" path="res://scripts/player/interaction_area.gd" id="1_whyk4"]
 [ext_resource type="Texture2D" uid="uid://b5uftsehvwdtn" path="res://art/sprites/icon.svg" id="2_x8yby"]
 
 [node name="InteractionArea" type="Area2D"]

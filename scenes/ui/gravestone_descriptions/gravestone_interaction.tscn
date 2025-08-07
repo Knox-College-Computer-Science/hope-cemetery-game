@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://csqjknxm0r8wq"]
 
-[ext_resource type="Script" uid="uid://ctl6swmlakpgh" path="res://gravestone_interaction.gd" id="1_jifiw"]
+[ext_resource type="Script" uid="uid://ctl6swmlakpgh" path="res://scripts/ui/gravestone_interaction.gd" id="1_jifiw"]
 [ext_resource type="PackedScene" uid="uid://1o7gevwmqm1q" path="res://scenes/ui/gravestone_descriptions/testing_description.tscn" id="2_2h163"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2h163"]

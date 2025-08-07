@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1ts0ypep3buo"]
 
-[ext_resource type="Script" uid="uid://dhyr0indibpir" path="res://scenes/player/save_point.gd" id="1_jnuo2"]
+[ext_resource type="Script" uid="uid://dhyr0indibpir" path="res://scripts/player/save_point.gd" id="1_jnuo2"]
 [ext_resource type="Texture2D" uid="uid://dju5g41tkb7sx" path="res://data/GameSaver/small_knox_flag.png" id="2_jnuo2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tb1n5"]
