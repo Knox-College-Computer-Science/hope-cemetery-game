@@ -1,7 +1,7 @@
 extends Node
 
 """
-TO-DO
+TODO (-) = Not done, (+) = Done
 + make get_metadata(slot: int) function (also access by string?)
 + dialogic saving in slots?
 + Allow for storing metadata (via resources) that applies to whole game save
@@ -22,49 +22,62 @@ NEEDED TO USE GAMESLOTSAVER:
 RECOMMENDED COMPONENTS:
 	- save_screen scene
 
+WHEN TO USE THIS SYSTEM:
+	This system was made for games with a leveled architecture.
+	Save data is stored relative to the root node of each scene
+	representing a level.
+
+SAVING LEVELS:
+	Make sure the world_scene variable is pointing to the root of the
+	current level. Then call the save_level function.
+
 TO SAVE A SCENE:
-	(NOTE: must be it's own scene)
 	1. Put it into the "saveable" group 
-	2. Give it a method called "save". This should return
-	   a list of strings that give the names of the properties
-	   you want to save. (e.g. return ["position", "modulate"])
-	   If you want GameSaver to ignore a scene with the save
-	   function, just return null instead of an array.
-	3. That's it! You can give your scene an "on_load" function if
+	3. That's it! This scene and all of its properties
+	   will be automatically saved when you call save_level.
+	   You can give your scene an "on_load" function if
 	   you need to prepare things before the scene is 
-	   reinstantiated into the world.
-	
-WHAT ABOUT CHILD SCENES?
-This is where things can get complicated. In order to make sure
-that a child node is reparented with the correct node, we must
-distinguish between dynamically added children and statically
-added children. Depending on what kind of children you are dealing
-with, there are different workflows you should take.
+	   reinstantiated into the world. You can also optionally
+	   add a "save" function, which returns a list of strings
+	   that corrispond to variable names that should be saved.
+	   Use this if you only want to save a select few properties.
 
-- Statically added
-	These are nodes that are with their parent automatically
-	when the parent is initialized. To set their attributes,
-	use the format "child_name$attribute_name" when returning
-	the save list for the parent. For nested children, this
-	would look like "child_one$child_two$attribute_name"
-	
-	NOTE: If you want to save the deletion of these nodes,
-	you will likely need to make a seperate attribute for this
-	and then delete the child inside the on_load function.
+WHAT ABOUT CHILD NODES?
+	This is where things can get complicated. In order to make sure
+	that a child node is reparented with the correct node, we must
+	distinguish between two types of children:
+		1. Children that are a part of the scene when it is instantiated
+		2. Children that are added at runtime or are added to the root 
+		   within the context of another scene.
+		   (e.g. the player getting a unique camera for each level)
 
-- Dynamically added
-	These nodes are added to the parent at runtime. These nodes can
-	be in the saveable group and return their own list of attributes
-	when the save function is called on them, just like their parent.
-	Note that the child must be its own scene and the child's parent
-	must also be saveable. Alternatively, you can add the save_addon.gd
-	script to the node if it has no script.
+	- First type
+		These are nodes that are with their parent automatically
+		when the parent is initialized. To save their attributes,
+		use the format "child_name$attribute_name" when returning
+		the save list for the parent. For nested children, this
+		would look like "child_one$child_two$attribute_name"
+		
+		NOTE: If you want to save the deletion of these nodes,
+		you will likely need to make a seperate attribute for this
+		and then delete the child inside the on_load function.
+
+	- Second type
+		These nodes can be in the saveable group, just like their parent.
+
+		TIP: If you need to know whether a scene is being instantiated
+		for the first time or being loaded from a save file, you can
+		make a boolean variable that is set when the on_load function is
+		called. Then check that variable's value in the _on_ready function
+		or whereever else you may need that information.
 	
 MAINTAINING NODE REFERENCES
 1. Make sure that the reference you are saving points to an
    object that is also being saved. (Use the save_addon if needed.)
 2. Add a variable called "saved_node_references". This should hold
    a list of the names of variables that have node references.
+   NOTE: Data structures holding multiple references are currently
+   not supported.
 """
 
 const SAVE_DIRECTORY = "user://save"
