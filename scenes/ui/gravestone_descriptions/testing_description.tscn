@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1o7gevwmqm1q"]
+[gd_scene load_steps=9 format=3 uid="uid://1o7gevwmqm1q"]
 
 [ext_resource type="PackedScene" uid="uid://b2rhjnhniv05x" path="res://scenes/ui/gravestone_descriptions/gravestone_description.tscn" id="1_tof2t"]
 [ext_resource type="Texture2D" uid="uid://ct7bfn4g7hvuf" path="res://art/sprites/Charles.png" id="2_tu6kk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b5orhbsxwpxxk" path="res://art/tilesets/pixil-frame-0 (3).png" id="5_tof2t"]
 [ext_resource type="Theme" uid="uid://o402mibbwcv2" path="res://art/themes/gravestone_description_theme.tres" id="6_566ev"]
 [ext_resource type="Texture2D" uid="uid://duk48gsoior4q" path="res://art/sprites/oldnunfordebate.png" id="7_tu6kk"]
+[ext_resource type="PackedScene" uid="uid://b237f4qix8ncg" path="res://scenes/npcs/cow.tscn" id="8_skpi4"]
 
 [node name="GravestoneDescription" instance=ExtResource("1_tof2t")]
 
@@ -70,8 +71,8 @@ offset_top = 477.5
 offset_right = 1026.0
 offset_bottom = 603.5
 theme = ExtResource("6_566ev")
-text = "No way!
-A real life tileset?!?"
+text = "Now I
+don't know what to do."
 
 [node name="TextureRect" type="TextureRect" parent="Panel" index="9"]
 layout_mode = 0
@@ -81,3 +82,7 @@ offset_right = 900.0
 offset_bottom = 504.5
 pivot_offset = Vector2(54, 120)
 texture = ExtResource("7_tu6kk")
+
+[node name="Cow" parent="Panel" index="10" instance=ExtResource("8_skpi4")]
+position = Vector2(715, 379.5)
+scale = Vector2(5, 5)
