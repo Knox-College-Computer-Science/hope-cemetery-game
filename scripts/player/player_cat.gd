@@ -8,7 +8,8 @@ extends CharacterBody2D
 @onready var footsteps_sfx = $footstep
 @onready var timer = $Timer
 
-var input_disabled
+var input_disabled = false
+var movement_disabled = false
 
 func _ready():
 	GlobalUtilities.player = self
@@ -28,7 +29,7 @@ func _physics_process(_delta):
 	)
 	update_animation_parameters(input_direction)
 	
-	if(Dialogic.current_timeline == null):
+	if(Dialogic.current_timeline == null && !movement_disabled):
 		velocity = input_direction * move_speed
 	else:
 		velocity = Vector2.ZERO
@@ -91,3 +92,11 @@ func activate_interactive_areas():
 	for area in $InteractionArea.get_overlapping_areas():
 		if(area is InteractionArea):
 			area.activate()
+
+func freeze(disable_input = false):
+	movement_disabled = true
+	input_disabled = disable_input
+	
+func unfreeze():
+	movement_disabled = false
+	input_disabled = false

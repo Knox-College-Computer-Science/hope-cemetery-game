@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://1o7gevwmqm1q"]
+[gd_scene load_steps=8 format=3 uid="uid://1o7gevwmqm1q"]
 
 [ext_resource type="PackedScene" uid="uid://b2rhjnhniv05x" path="res://scenes/ui/gravestone_descriptions/gravestone_description.tscn" id="1_tof2t"]
 [ext_resource type="Texture2D" uid="uid://ct7bfn4g7hvuf" path="res://art/sprites/Charles.png" id="2_tu6kk"]
@@ -6,11 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dxa40taxqabyn" path="res://art/beauty_shots/warflashback4.png" id="4_jptej"]
 [ext_resource type="Texture2D" uid="uid://b5orhbsxwpxxk" path="res://art/tilesets/pixil-frame-0 (3).png" id="5_tof2t"]
 [ext_resource type="Theme" uid="uid://o402mibbwcv2" path="res://art/themes/gravestone_description_theme.tres" id="6_566ev"]
+[ext_resource type="Texture2D" uid="uid://duk48gsoior4q" path="res://art/sprites/oldnunfordebate.png" id="7_tu6kk"]
 
 [node name="GravestoneDescription" instance=ExtResource("1_tof2t")]
 
 [node name="Title" parent="Panel" index="0"]
-text = "Hope Cemetery"
+text = "This is a Test"
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel" index="1"]
 position = Vector2(295, 159.5)
@@ -55,13 +56,12 @@ text = "Totally rad!"
 [node name="Label3" type="Label" parent="Panel" index="7"]
 layout_mode = 0
 offset_left = 67.0
-offset_top = 268.5
-offset_right = 194.0
-offset_bottom = 308.5
+offset_top = 283.5
+offset_right = 451.0
+offset_bottom = 366.5
 theme = ExtResource("6_566ev")
-text = "This is a pretty nice cemetery you got
-here! Wow! I really really like it!
-Cool!"
+text = "This is some text. This is some more
+text. Okay, you get the idea."
 
 [node name="Label4" type="Label" parent="Panel" index="8"]
 layout_mode = 0
@@ -72,3 +72,12 @@ offset_bottom = 603.5
 theme = ExtResource("6_566ev")
 text = "No way!
 A real life tileset?!?"
+
+[node name="TextureRect" type="TextureRect" parent="Panel" index="9"]
+layout_mode = 0
+offset_left = 815.0
+offset_top = 378.5
+offset_right = 900.0
+offset_bottom = 504.5
+pivot_offset = Vector2(54, 120)
+texture = ExtResource("7_tu6kk")

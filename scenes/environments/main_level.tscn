@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=44 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ccf81jq8qw3do" path="res://scenes/player/interaction_area.tscn" id="14_j4bxd"]
 [ext_resource type="Texture2D" uid="uid://cau48b1lhvjha" path="res://art/sprites/samuelghost.png" id="15_t4qpy"]
 [ext_resource type="Texture2D" uid="uid://b8xlsri6ndk5g" path="res://art/sprites/GWGaleghost.png" id="16_wpr1v"]
+[ext_resource type="PackedScene" uid="uid://csqjknxm0r8wq" path="res://scenes/ui/gravestone_descriptions/gravestone_interaction.tscn" id="17_vojlb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgadu"]
 size = Vector2(20, 67)
@@ -343,5 +344,8 @@ offset = Vector2(-1, -12)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="George"]
 position = Vector2(2, 14)
 shape = SubResource("RectangleShape2D_sqoxl")
+
+[node name="GravestoneInteraction" parent="." instance=ExtResource("17_vojlb")]
+position = Vector2(1529.29, -139.318)
 
 [editable path="MiniMap"]
