@@ -30,7 +30,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2c82"]
-size = Vector2(14, 27)
+size = Vector2(14, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8psk"]
 size = Vector2(40, 13)
@@ -83,13 +83,14 @@ prompt_height = -30.0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Alex"]
+position = Vector2(0, -1)
 sprite_frames = ExtResource("6_ir6st")
-animation = &"idle"
-offset = Vector2(-1, -11)
+animation = &"walk_side"
+offset = Vector2(-1, -10)
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Alex"]
-position = Vector2(0, -13)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_u2c82")
 debug_color = Color(0.933632, 0.123661, 0.562017, 0.42)
 
