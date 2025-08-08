@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://78kbo4vya25m"]
+
+[ext_resource type="Script" uid="uid://b21hdm7txbvh4" path="res://tests/experimentation/physics_homework.gd" id="1_q5eyw"]
+[ext_resource type="Theme" uid="uid://o402mibbwcv2" path="res://art/themes/gravestone_description_theme.tres" id="2_4uup1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_53jw1"]
+friction = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vh0x4"]
+size = Vector2(666.641, 41)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_864pb"]
+bounce = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_864pb"]
+size = Vector2(194.152, 47.4868)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_864pb"]
+radius = 32.0156
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0maux"]
+size = Vector2(71, 61)
+
+[node name="PhysicsHomework" type="CanvasLayer"]
+script = ExtResource("1_q5eyw")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+offset_right = 1302.0
+offset_bottom = 736.0
+color = Color(0.939807, 0.87861, 0.832263, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_53jw1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(448, 422)
+rotation = 0.141372
+shape = SubResource("RectangleShape2D_vh0x4")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_864pb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(594, 653)
+rotation = -0.268781
+shape = SubResource("RectangleShape2D_vh0x4")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_864pb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(441, 433)
+rotation = -1.25838
+shape = SubResource("RectangleShape2D_864pb")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_864pb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(59, 232)
+rotation = 0.436332
+shape = SubResource("RectangleShape2D_864pb")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="Marble" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+mass = 10.0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marble"]
+position = Vector2(86, 152)
+shape = SubResource("CircleShape2D_864pb")
+debug_color = Color(0.981, 0, 0.373, 0.768)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 20.0
+offset_right = 592.0
+offset_bottom = 120.0
+theme = ExtResource("2_4uup1")
+theme_override_font_sizes/font_size = 100
+text = "Physics Homework"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 671.0
+offset_top = 62.0
+offset_right = 1216.0
+offset_bottom = 162.0
+theme = ExtResource("2_4uup1")
+text = "Problem 1.
+Get the red marble to the green square"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1066.0
+offset_top = 663.0
+offset_right = 1260.0
+offset_bottom = 704.0
+text = "Submit answer"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1069, 359)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-52, 140)
+shape = SubResource("RectangleShape2D_0maux")
+debug_color = Color(0, 0.641017, 0.340974, 0.42)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
