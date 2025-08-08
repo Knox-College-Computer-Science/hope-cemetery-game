@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cau48b1lhvjha" path="res://art/sprites/samuelghost.png" id="15_t4qpy"]
 [ext_resource type="Texture2D" uid="uid://b8xlsri6ndk5g" path="res://art/sprites/GWGaleghost.png" id="16_wpr1v"]
 [ext_resource type="PackedScene" uid="uid://csqjknxm0r8wq" path="res://scenes/ui/gravestone_descriptions/gravestone_interaction.tscn" id="17_vojlb"]
-[ext_resource type="PackedScene" uid="uid://bvvss2dg247x1" path="res://popup.tscn" id="18_tgadu"]
+[ext_resource type="PackedScene" uid="uid://bvvss2dg247x1" path="res://scenes/ui/gravestone_descriptions/popup.tscn" id="18_tgadu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgadu"]
 size = Vector2(20, 67)
@@ -352,6 +352,7 @@ shape = SubResource("RectangleShape2D_sqoxl")
 position = Vector2(1529.29, -139.318)
 
 [node name="Popup" parent="." node_paths=PackedStringArray("popup_area") instance=ExtResource("18_tgadu")]
+visible = false
 position = Vector2(1416, -171)
 popup_area = NodePath("../PopupArea")
 
@@ -359,6 +360,7 @@ popup_area = NodePath("../PopupArea")
 text = "This is a test description. You can tell because none of this text is very meaningful. But that isn't to say that this text will never become meaningful in the future!"
 
 [node name="Popup2" parent="." node_paths=PackedStringArray("popup_area") instance=ExtResource("18_tgadu")]
+visible = false
 position = Vector2(1527.24, -259.113)
 popup_area = NodePath("../PopupArea2")
 
