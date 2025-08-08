@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvvss2dg247x1"]
+
+[ext_resource type="Script" uid="uid://bwxrdp13hd8xi" path="res://popup.gd" id="1_2eskn"]
+[ext_resource type="Texture2D" uid="uid://dgr4jj1qqml" path="res://art/ui items/pointer.png" id="2_6nc67"]
+
+[node name="Popup" type="Node2D"]
+z_index = 5
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_2eskn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -238.5
+offset_top = -241.0
+offset_right = 238.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST THIS IS A TEST "
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+modulate = Color(0.136826, 0.136826, 0.136826, 0.785)
+layout_mode = 2
+texture = ExtResource("2_6nc67")
+stretch_mode = 3

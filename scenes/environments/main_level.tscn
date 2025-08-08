@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://oh2basiek65h"]
+[gd_scene load_steps=46 format=3 uid="uid://oh2basiek65h"]
 
 [ext_resource type="Script" uid="uid://b6esp6g30ec3j" path="res://scenes/main_level.gd" id="1_5fr2l"]
 [ext_resource type="PackedScene" uid="uid://c8xnd2sw0365m" path="res://scenes/player/player_cat.tscn" id="1_6we3w"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cau48b1lhvjha" path="res://art/sprites/samuelghost.png" id="15_t4qpy"]
 [ext_resource type="Texture2D" uid="uid://b8xlsri6ndk5g" path="res://art/sprites/GWGaleghost.png" id="16_wpr1v"]
 [ext_resource type="PackedScene" uid="uid://csqjknxm0r8wq" path="res://scenes/ui/gravestone_descriptions/gravestone_interaction.tscn" id="17_vojlb"]
+[ext_resource type="PackedScene" uid="uid://bvvss2dg247x1" path="res://popup.tscn" id="18_tgadu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgadu"]
 size = Vector2(20, 67)
@@ -163,6 +164,8 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqoxl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6u8o"]
 
 [node name="Game Level" type="Node2D"]
 z_as_relative = false
@@ -348,4 +351,40 @@ shape = SubResource("RectangleShape2D_sqoxl")
 [node name="GravestoneInteraction" parent="." instance=ExtResource("17_vojlb")]
 position = Vector2(1529.29, -139.318)
 
+[node name="Popup" parent="." node_paths=PackedStringArray("popup_area") instance=ExtResource("18_tgadu")]
+position = Vector2(1416, -171)
+popup_area = NodePath("../PopupArea")
+
+[node name="Label" parent="Popup/VBoxContainer/PanelContainer/TextContainer" index="0"]
+text = "This is a test description. You can tell because none of this text is very meaningful. But that isn't to say that this text will never become meaningful in the future!"
+
+[node name="Popup2" parent="." node_paths=PackedStringArray("popup_area") instance=ExtResource("18_tgadu")]
+position = Vector2(1527.24, -259.113)
+popup_area = NodePath("../PopupArea2")
+
+[node name="VBoxContainer" parent="Popup2" index="0"]
+offset_left = -127.333
+offset_top = -93.3333
+offset_right = 131.667
+offset_bottom = -3.33331
+
+[node name="Label" parent="Popup2/VBoxContainer/PanelContainer/TextContainer" index="0"]
+text = "Hiya, boss! How are you doing?"
+
+[node name="PopupArea" parent="." instance=ExtResource("14_j4bxd")]
+position = Vector2(1414.99, -139.85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PopupArea"]
+shape = SubResource("RectangleShape2D_w6u8o")
+
+[node name="PopupArea2" parent="." instance=ExtResource("14_j4bxd")]
+position = Vector2(1528.16, -244.99)
+automatic = true
+show_prompt = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PopupArea2"]
+shape = SubResource("RectangleShape2D_w6u8o")
+
 [editable path="MiniMap"]
+[editable path="Popup"]
+[editable path="Popup2"]
