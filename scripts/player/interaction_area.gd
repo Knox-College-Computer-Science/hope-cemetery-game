@@ -3,6 +3,8 @@ class_name InteractionArea
 
 ## If true, automatically fires the activated signal when area is entered
 @export var automatic = false
+## If true, will show a prompt above the player's head asking them to press
+## the interaction button
 @export var show_prompt = true
 var is_inside = false
 var activated_since_entering = false

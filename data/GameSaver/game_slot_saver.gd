@@ -301,17 +301,15 @@ func get_final_child(attr : String, parent : Node):
 func get_file_name(node):
 	return node.scene_file_path.split(".tscn")[0].split("/")[-1]
 
+## Clear all save data
 func clear_all():
 	clear_path(SAVE_DIRECTORY)
-	"""var files = DirAccess.get_files_at(SAVE_DIRECTORY)
-	for file in files:
-		DirAccess.remove_absolute(SAVE_DIRECTORY+"/"+file)
-	for dir in DirAccess.get_directories_at(SAVE_DIRECTORY):
-		clear_path(SAVE_DIRECTORY+"/"+dir)"""
 
+## Clear save data for this session
 func clear_temp():
 	clear_path(TEMPORARY_SAVE_DATA_PATH)
 
+## Clear save data stored at the specified path
 func clear_path(path: String):
 	var files = DirAccess.get_files_at(path)
 	for file in files:
@@ -319,9 +317,11 @@ func clear_path(path: String):
 	for dir in DirAccess.get_directories_at(path):
 		clear_path(path+"/"+dir)
 
+## Clear save data stored a specific slot
 func clear_slot(slot: int):
 	clear_path(SAVE_DIRECTORY+"/"+slot_names[slot])
 
+## Check if a node has a particular property
 func has_property(node, property):
 	var properties = node.get_property_list()
 	var property_names = []
@@ -329,6 +329,7 @@ func has_property(node, property):
 		property_names.append(prop["name"])
 	return property in property_names
 
+## Get all nodes in the "saveable" group
 func get_saveable_nodes(node) -> Array[Node]:
 	var children : Array = node.get_children().duplicate()
 	var saveable_children : Array[Node] = []
@@ -338,12 +339,14 @@ func get_saveable_nodes(node) -> Array[Node]:
 		saveable_children.append_array(get_saveable_nodes(child))
 	return saveable_children
 
+## Delete all of the nodes in the "saveable" group
 func delete_saveable_nodes(node):
 	var saveable_nodes = get_saveable_nodes(node)
 	for n in saveable_nodes:
 		n.get_parent().remove_child(n)
 		n.queue_free()
 
+## Generate image from subviewport
 func save_image():
 	if(!is_instance_valid(screenshot_viewport)):
 		return

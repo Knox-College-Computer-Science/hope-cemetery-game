@@ -78,7 +78,7 @@ func _on_timer_timeout() -> void:
 	timer.start()
 
 func save():
-	return ["position"]
+	return ["global_position"]
 
 func _on_interaction_area_area_entered(area):
 	if(area is InteractionArea):
