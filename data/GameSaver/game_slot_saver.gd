@@ -96,6 +96,7 @@ var meta_keys = ["scene_file_path", "$index", "$parent_index", "$autoload", "own
 var child_delimiter = "$"
 var reference_key_name = "saved_node_references"
 
+## Saves the scene stored in world_scene variable
 func save_level():
 	var saved_level = SavedLevel.new()
 	var saveable_scenes = get_saveable_nodes(world_scene)
@@ -149,20 +150,29 @@ func save_level():
 		DirAccess.make_dir_recursive_absolute(TEMPORARY_SAVE_DATA_PATH)
 	ResourceSaver.save(saved_level, TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
 
+## Loads the scene stored in world_scene variable. (Remember to set world_scene
+## beforehand!)
 func load_level():
 	var saved_level = load(TEMPORARY_SAVE_DATA_PATH+"/"+get_file_name(world_scene)+".tres")
 	if(!is_instance_valid(saved_level)):
 		return
+		
+	# Reset map
 	delete_saveable_nodes(world_scene)
+	
+	# Create instanes of new scenes, set their properties, and add them to 
+	# scene_array
 	var scene_array = []
 	var new_scene
 	for item in saved_level.item_states:
+		# Instantiate saved node
 		if(item["scene_file_path"] != ""):
 			new_scene = load(item["scene_file_path"]).instantiate()
 		else:
 			new_scene = ClassDB.instantiate(item["class_of_object"])
 			new_scene.set("script", item["script"])
 		
+		# Set node properties
 		var set_position = false
 		for key in item:
 			if(not key in meta_keys or (reference_key_name in item.keys() and key in item[reference_key_name])):
@@ -172,11 +182,12 @@ func load_level():
 					else:
 						set_position = true
 				get_final_child(key, new_scene).set(get_node_attr(key), item[key])
+		
 		if(new_scene.has_method("on_load")):
 			new_scene.on_load()
 		new_scene.add_to_group("saveable")
 		scene_array.append(new_scene)
-		
+	
 	if(world_scene.has_method("on_load")):
 		world_scene.on_load()
 	
@@ -184,7 +195,7 @@ func load_level():
 	for item in saved_level.item_states:
 		var node = scene_array[item["$index"]]
 		
-		#references
+		# references
 		if(reference_key_name in item.keys()):
 			for prop in node.get(reference_key_name):
 				if(int(item[prop]) != -1):
@@ -196,7 +207,8 @@ func load_level():
 		else:
 			var parent_node = scene_array[item["$parent_index"]]
 			parent_node.add_child(node)
-		
+
+## Save autoloads named in autoloads_to_save array
 func save_autoloads(dialogic_slot = ""):
 	var saved_autoloads = SavedLevel.new()
 	for autoload in autoloads_to_save:
@@ -206,7 +218,8 @@ func save_autoloads(dialogic_slot = ""):
 		saved_autoloads.item_states.append(data)
 	ResourceSaver.save(saved_autoloads, AUTOLOAD_SAVE_PATH)
 	Dialogic.Save.save(dialogic_slot, false, Dialogic.Save.ThumbnailMode.NONE)
-	
+
+## Load autoloads named in autoloads_to_save array
 func load_autoloads(dialogic_slot = ""):
 	var saved_autoloads = load(AUTOLOAD_SAVE_PATH)
 	if(!is_instance_valid(saved_autoloads)):
@@ -217,6 +230,7 @@ func load_autoloads(dialogic_slot = ""):
 				get_node("/root/"+al["$autoload"]).set(property, al[property])
 	Dialogic.Save.load(dialogic_slot)
 
+## Put all of the saved levels into a common folder, specified by slot number
 func save_game(slot: int, metadata: SaveMetadata = null):
 	if(slot > slot_names.size()):
 		push_error("Trying to save to invalid slot!")
@@ -242,6 +256,7 @@ func save_game(slot: int, metadata: SaveMetadata = null):
 		DirAccess.copy_absolute(TEMPORARY_SAVE_DATA_PATH+"/"+file, SAVE_DIRECTORY+"/"+slot_names[slot]+"/"+file)
 		#print_debug("Saving file "+file+" to "+slot_names[slot]+". Path: "+SAVE_DIRECTORY+"/"+slot_names[slot]+"/"+file)
 
+## Load saved levels from slot
 func load_game(slot: int):
 	clear_temp()
 	if(slot > slot_names.size()):
@@ -252,10 +267,12 @@ func load_game(slot: int):
 		#print_debug("Loading file "+file+" from slot "+str(slot))
 	load_autoloads(slot_names[slot])
 
+## Gets save file metadata from a particular slot
 func get_save_metadata(slot: int):
 	var meta : SaveMetadata = load(SAVE_DIRECTORY+"/"+slot_names[slot]+"/metadata.tres")
 	return meta
 
+## Extract attribute value from child chain
 func get_node_attr_value(attr : String, parent : Node):
 	if(not child_delimiter in attr):
 		return parent.get(attr)
@@ -264,10 +281,12 @@ func get_node_attr_value(attr : String, parent : Node):
 	var attribute = get_node_attr(attr)
 	return child_node.get(attribute)
 
+## Extract attribute name from child chain
 func get_node_attr(attr : String):
 	var nodes = attr.split(child_delimiter)
 	return nodes.get(nodes.size()-1)
-	
+
+## Get the child whose attribute is being changed
 func get_final_child(attr : String, parent : Node):
 	if(not child_delimiter in attr):
 		return parent
@@ -283,14 +302,15 @@ func get_file_name(node):
 	return node.scene_file_path.split(".tscn")[0].split("/")[-1]
 
 func clear_all():
-	var files = DirAccess.get_files_at("user://")
+	clear_path(SAVE_DIRECTORY)
+	"""var files = DirAccess.get_files_at(SAVE_DIRECTORY)
 	for file in files:
-		DirAccess.remove_absolute("user://"+file)
-	for dir in DirAccess.get_directories_at("user://"):
-		clear_path("user://"+dir)
+		DirAccess.remove_absolute(SAVE_DIRECTORY+"/"+file)
+	for dir in DirAccess.get_directories_at(SAVE_DIRECTORY):
+		clear_path(SAVE_DIRECTORY+"/"+dir)"""
 
 func clear_temp():
-	clear_path(TEMPORARY_SAVE_DATA_PATH+"/")
+	clear_path(TEMPORARY_SAVE_DATA_PATH)
 
 func clear_path(path: String):
 	var files = DirAccess.get_files_at(path)

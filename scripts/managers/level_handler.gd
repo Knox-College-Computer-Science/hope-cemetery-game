@@ -1,5 +1,12 @@
 extends Node
 
+"""
+This node is responsible for instantiating and switching between
+different levels/scenes in the game. For a simple transition between
+scenes, the switch_scene function is your best bet. To go to a specific
+spawn point in a level, use switch_scene_with_spawn_point.
+"""
+
 ## 🎵 No one likes the opening band...
 @export var opening_scene : PackedScene
 @onready var game_saver = $GameSaver

@@ -301,9 +301,9 @@ offset = Vector2(0, -9)
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_wpr1v")
 
-[node name="InteractionArea" parent="Charles" instance=ExtResource("14_j4bxd")]
+[node name="InteractionArea" parent="Charles" groups=["saveable"] instance=ExtResource("14_j4bxd")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Charles/InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charles/InteractionArea" groups=["saveable"]]
 position = Vector2(21.75, 6)
 shape = SubResource("RectangleShape2D_t4qpy")
 debug_color = Color(0.804735, 0.41672, 0, 0.42)
@@ -373,6 +373,20 @@ offset_bottom = -3.33331
 [node name="Label" parent="Popup2/VBoxContainer/PanelContainer/TextContainer" index="0"]
 text = "Hiya, boss! How are you doing?"
 
+[node name="Popup3" parent="." node_paths=PackedStringArray("popup_area") instance=ExtResource("18_tgadu")]
+visible = false
+position = Vector2(1479, -212)
+popup_area = NodePath("../PopupArea3")
+
+[node name="VBoxContainer" parent="Popup3" index="0"]
+offset_left = -120.0
+offset_top = -170.0
+offset_right = 136.0
+offset_bottom = 4.0
+
+[node name="Label" parent="Popup3/VBoxContainer/PanelContainer/TextContainer" index="0"]
+text = "Ya ever wondered about why the clock seems to run so slow when you have nothing to do? "
+
 [node name="PopupArea" parent="." instance=ExtResource("14_j4bxd")]
 position = Vector2(1414.99, -139.85)
 
@@ -387,6 +401,16 @@ show_prompt = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PopupArea2"]
 shape = SubResource("RectangleShape2D_w6u8o")
 
+[node name="PopupArea3" parent="." instance=ExtResource("14_j4bxd")]
+position = Vector2(1528.16, -244.99)
+automatic = true
+show_prompt = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PopupArea3"]
+position = Vector2(-48.16, 45.99)
+shape = SubResource("RectangleShape2D_w6u8o")
+
 [editable path="MiniMap"]
 [editable path="Popup"]
 [editable path="Popup2"]
+[editable path="Popup3"]
