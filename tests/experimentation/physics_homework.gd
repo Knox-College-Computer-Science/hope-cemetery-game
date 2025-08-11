@@ -44,23 +44,30 @@ func _process(delta):
 		mouse_pressed = false
 
 
-func _on_button_pressed():
-	$Marble.gravity_scale = 1
-	$Marble.collision_layer = 3
-	$Marble.collision_mask = 1
-	mouse_disabled = true
+func _on_submit_pressed():
+	if(mouse_disabled):
+		reset_marble()
+	else:
+		$Marble.gravity_scale = 1
+		$Marble.collision_layer = 3
+		$Marble.collision_mask = 1
+		$SubmitButton.text = "Try Again"
+	mouse_disabled = !mouse_disabled
 	
 
 func _on_area_2d_body_entered(body):
 	$TextureRect.hide()
 	
 
-func _on_button_2_pressed():
+func _on_reset_pressed():
 	get_tree().call_group("shapes", "queue_free")
+	reset_marble()
+	mouse_disabled = false
+
+func reset_marble():
 	$Marble.set_deferred("linear_velocity", Vector2.ZERO)
-	#$Marble.transform.origin = original_marble_position
 	$Marble.reset = true
 	$Marble.gravity_scale = 0
 	$Marble.collision_layer = 0
 	$Marble.collision_mask = 0
-	mouse_disabled = false
+	$SubmitButton.text = "Submit answer"

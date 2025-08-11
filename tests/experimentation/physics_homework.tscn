@@ -137,6 +137,13 @@ offset_right = 1052.0
 offset_bottom = 704.0
 text = "Reset"
 
+[node name="UndoButton" type="Button" parent="."]
+offset_left = 1067.0
+offset_top = 613.0
+offset_right = 1261.0
+offset_bottom = 654.0
+text = "Undo"
+
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1064, 361)
 collision_layer = 0
@@ -155,6 +162,7 @@ offset_right = -22.0
 offset_bottom = 170.0
 color = Color(1.10701e-06, 0.536311, 0.283484, 1)
 
-[connection signal="pressed" from="SubmitButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="ResetButton" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="UndoButton" to="." method="_on_reset_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
