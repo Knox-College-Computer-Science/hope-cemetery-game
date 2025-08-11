@@ -39,6 +39,7 @@ script = ExtResource("1_q5eyw")
 [node name="TextureRect" type="ColorRect" parent="."]
 offset_right = 1302.0
 offset_bottom = 736.0
+mouse_filter = 2
 color = Color(0.939807, 0.87861, 0.832263, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -164,5 +165,5 @@ color = Color(1.10701e-06, 0.536311, 0.283484, 1)
 
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_pressed"]
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="UndoButton" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="UndoButton" to="." method="_on_undo_button_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

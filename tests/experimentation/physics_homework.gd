@@ -3,6 +3,7 @@ extends CanvasLayer
 var mouse_pressed = false
 var mouse_disabled = false
 var original_marble_position : Vector2
+var snapshots = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,12 +19,11 @@ func _ready():
 			col_shape.add_child(mesh_in)
 			
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+func _unhandled_input(event):
+	if event is InputEventMouseButton && event.is_pressed():
 		if(!mouse_pressed && !mouse_disabled):
-			var b = RigidBody2D.new()
-			var col = CollisionShape2D.new()
+			"""var b = RigidBody2D.new()
+			 var col = CollisionShape2D.new()
 			var sh := RectangleShape2D.new()
 			var v = VisibleOnScreenNotifier2D.new()
 			var mesh_in = MeshInstance2D.new()
@@ -37,7 +37,10 @@ func _process(delta):
 			b.add_child(mesh_in)
 			b.position = get_viewport().get_mouse_position()
 			b.add_child(v)
-			b.add_to_group("shapes")
+			b.add_to_group("shapes")"""
+			var b = load("res://tests/experimentation/block.tscn").instantiate()
+			b.position = get_viewport().get_mouse_position()
+			save_snapshot()
 			add_child(b)
 		mouse_pressed = true
 	else:
@@ -47,12 +50,15 @@ func _process(delta):
 func _on_submit_pressed():
 	if(mouse_disabled):
 		reset_marble()
+		undo()
 	else:
+		save_snapshot()
 		$Marble.gravity_scale = 1
 		$Marble.collision_layer = 3
 		$Marble.collision_mask = 1
 		$SubmitButton.text = "Try Again"
 	mouse_disabled = !mouse_disabled
+	$UndoButton.disabled = mouse_disabled
 	
 
 func _on_area_2d_body_entered(body):
@@ -62,7 +68,9 @@ func _on_area_2d_body_entered(body):
 func _on_reset_pressed():
 	get_tree().call_group("shapes", "queue_free")
 	reset_marble()
+	snapshots.clear()
 	mouse_disabled = false
+
 
 func reset_marble():
 	$Marble.set_deferred("linear_velocity", Vector2.ZERO)
@@ -71,3 +79,31 @@ func reset_marble():
 	$Marble.collision_layer = 0
 	$Marble.collision_mask = 0
 	$SubmitButton.text = "Submit answer"
+
+func save_snapshot():
+	var new_snapshot = []
+	for child in get_children():
+		if(child is PhysicsHomeworkBlock):
+			var new_item = {}
+			new_item["position"] = child.position
+			new_item["rotation"] = child.rotation
+			new_item["linear_vel"] = child.linear_velocity
+			new_item["angular_vel"] = child.angular_velocity
+			new_snapshot.append(new_item)
+	snapshots.append(new_snapshot)
+
+func _on_undo_button_pressed():
+	undo()
+	
+func undo():
+	if(snapshots.is_empty()):
+		return
+	get_tree().call_group("shapes", "queue_free")
+	for item in snapshots[-1]:
+		var b = load("res://tests/experimentation/block.tscn").instantiate()
+		b.position = item["position"]
+		b.rotation = item["rotation"]
+		b.linear_velocity = item["linear_vel"]
+		b.angular_velocity = item["angular_vel"]
+		add_child(b)
+	snapshots.pop_back()

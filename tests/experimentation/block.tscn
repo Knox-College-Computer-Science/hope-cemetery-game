@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://fn0aruc50qdk"]
+
+[ext_resource type="Script" uid="uid://cso47uhqmk515" path="res://tests/experimentation/block.gd" id="1_n4yho"]
+[ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="1_nm46v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4yho"]
+size = Vector2(40, 40)
+
+[node name="Block" type="RigidBody2D" groups=["shapes"]]
+script = ExtResource("1_n4yho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n4yho")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, -4.76837e-07)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("1_nm46v")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
