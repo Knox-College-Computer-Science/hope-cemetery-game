@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://78kbo4vya25m"]
+[gd_scene load_steps=12 format=3 uid="uid://78kbo4vya25m"]
 
 [ext_resource type="Script" uid="uid://b21hdm7txbvh4" path="res://tests/experimentation/physics_homework.gd" id="1_q5eyw"]
 [ext_resource type="Theme" uid="uid://o402mibbwcv2" path="res://art/themes/gravestone_description_theme.tres" id="2_4uup1"]
+[ext_resource type="Script" uid="uid://b0roon3kb2rmh" path="res://tests/experimentation/marble.gd" id="2_n2sj6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_53jw1"]
 friction = 0.5
@@ -15,11 +16,22 @@ bounce = 0.1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_864pb"]
 size = Vector2(194.152, 47.4868)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q5eyw"]
+friction = 0.7
+bounce = 0.2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_864pb"]
-radius = 32.0156
+radius = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5eyw"]
+bg_color = Color(1, 0.303931, 0.495218, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0maux"]
-size = Vector2(71, 61)
+size = Vector2(64.5, 61)
 
 [node name="PhysicsHomework" type="CanvasLayer"]
 script = ExtResource("1_q5eyw")
@@ -42,7 +54,7 @@ debug_color = Color(0, 0, 0, 1)
 physics_material_override = SubResource("PhysicsMaterial_864pb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(594, 653)
+position = Vector2(638, 648)
 rotation = -0.268781
 shape = SubResource("RectangleShape2D_vh0x4")
 debug_color = Color(0, 0, 0, 1)
@@ -66,15 +78,32 @@ shape = SubResource("RectangleShape2D_864pb")
 debug_color = Color(0, 0, 0, 1)
 
 [node name="Marble" type="RigidBody2D" parent="."]
+position = Vector2(42, 152)
 collision_layer = 2
 collision_mask = 0
 mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_q5eyw")
 gravity_scale = 0.0
+script = ExtResource("2_n2sj6")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Marble"]
-position = Vector2(86, 152)
 shape = SubResource("CircleShape2D_864pb")
 debug_color = Color(0.981, 0, 0.373, 0.768)
+
+[node name="Panel" type="Panel" parent="Marble"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q5eyw")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 47.0
@@ -94,22 +123,38 @@ theme = ExtResource("2_4uup1")
 text = "Problem 1.
 Get the red marble to the green square"
 
-[node name="Button" type="Button" parent="."]
+[node name="SubmitButton" type="Button" parent="."]
 offset_left = 1066.0
 offset_top = 663.0
 offset_right = 1260.0
 offset_bottom = 704.0
 text = "Submit answer"
 
+[node name="ResetButton" type="Button" parent="."]
+offset_left = 858.0
+offset_top = 663.0
+offset_right = 1052.0
+offset_bottom = 704.0
+text = "Reset"
+
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(1069, 359)
+position = Vector2(1064, 361)
 collision_layer = 0
 collision_mask = 2
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-52, 140)
+position = Vector2(-55.25, 140)
 shape = SubResource("RectangleShape2D_0maux")
 debug_color = Color(0, 0.641017, 0.340974, 0.42)
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+offset_left = -89.0
+offset_top = 107.0
+offset_right = -22.0
+offset_bottom = 170.0
+color = Color(1.10701e-06, 0.536311, 0.283484, 1)
+
+[connection signal="pressed" from="SubmitButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_button_2_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
