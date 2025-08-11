@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpd7mhybcris0"]
+
+[ext_resource type="PackedScene" uid="uid://78kbo4vya25m" path="res://tests/experimentation/physics_homework/physics_homework.tscn" id="1_cpfcs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpfcs"]
+size = Vector2(286, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imr23"]
+size = Vector2(286, 41)
+
+[node name="PhysicsHomework" instance=ExtResource("1_cpfcs")]
+
+[node name="Marble" parent="." index="1"]
+position = Vector2(587, 174)
+
+[node name="Description" parent="." index="3"]
+text = "Problem 2.
+Too easy, eh? Well how about this?!?"
+
+[node name="Goal" parent="." index="7"]
+position = Vector2(498, 277)
+
+[node name="Counter" parent="." index="8"]
+text = "50"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(593, 284)
+rotation = 0.282743
+shape = SubResource("RectangleShape2D_cpfcs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="10"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+position = Vector2(844, 458)
+rotation = -0.424115
+shape = SubResource("RectangleShape2D_imr23")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="11"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="0"]
+position = Vector2(498, 593)
+shape = SubResource("RectangleShape2D_imr23")

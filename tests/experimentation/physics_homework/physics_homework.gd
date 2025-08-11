@@ -3,10 +3,14 @@ extends CanvasLayer
 var mouse_pressed = false
 var mouse_disabled = false
 var original_marble_position : Vector2
+var amount_left = 0
+var max_amount = 0
 var snapshots = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	max_amount = int($Counter.text)
+	amount_left = max_amount
 	original_marble_position = $Marble.position
 	for child in get_children():
 		if(child is StaticBody2D):
@@ -18,10 +22,13 @@ func _ready():
 			#mesh_in.global_position = col_shape.global_position
 			col_shape.add_child(mesh_in)
 			
+func _process(delta):
+	amount_left = max_amount - get_tree().get_nodes_in_group("shapes").size()
+	$Counter.text = str(amount_left)
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton && event.is_pressed():
-		if(!mouse_pressed && !mouse_disabled):
+		if(!mouse_pressed && !mouse_disabled && amount_left > 0):
 			"""var b = RigidBody2D.new()
 			 var col = CollisionShape2D.new()
 			var sh := RectangleShape2D.new()
@@ -38,8 +45,10 @@ func _unhandled_input(event):
 			b.position = get_viewport().get_mouse_position()
 			b.add_child(v)
 			b.add_to_group("shapes")"""
-			var b = load("res://tests/experimentation/block.tscn").instantiate()
+			var b = load("res://tests/experimentation/physics_homework/block.tscn").instantiate()
 			b.position = get_viewport().get_mouse_position()
+			#b.tree_exited.connect(add)
+			#amount_left -= 1
 			save_snapshot()
 			add_child(b)
 		mouse_pressed = true
@@ -70,7 +79,7 @@ func _on_reset_pressed():
 	reset_marble()
 	snapshots.clear()
 	mouse_disabled = false
-
+	amount_left = max_amount
 
 func reset_marble():
 	$Marble.set_deferred("linear_velocity", Vector2.ZERO)
@@ -79,6 +88,7 @@ func reset_marble():
 	$Marble.collision_layer = 0
 	$Marble.collision_mask = 0
 	$SubmitButton.text = "Submit answer"
+	$UndoButton.disabled = false
 
 func save_snapshot():
 	var new_snapshot = []
@@ -99,11 +109,17 @@ func undo():
 	if(snapshots.is_empty()):
 		return
 	get_tree().call_group("shapes", "queue_free")
+	amount_left = max_amount
 	for item in snapshots[-1]:
-		var b = load("res://tests/experimentation/block.tscn").instantiate()
+		var b = load("res://tests/experimentation/physics_homework/block.tscn").instantiate()
 		b.position = item["position"]
 		b.rotation = item["rotation"]
 		b.linear_velocity = item["linear_vel"]
 		b.angular_velocity = item["angular_vel"]
 		add_child(b)
+		#amount_left -= 1
 	snapshots.pop_back()
+
+func add():
+	pass
+	#amount_left += 1

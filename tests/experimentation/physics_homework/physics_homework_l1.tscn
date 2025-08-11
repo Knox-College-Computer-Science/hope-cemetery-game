@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dda0vlwppgt5d"]
+
+[ext_resource type="PackedScene" uid="uid://78kbo4vya25m" path="res://tests/experimentation/physics_homework/physics_homework.tscn" id="1_qsc0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttyun"]
+size = Vector2(281, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsc0s"]
+size = Vector2(281, 39)
+
+[node name="PhysicsHomework" instance=ExtResource("1_qsc0s")]
+
+[node name="Marble" parent="." index="1"]
+position = Vector2(145, 250)
+
+[node name="Goal" parent="." index="7"]
+position = Vector2(727, 288)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(254, 350)
+rotation = 0.211185
+shape = SubResource("RectangleShape2D_ttyun")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+position = Vector2(515, 598)
+shape = SubResource("RectangleShape2D_qsc0s")
+
+[node name="Counter" parent="." index="10"]
+text = "12"
