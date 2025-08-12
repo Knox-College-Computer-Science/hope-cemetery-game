@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://fn0aruc50qdk"]
+[gd_scene load_steps=5 format=3 uid="uid://fn0aruc50qdk"]
 
 [ext_resource type="Script" uid="uid://cso47uhqmk515" path="res://tests/experimentation/physics_homework/block.gd" id="1_n4yho"]
 [ext_resource type="Texture2D" uid="uid://q053v1v4d1vk" path="res://art/icon.svg" id="1_nm46v"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ry03r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4yho"]
 size = Vector2(40, 40)
 
 [node name="Block" type="RigidBody2D" groups=["shapes"]]
 mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_ry03r")
+continuous_cd = 1
 script = ExtResource("1_n4yho")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

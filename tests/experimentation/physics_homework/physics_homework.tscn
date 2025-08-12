@@ -28,7 +28,7 @@ script = ExtResource("1_q5eyw")
 offset_right = 1302.0
 offset_bottom = 736.0
 mouse_filter = 2
-color = Color(0.939807, 0.87861, 0.832263, 1)
+color = Color(0.841207, 0.703369, 0.596482, 1)
 
 [node name="Marble" type="RigidBody2D" parent="."]
 position = Vector2(581, 237)
@@ -123,6 +123,13 @@ offset_bottom = 70.0
 theme = ExtResource("2_4uup1")
 theme_override_font_sizes/font_size = 70
 text = "100"
+
+[node name="MouseIndicator" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(20, 19)
+mouse_filter = 2
+color = Color(0.49, 0.49, 0.49, 0.812)
 
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_pressed"]
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_pressed"]

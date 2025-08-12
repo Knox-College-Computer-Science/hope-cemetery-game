@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bod2m63afn3nq"]
+
+[ext_resource type="PackedScene" uid="uid://78kbo4vya25m" path="res://tests/experimentation/physics_homework/physics_homework.tscn" id="1_kvmhu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xul6"]
+size = Vector2(519, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvmhu"]
+size = Vector2(58.9446, 57.149)
+
+[node name="PhysicsHomework" instance=ExtResource("1_kvmhu")]
+path_to_shape = "res://tests/experimentation/physics_homework/long_block.tscn"
+
+[node name="Marble" parent="." index="1"]
+position = Vector2(959, 43)
+
+[node name="Description" parent="." index="3"]
+offset_left = 384.0
+offset_top = 123.0
+offset_right = 929.0
+offset_bottom = 223.0
+text = "Problem 3.
+This one is going to be tough!"
+
+[node name="Goal" parent="." index="7"]
+position = Vector2(288, 216)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(923, 233)
+rotation = -0.846485
+shape = SubResource("RectangleShape2D_7xul6")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="10"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+position = Vector2(615.528, 550.575)
+shape = SubResource("RectangleShape2D_kvmhu")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="11"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="0"]
+position = Vector2(462, 550)
+shape = SubResource("RectangleShape2D_kvmhu")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." index="12"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" index="0"]
+position = Vector2(304, 550)
+shape = SubResource("RectangleShape2D_kvmhu")

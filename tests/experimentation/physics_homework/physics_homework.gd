@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var path_to_shape = "res://tests/experimentation/physics_homework/block.tscn"
 var mouse_pressed = false
 var mouse_disabled = false
 var original_marble_position : Vector2
@@ -21,10 +22,14 @@ func _ready():
 			mesh_in.mesh = box_mesh
 			#mesh_in.global_position = col_shape.global_position
 			col_shape.add_child(mesh_in)
+	
+	var shape = load(path_to_shape).instantiate()
+	$MouseIndicator.scale = shape.get_collision_shape().scale
 			
 func _process(delta):
 	amount_left = max_amount - get_tree().get_nodes_in_group("shapes").size()
 	$Counter.text = str(amount_left)
+	$MouseIndicator.position = get_viewport().get_mouse_position() - Vector2($MouseIndicator.size.x/2.0, $MouseIndicator.size.y/2.0)
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton && event.is_pressed():
@@ -45,7 +50,7 @@ func _unhandled_input(event):
 			b.position = get_viewport().get_mouse_position()
 			b.add_child(v)
 			b.add_to_group("shapes")"""
-			var b = load("res://tests/experimentation/physics_homework/block.tscn").instantiate()
+			var b = load(path_to_shape).instantiate()
 			b.position = get_viewport().get_mouse_position()
 			#b.tree_exited.connect(add)
 			#amount_left -= 1
@@ -111,7 +116,7 @@ func undo():
 	get_tree().call_group("shapes", "queue_free")
 	amount_left = max_amount
 	for item in snapshots[-1]:
-		var b = load("res://tests/experimentation/physics_homework/block.tscn").instantiate()
+		var b = load(path_to_shape).instantiate()
 		b.position = item["position"]
 		b.rotation = item["rotation"]
 		b.linear_velocity = item["linear_vel"]
