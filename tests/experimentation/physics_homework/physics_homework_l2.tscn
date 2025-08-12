@@ -21,7 +21,7 @@ Too easy, eh? Well how about this?!?"
 position = Vector2(498, 277)
 
 [node name="Counter" parent="." index="8"]
-text = "50"
+text = "30"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvwvxqm5mvf3f"]
+
+[ext_resource type="PackedScene" uid="uid://fn0aruc50qdk" path="res://tests/experimentation/physics_homework/block.tscn" id="1_1rkbf"]
+
+[node name="Block" instance=ExtResource("1_1rkbf")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+scale = Vector2(2, 0.5)
