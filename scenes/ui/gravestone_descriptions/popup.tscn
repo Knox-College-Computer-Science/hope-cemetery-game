@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvvss2dg247x1"]
+[gd_scene load_steps=4 format=3 uid="uid://bvvss2dg247x1"]
 
 [ext_resource type="Script" uid="uid://bwxrdp13hd8xi" path="res://scripts/ui/popup.gd" id="1_y0yrx"]
 [ext_resource type="Texture2D" uid="uid://dgr4jj1qqml" path="res://art/ui items/pointer.png" id="2_gh3ru"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wv33x"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 0.757)
+border_blend = true
 
 [node name="Popup" type="Node2D"]
 z_index = 5
@@ -27,6 +31,7 @@ size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wv33x")
 
 [node name="TextContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
