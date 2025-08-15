@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://d88qpm7vt3an"]
+
+[ext_resource type="Script" uid="uid://ck6b3crd0lj5n" path="res://tests/experimentation/test/real_homework.gd" id="1_a5kf3"]
+[ext_resource type="FontFile" uid="uid://c072yy23mfevd" path="res://fonts/Tangerine-Bold.ttf" id="2_ldolu"]
+
+[node name="Node2D" type="CanvasLayer"]
+script = ExtResource("1_a5kf3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1400.0
+offset_bottom = 811.0
+color = Color(0.838897, 0.838897, 0.838897, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 181.0
+one_shot = true
+autostart = true
+
+[node name="TimeLeft" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 9.0
+offset_right = 177.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Time remaining: 0:00"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 111.0
+offset_top = 120.0
+offset_right = 1214.0
+offset_bottom = 615.0
+columns = 5
+
+[node name="Remember" type="Button" parent="."]
+offset_left = 974.0
+offset_top = 660.0
+offset_right = 1251.0
+offset_bottom = 706.0
+focus_mode = 0
+text = "Remember!"
+
+[node name="Grade" type="Label" parent="."]
+offset_left = 1145.0
+offset_top = -19.0
+offset_right = 1260.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ldolu")
+theme_override_font_sizes/font_size = 100
+text = "0%"
+
+[node name="TimeUp" type="Label" parent="."]
+visible = false
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -68.5
+offset_right = 245.0
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Time's up!"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="Remember" to="." method="_on_remember_button_down"]

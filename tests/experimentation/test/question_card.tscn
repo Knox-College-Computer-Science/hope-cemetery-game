@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba3shr4j7tna3"]
+
+[ext_resource type="Script" uid="uid://d0pu0ofcx1rut" path="res://tests/experimentation/test/question_card.gd" id="1_loqnl"]
+[ext_resource type="Texture2D" uid="uid://djonc3hp7c7o6" path="res://art/particles/white_sparkle.png" id="2_2vrt0"]
+
+[sub_resource type="Gradient" id="Gradient_16rf6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="QuestionCard" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.5
+offset_top = -83.0
+offset_right = 176.5
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(171, 81)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_loqnl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Question" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "What was the name of my first pet?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Answer" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 232.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Fluffy"
+vertical_alignment = 1
+
+[node name="Percent" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.42
+text = "80%"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+toggle_mode = true
+flat = true
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(139.5, 69)
+emitting = false
+amount = 16
+texture = ExtResource("2_2vrt0")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 28.09
+initial_velocity_max = 300.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_16rf6")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="toggled" from="Button" to="." method="_on_button_toggled"]
