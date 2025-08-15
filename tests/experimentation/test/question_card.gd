@@ -10,7 +10,9 @@ var possible_answers = [
 	"Mary Tyler Moore", "Scott Haris",
 	"The Holy Bible", "Corruption",
 	"Reckless Drivers", "Pony Tails",
-	"Table Tennis", "War and Peace"
+	"Table Tennis", "War and Peace",
+	"The Beatles", "Paper Planes",
+	"War of 1812", "Knox College",
 ]
 var rotate_tween : Tween = null
 var percent_solved = 0
@@ -71,6 +73,7 @@ func _on_button_toggled(toggled_on):
 func deselect():
 	$Button.button_pressed = false
 	modulate = Color.WHITE
+	deselected.emit()
 
 func add_percent(amount):
 	if(amount > 0):

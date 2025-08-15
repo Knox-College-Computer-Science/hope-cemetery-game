@@ -1,18 +1,26 @@
 extends CanvasLayer
 
-const CARD_AMOUNT = 30
+const CARD_AMOUNT = 20
+const NUMBER_OF_WORDS = 19
 
 var cards = []
 var selected_cards = []
-var words = ["Tree", "Art", "Rock", "Yeast", "Plant", "River", "Woods",
+var possible_words = ["Tree", "Art", "Rock", "Yeast", "Plant", "River", "Woods",
 "Park", "Window", "Math", "Science", "Wolf", "Lion", "Happiness", "Lent",
-"Possibility", "Touch", "Frugality", "Silence"]
-var percent_scale = [0, 10, 30, 50, 60, 70]
+"Possibility", "Touch", "Frugality", "Silence", "Influenza", "Computer", "Photography",
+"Mall", "Brain", "Table", "Dollar", "Filter", "Magazine", "Password", "Probability",
+"Language", "Prophecy", "Luggage", "Bottle", "Temper", "War"]
+var words = []
+var percent_scale = [0, 20, 40, 60, 80, 90]
 var words_in_common = []
 var total_score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	possible_words.shuffle()
+	for i in range(NUMBER_OF_WORDS):
+		words.append(possible_words.pop_back())
+	
 	for i in range(CARD_AMOUNT):
 		var new_card : QuestionCard = load("res://tests/experimentation/test/question_card.tscn").instantiate()
 		new_card.selected.connect(add_selected_card.bind(new_card))
@@ -85,3 +93,9 @@ func update_grade(percent):
 func _on_timer_timeout():
 	$GridContainer.hide()
 	$TimeUp.show()
+
+
+func _on_deselect_button_down():
+	var selected_cards_copy = selected_cards.duplicate()
+	for card in selected_cards_copy:
+		card.deselect()

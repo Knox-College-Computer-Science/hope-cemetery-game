@@ -12,7 +12,7 @@ offset_bottom = 811.0
 color = Color(0.838897, 0.838897, 0.838897, 1)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 181.0
+wait_time = 201.0
 one_shot = true
 autostart = true
 
@@ -67,5 +67,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
 text = "Time's up!"
 
+[node name="Deselect" type="Button" parent="."]
+offset_left = 19.0
+offset_top = 658.0
+offset_right = 285.0
+offset_bottom = 706.0
+focus_mode = 0
+text = "Deselect All Cards"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Remember" to="." method="_on_remember_button_down"]
+[connection signal="button_down" from="Deselect" to="." method="_on_deselect_button_down"]
