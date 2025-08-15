@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ba3shr4j7tna3"]
 
-[ext_resource type="Script" uid="uid://d0pu0ofcx1rut" path="res://tests/experimentation/test/question_card.gd" id="1_loqnl"]
+[ext_resource type="Script" uid="uid://d0pu0ofcx1rut" path="res://tests/experimentation/exam_game/question_card.gd" id="1_loqnl"]
 [ext_resource type="Texture2D" uid="uid://djonc3hp7c7o6" path="res://art/particles/white_sparkle.png" id="2_2vrt0"]
 
 [sub_resource type="Gradient" id="Gradient_16rf6"]
