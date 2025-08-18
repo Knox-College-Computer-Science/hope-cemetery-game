@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d88qpm7vt3an"]
 
-[ext_resource type="Script" uid="uid://ck6b3crd0lj5n" path="res://tests/experimentation/exam_game/real_homework.gd" id="1_a5kf3"]
+[ext_resource type="Script" uid="uid://ck6b3crd0lj5n" path="res://tests/experimentation/exam_game/exam_game.gd" id="1_a5kf3"]
 [ext_resource type="FontFile" uid="uid://c072yy23mfevd" path="res://fonts/Tangerine-Bold.ttf" id="2_ldolu"]
 
 [node name="Node2D" type="CanvasLayer"]
