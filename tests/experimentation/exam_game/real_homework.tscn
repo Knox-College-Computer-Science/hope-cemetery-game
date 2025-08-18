@@ -12,7 +12,7 @@ offset_bottom = 811.0
 color = Color(0.838897, 0.838897, 0.838897, 1)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 201.0
+wait_time = 151.0
 one_shot = true
 autostart = true
 

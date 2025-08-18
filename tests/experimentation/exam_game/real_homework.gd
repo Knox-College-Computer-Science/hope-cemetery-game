@@ -22,7 +22,7 @@ func _ready():
 		words.append(possible_words.pop_back())
 	
 	for i in range(CARD_AMOUNT):
-		var new_card : QuestionCard = load("res://tests/experimentation/test/question_card.tscn").instantiate()
+		var new_card : QuestionCard = load("res://tests/experimentation/exam_game/question_card.tscn").instantiate()
 		new_card.selected.connect(add_selected_card.bind(new_card))
 		new_card.deselected.connect(removed_selected_card.bind(new_card))
 		new_card.tree_exited.connect(add_new_card)
@@ -53,7 +53,7 @@ func add_selected_card(card):
 	update_words_in_common()
 
 func removed_selected_card(card):
-	selected_cards.remove_at(selected_cards.find(card))
+	selected_cards.erase(card)
 	update_words_in_common()
 
 func update_words_in_common():
