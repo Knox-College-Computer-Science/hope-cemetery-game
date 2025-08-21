@@ -73,7 +73,7 @@ WHAT ABOUT CHILD NODES?
 	
 MAINTAINING NODE REFERENCES
 1. Make sure that the reference you are saving points to an
-   object that is also being saved. (Use the save_addon if needed.)
+   object that is also being saved.
 2. Add a variable called "saved_node_references". This should hold
    a list of the names of variables that have node references.
    NOTE: Data structures holding multiple references are currently
